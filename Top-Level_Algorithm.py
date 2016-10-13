@@ -1,9 +1,9 @@
 # TODO: Create a list `playerList` to note the order in which the players take turns.
-# TODO: “Roll die” (use RNG) to decide who plays first - add players to playerList in corresponding order.
+# TODO: "Roll die" (use RNG) to decide who plays first - add players to playerList in corresponding order.
 
 # TODO: Randomly select Heroes.
 # TODO: Choose initial allotment of cards for both players (default 4 cards).
-# TODO: Create variable `currentState` and initialize with the Hero selection and the card allotment.
+# TODO: Create variable of type State `currentState` and initialize with the Hero selection and the card allotment.
 
 # TODO: Create int variable `turn` to track how many turns (not plys - pairs of plys) have been elapsed.
 # TODO: Create boolean variable `terminate` to note whether a terminal state has been reached.
@@ -22,6 +22,8 @@
 # TODO:             Give this player 1 card and `turn` mana crystal(s).
 # Find the best next state.
 # TODO:         if (this player is the main AI):
+# NOTE: To implement an n-ply lookahead, successorFunction may call itself and utilityFunction,
+#       alternating the point of view between the current player and the other player as it descends the tree.
 # TODO:             for (each `proposedNextState` yielded by successorFunction(currentState, playerIndx)):
 # TODO:                 if (utilityFunction(proposedNextState, playerIndx) > utilityFunction(nextState, playerIndx)):
 # TODO:                     nextState = proposedNextState
