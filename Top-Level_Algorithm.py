@@ -27,12 +27,12 @@
 # TODO:             for (each `proposedNextState` yielded by successorFunction(currentState, playerIndx)):
 # TODO:                 if (utilityFunction(proposedNextState, playerIndx) > utilityFunction(nextState, playerIndx)):
 # TODO:                     nextState = proposedNextState
-# TODO:         else: (choose nextState randomly)
+# TODO:         else: (choose nextState randomly for the other AI)
 # TODO:             `nextState` = successorFunctionRandom(currentState, playerIndx)
 # Go to that state.
 # TODO:         currentState = bestState
 # Check if this is a terminal state.
-# TODO:     if (terminalTest(currentState) == True):
-# TODO:         return (Games should be run multiple times to average performance results. Those are not recorded here.)
+# TODO:         if (terminalTest(currentState) == True):
+# TODO:             return (Games should be run multiple times to average performance results. Those are not recorded here.)
 
 

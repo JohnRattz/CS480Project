@@ -13,10 +13,10 @@ def successorFunction(currentState, playerIndx):
     # TODO: Create variable of type State `state`.
 
     # TODO: Conduct a DFS of the state space for card choices,
-    # TODO: choosing the left-most card on each iteration until no more cards may be chosen.
+    # TODO: choosing the left-most state on each iteration until no more cards may be chosen.
 
-    # TODO: Conduct a DFS of the state space for card usage given the set of chosen cards
-    # TODO: choosing the left-most card on each iteration until no more decisions may be made.
+    # TODO: Conduct a DFS of the state space for card usage given the set of chosen cards,
+    # TODO: choosing the left-most state on each iteration until no more decisions may be made.
 
     # TODO: return state
 
@@ -32,9 +32,9 @@ def successorFunctionRandom(currentState, playerIndx):
     # TODO: Create variable of type State `state`.
 
     # TODO: Conduct a DFS of the state space for card choices,
-    # TODO: choosing the next card randomly on each iteration until no more cards may be chosen.
+    # TODO: choosing the next state randomly on each iteration until no more cards may be chosen.
 
-    # TODO: Conduct a DFS of the state space for card usage given the set of chosen cards
-    # TODO: choosing the next card randomly on each iteration until no more decisions may be made.
+    # TODO: Conduct a DFS of the state space for card usage given the set of chosen cards,
+    # TODO: choosing the next state randomly on each iteration until no more decisions may be made.
 
     # TODO: return state
