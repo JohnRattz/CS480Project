@@ -5,6 +5,7 @@ class State:
     Attributes:
         cardsInPlay (list[list[Card]])  The Cards in play for both players, with the outer list indexed by the players.
         cardsInHand (list[list[Card]])  The Cards in the players' hands, with the outer list indexed by the players.
+                                        `cardsInHand[playerIndx][0]` is always the Hero card for player `playerIndx`.
         manaCrystals (list[int])        The number of mana crystals for both players.
     """
     def __init__(self, cardsInPlay, cardsInHand, manaCrystals):

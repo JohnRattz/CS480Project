@@ -25,7 +25,7 @@ def main():
     # TODO: Construct list of Cards `cardsList` from the JSON data (excluding Hero cards) (joshuajharris)
 
     # Randomly select Heroes and assign them to the players.
-    # The first Card in `cardsInHand[playerIndx]` is always the Hero card for player `playerIndx`.
+    # `cardsInHand[playerIndx][0]` is always the Hero card for player `playerIndx`.
     cardsInPlay = []
     selectedHeroes = random.sample(heroesList, 2)
     cardsInPlay.append([selectedHeroes[0]])
@@ -58,23 +58,25 @@ def main():
 
     # Run the game.
     while not terminate:
-        # Create variable `nextState` to hold the next proposed state and initialize to currentState.
-        nextState = currentState
+        # Create variable `nextState` to hold the next proposed state.
+        nextState = None
         for playerIndx in playerList:
             # Find the best next state.
             # If this player is the main AI...
             if playerIndx == 0:
-                # For each possible next state...
-                for proposedNextState in successorFunction(currentState, playerIndx, turn):
+                # Get next state based on MiniMax algorithm.
+                nextState = successorFunction(currentState, playerIndx, turn)
+                # for proposedNextState in successorFunction(currentState, playerIndx, turn):
                     # If this state is better than the current state...
-                    if utilityFunction(proposedNextState, playerIndx) > utilityFunction(currentState, playerIndx):
-                        nextState = proposedNextState
+                    # if utilityFunction(proposedNextState) > utilityFunction(currentState):
+                    #     nextState = proposedNextState
             else: # choose nextState randomly for the other AI
                 nextState = successorFunctionRandom(currentState, playerIndx, turn)
             # Go to that state.
             currentState = nextState
             # Check if this is a terminal state.
             terminate = terminalTest(currentState)
+        turn += 1
 
     # Return the last state for analysis purposes (in testing).
     return currentState
