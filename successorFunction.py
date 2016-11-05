@@ -43,7 +43,7 @@ def successorFunction(currentState, playerIndx, turn):
 
         :param node:            Node    The current node.
         :param depth:           int     The number of edges traversed from the root to reach this node.
-        :param alpha            int     The highest attainable score for the maximizing player so far.
+        :param alpha:           int     The highest attainable score for the maximizing player so far.
         :param beta:            int     The lowest attainable score for the minimizing player so far.
         :param maxPlayer:       bool    Determines whether the maximizing or minimizing player is making this ply.
         :param maxDepth:        int     The maximum depth to descend the tree. The depth at which nodes are evaluated
@@ -56,6 +56,10 @@ def successorFunction(currentState, playerIndx, turn):
 
         currentState = node.getState()
         childNodes = [Node(nextState, None) for nextState in getNextStates(currentState)]
+        if len(childNodes):
+            score = utilityFunction(node.getState)
+            return score
+
         if maxPlayer:
             # Maximum value of child nodes of this max node.
             childNodesMax = MIN_INT

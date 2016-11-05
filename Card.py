@@ -66,15 +66,36 @@ class Minion(Card):
 
     def attack(self, card):
         """
-        Attack another card. This Card, `card`, or both may be left with health <= 0.
-
-        :param card: Card   The Card to attack.
+        Attack another card. This Card, the other Card, or both may be left with health <= 0.
         """
         if hasattr(card, 'reduceHealth'):
             # Attack `card`.
             card.reduceHealth(self._attack)
-            # Recieve attack from `card`.
+            # Receive attack from `card`.
             if hasattr(card, 'attack'):
                 self.reduceHealth(card.getAttack())
+        else:
+            raise AttributeError("Cannot attack Card without `health` attribute and `reduceHealth` function.")
+
+
+class Spell(Card):
+    """
+    Represents a Spell type card.
+
+    Attributes:
+        effect      We will only be considering spell cards that do
+                    fixed amounts of damage to one Card.
+    """
+    def __init__(self, cost, name, isLegendary, attack):
+        super().__init__(cost, name, isLegendary)
+        self._attack = attack
+
+    def attack(self, card):
+        """
+        Attack another card. This Card, the other Card, or both may be left with health <= 0.
+        """
+        if hasattr(card, 'reduceHealth'):
+            # Attack `card`.
+            card.reduceHealth(self._attack)
         else:
             raise AttributeError("Cannot attack Card without `health` attribute and `reduceHealth` function.")
