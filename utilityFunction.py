@@ -1,3 +1,4 @@
+# TODO: Finish this. (Jerrod, Cisco)
 def utilityFunction(state):
     '''
     Calculates a utility value for a state.

@@ -1,23 +1,75 @@
 import multiprocessing as mp
 import random
+import itertools
 import sys
-
 from Node import Node
 from utilityFunction import utilityFunction
+import globals
 
 MAX_INT = 2**31 - 1
 MIN_INT = -2**31
 
 
-def getNextStates(state):
+# TODO: Finish this (jrattz)
+def getNextStates(state, playerIndx, turn):
     """
     Gets all possible next states for State `state`.
 
-    :param state:       State       The current state for which next states are desired.
+    :param state:           State   The current state for which next states are desired.
+    :param playerIndx:      int     The player that is making the ply for this state.
+    :param turn:            int     The current turn number. Used to determine mana crystal allotment.
     :return nextStates: list[State] The possible next states for `state`.
     """
-    # TODO: Get all next states.
-    # One thing to remember to do here is to give `min(turn, 10)` mana crystals to the current player every ply.
+    # TODO: Give this player a card from their deck - chosen randomly.
+    cardsInDeck = globals.cardsList
+    chosenCardIndices = random.sample(range(len(cardsInDeck)), 4)
+    dealtCards = [cardsInDeck[chosenCardIndx] for chosenCardIndx in chosenCardIndices]
+    # Remove selected Cards from the deck.
+    chosenCardIndices.sort(reverse=True)
+    for cardIndx in chosenCardIndices:
+        del cardsInDeck[cardIndx]
+
+    # TODO: For each possible set of card choices for this player...
+    currentPlayerHand = state.getCardsInHand(playerIndx) + dealtCards
+    currentPlayerCardsInPlay = state.getCardsInPlay(playerIndx)
+    currentPlayerCrystals = state.getManaCrystals(playerIndx)
+
+    enemyPlayerIndx = 1 if playerIndx == 0 else 0
+    enemyCardsInPlay = state.getCardsInPlay(enemyPlayerIndx)
+
+    for numToChooseFromHand in range(1, len(currentPlayerHand) + 1):
+        for cardsToChoose in itertools.combinations(currentPlayerHand, numToChooseFromHand):
+            cardCosts = [cardsToChoose[indx].getCost() for indx in range(numToChooseFromHand)]
+            totalCost = sum(cardCosts)
+            # If there are enough manacrystals remaining to choose another card...
+            # (In our limited versions of Hearthstone, there is never a reason to have remaining cards to choose -
+            #  partly because mana crystals do not carry over from turn to turn.)
+            remainingCrystals = currentPlayerCrystals - totalCost
+            canChooseMoreCards = False
+            for cardCost in cardCosts:
+                if remainingCrystals >= cardCost:
+                    canChooseMoreCards = True
+                    break
+            if canChooseMoreCards:
+                continue # Then choose another set of cards.
+
+            # Add the chosen cards to the cards in play for this player.
+            cardsInPlay = currentPlayerCardsInPlay + cardsToChoose
+            # Get subset of the current player's cards that can attack.
+            attackCapableCards = [card for card in cardsInPlay if hasattr(card, 'attack')]
+            # Get subset of enemy cards that are attackable.
+            attackableCards = [card for card in enemyCardsInPlay if hasattr(card, 'reduceHealth')]
+            # TODO: For each possible set of attack-capable cards...
+            for numToChooseFromAttackCapable in range(1, len(attackCapableCards) + 1):
+                for attackCapableCardsToChoose in itertools.combinations(attackCapableCards,
+                                                                         numToChooseFromAttackCapable):
+                    # TODO: For each possible permutation of that set (order of attack matters)...
+                        # TODO: For each possible combination of attackable cards (of this set's size)...
+                            # TODO: Attack the attackable cards with the attack-capable cards.
+                            # TODO: Give `min(turn, 10)` mana crystals to the other player.
+                            # TODO: Add this state to `nextStates`.
+
+    # TODO: One thing to remember to do here is to give `min(turn, 10)` mana crystals to the current player every ply.
     # NOTE: Mana crystals do not carry over from previous turns.
     return nextStates
 
@@ -55,7 +107,7 @@ def successorFunction(currentState, playerIndx, turn):
             return score
 
         currentState = node.getState()
-        childNodes = [Node(nextState, None) for nextState in getNextStates(currentState)]
+        childNodes = [Node(nextState, None) for nextState in getNextStates(currentState, playerIndx, turn)]
         if len(childNodes):
             score = utilityFunction(node.getState)
             return score
@@ -103,7 +155,7 @@ def successorFunction(currentState, playerIndx, turn):
 
     # This is more general than just using `1` for the `maxPlayer` parameter of `alphabeta()`.
     # We may want to test the AI when playing against "itself".
-    nextPlayerIndx = 1 if playerIndx == 0 else nextPlayerIndx = 0
+    nextPlayerIndx = 1 if playerIndx == 0 else 0
 
     # Create a multiprocessing pool with the number of threads equal to the number of logical processors.
     pool = mp.Pool(mp.cpu_count())

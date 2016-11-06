@@ -3,6 +3,8 @@ import Card
 from State import State
 from successorFunction import *
 from utilityFunction import utilityFunction
+import globals
+
 
 def terminalTest(currentState):
     """
@@ -15,41 +17,50 @@ def terminalTest(currentState):
         return True
     return False
 
+
 def main():
     # Create a list `playerList` to note the order in which the players take turns (so either [0,1] or [1,0]).
     # The order is decided randomly.
     playerList = random.sample([0,1], 2)
-
-    # TODO: Construct list of Heroes `heroesList` from the JSON data (joshuajharris)
-
-    # TODO: Construct list of Cards `cardsList` from the JSON data (excluding Hero cards) (joshuajharris)
-
     # Randomly select Heroes and assign them to the players.
-    # `cardsInHand[playerIndx][0]` is always the Hero card for player `playerIndx`.
+    # `cardsInPlay[playerIndx][0]` is always the Hero card for player `playerIndx`.
     cardsInPlay = []
-    selectedHeroes = random.sample(heroesList, 2)
+    selectedHeroes = random.sample(globals.heroesList, 2)
     cardsInPlay.append([selectedHeroes[0]])
     cardsInPlay.append([selectedHeroes[1]])
 
-    # Choose initial allotment of cards for both players (default 4 cards).
-    initialCardAllotment = random.sample(cardsList, 8)
-    chosenCardIndices = random.sample(range(8), 4)
-    # Allot Cards for first player.
-    cardsInHand = [[initialCardAllotment[chosenCardIndx] for chosenCardIndx in chosenCardIndices]]
-    # Remove those selected Cards from `initialCardAllotment`.
-    chosenCardIndices.sort(reverse=True)
-    for cardIndx in chosenCardIndices:
-        del initialCardAllotment[cardIndx]
-    # Allot remaining Cards for second player.
-    cardsInHand.append(initialCardAllotment)
+    # Generate decks for both players.
+    deckSize = 30
+    # First player's deck
+    deck0 = [random.choice(globals.cardsList) for _ in range(deckSize)]
+    # Second player's deck
+    deck1 = [random.choice(globals.cardsList) for _ in range(deckSize)]
+
+    # Choose initial allotment of cards for both players (default 4 cards per player).
+    cardsInHand = []
+    numInitialCardsPerPlayer = 4
+    chosenCardIndices0 = random.sample(range(deckSize), numInitialCardsPerPlayer)
+    chosenCardIndices1 = random.sample(range(deckSize), numInitialCardsPerPlayer)
+    cardsInHand.append([deck0[chosenCardIndx] for chosenCardIndx in chosenCardIndices0])
+    cardsInHand.append([deck1[chosenCardIndx] for chosenCardIndx in chosenCardIndices1])
+    # Remove those selected Cards from the respective decks.
+    chosenCardIndices0.sort(reverse=True)
+    for cardIndx in chosenCardIndices0:
+        del deck0[cardIndx]
+    chosenCardIndices1.sort(reverse=True)
+    for cardIndx in chosenCardIndices1:
+        del deck1[cardIndx]
+    decks = [deck0, deck1]
     print("cardsInPlay: ", cardsInPlay)
     print("cardsInHand: ", cardsInHand)
+    print("deck0: ", deck0)
+    print("deck1: ", deck1)
 
     # Give both players mana crystals (1 for first player, 2 for second player).
     manaCrystals = [1, 2]
 
     # Create variable of type State `currentState` and initialize with the Hero selection and the card allotment.
-    currentState = State(cardsInPlay, cardsInHand, manaCrystals)
+    currentState = State(cardsInPlay, cardsInHand, manaCrystals, decks)
 
     # `turn` tracks how many turns (not plys - pairs of plys) have been elapsed.
     turn = 0
@@ -66,10 +77,6 @@ def main():
             if playerIndx == 0:
                 # Get next state based on MiniMax algorithm.
                 nextState = successorFunction(currentState, playerIndx, turn)
-                # for proposedNextState in successorFunction(currentState, playerIndx, turn):
-                    # If this state is better than the current state...
-                    # if utilityFunction(proposedNextState) > utilityFunction(currentState):
-                    #     nextState = proposedNextState
             else: # choose nextState randomly for the other AI
                 nextState = successorFunctionRandom(currentState, playerIndx, turn)
             # Go to that state.
@@ -81,5 +88,5 @@ def main():
     # Return the last state for analysis purposes (in testing).
     return currentState
 
-if __name__ is "__main__":
+if __name__ == "__main__":
     main()

@@ -83,7 +83,7 @@ class Spell(Card):
     Represents a Spell type card.
 
     Attributes:
-        effect      We will only be considering spell cards that do
+        attack      We will only be considering spell cards that do
                     fixed amounts of damage to one Card.
     """
     def __init__(self, cost, name, isLegendary, attack):
