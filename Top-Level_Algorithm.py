@@ -1,5 +1,6 @@
 import random
 import Card
+from CardImport import loadCards
 from State import State
 from successorFunction import *
 from utilityFunction import utilityFunction
@@ -19,6 +20,9 @@ def terminalTest(currentState):
 
 
 def main():
+    # Loads cards from json file
+    loadCards()
+
     # Create a list `playerList` to note the order in which the players take turns (so either [0,1] or [1,0]).
     # The order is decided randomly.
     playerList = random.sample([0,1], 2)

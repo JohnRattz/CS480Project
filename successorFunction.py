@@ -68,6 +68,7 @@ def getNextStates(state, playerIndx, turn):
                             # TODO: Attack the attackable cards with the attack-capable cards.
                             # TODO: Give `min(turn, 10)` mana crystals to the other player.
                             # TODO: Add this state to `nextStates`.
+                    continue
 
     # TODO: One thing to remember to do here is to give `min(turn, 10)` mana crystals to the current player every ply.
     # NOTE: Mana crystals do not carry over from previous turns.
