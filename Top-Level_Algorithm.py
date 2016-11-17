@@ -22,6 +22,8 @@ def terminalTest(currentState):
 def main():
     # Loads cards from json file
     loadCards()
+    print(len(globals.heroesList))
+    print(len(globals.cardsList))
 
     # Create a list `playerList` to note the order in which the players take turns (so either [0,1] or [1,0]).
     # The order is decided randomly.
@@ -57,8 +59,8 @@ def main():
     decks = [deck0, deck1]
     print("cardsInPlay: ", cardsInPlay)
     print("cardsInHand: ", cardsInHand)
-    print("deck0: ", deck0)
-    print("deck1: ", deck1)
+    print("len(deck0): ", len(deck0))
+    print("len(deck1): ", len(deck1))
 
     # Give both players mana crystals (1 for first player, 2 for second player).
     manaCrystals = [1, 2]

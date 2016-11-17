@@ -109,7 +109,7 @@ def successorFunction(currentState, playerIndx, turn):
 
         currentState = node.getState()
         childNodes = [Node(nextState, None) for nextState in getNextStates(currentState, playerIndx, turn)]
-        if len(childNodes):
+        if len(childNodes) == 0:
             score = utilityFunction(node.getState)
             return score
 
@@ -146,7 +146,7 @@ def successorFunction(currentState, playerIndx, turn):
 
     successorState = None
 
-    childNodes = [Node(nextState, None) for nextState in getNextStates(currentState)]
+    childNodes = [Node(nextState, None) for nextState in getNextStates(currentState, playerIndx, turn)]
     initialNode = Node(currentState, childNodes)
     # Python integers have arbitrary precision, so choose the min and max values for 32-bit integers.
     alpha = MIN_INT
@@ -161,7 +161,7 @@ def successorFunction(currentState, playerIndx, turn):
     # Create a multiprocessing pool with the number of threads equal to the number of logical processors.
     pool = mp.Pool(mp.cpu_count())
 
-    # Get the alpha-beta value of all child nodes in parallel.
+    # Get the alpha-beta value of all child nodes in parallel (nodes for which the *next* player is making the ply).
     alpha_beta_state_tuples = [pool.apply(alphabeta, [childNode, 1, alpha, beta, bool(nextPlayerIndx), maxDepth])
                                for childNode in childNodes]
     # Sort on alpha-beta value.

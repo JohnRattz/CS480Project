@@ -3,7 +3,7 @@ def utilityFunction(state):
     '''
     Calculates a utility value for a state.
     Higher utility values indicate more preferred states
-    for player 0 (more likely to be chosen when `playerIndx == 0`).
+    for player 1 (more likely to be chosen when `playerIndx == 1`).
 
     :param state:           State   The state to evaluate.
     :return utilityValue:   int     The utility value of state. Higher values indicate
