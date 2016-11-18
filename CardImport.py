@@ -5,8 +5,7 @@ import json # For Json handling
 JSON_CARD_PATH = "data\cards.json"
 
 def loadCards():
-    global heroesList
-    global cardsList
+    global heroesList, cardsList
 
     # Re-initializes global card lists
     heroesList.clear()

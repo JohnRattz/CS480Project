@@ -28,6 +28,7 @@ def main():
     # Create a list `playerList` to note the order in which the players take turns (so either [0,1] or [1,0]).
     # The order is decided randomly.
     playerList = random.sample([0,1], 2)
+    firstPlayerIndx = playerList[0]
     # Randomly select Heroes and assign them to the players.
     # `cardsInPlay[playerIndx][0]` is always the Hero card for player `playerIndx`.
     cardsInPlay = []
@@ -82,9 +83,9 @@ def main():
             # If this player is the main AI...
             if playerIndx == 0:
                 # Get next state based on MiniMax algorithm.
-                nextState = successorFunction(currentState, playerIndx, turn)
+                nextState = successorFunction(currentState, playerIndx, firstPlayerIndx, turn)
             else: # choose nextState randomly for the other AI
-                nextState = successorFunctionRandom(currentState, playerIndx, turn)
+                nextState = successorFunctionRandom(currentState, playerIndx, firstPlayerIndx, turn)
             # Go to that state.
             currentState = nextState
             # Check if this is a terminal state.
