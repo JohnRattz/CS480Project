@@ -2,7 +2,9 @@ import multiprocessing as mp
 import random
 import itertools
 import sys
-from Node import Node
+from copy import deepcopy
+
+from State import State
 from utilityFunction import utilityFunction
 from globals import heroesList, cardsList
 
@@ -10,38 +12,47 @@ MAX_INT = 2**31 - 1
 MIN_INT = -2**31
 
 
-# TODO: Finish this (jrattz)
+# TODO: Finish this. (John)
 # TODO: Make this a generator for DFS.
-def getNextStates(state, playerIndx, turn):
+def getNextStates(currentState, playerIndx, turn):
     """
     Gets all possible next states for State `state`.
 
-    :param state:           State   The current state for which next states are desired.
-    :param playerIndx:      int     The player that is making the ply for this state.
-    :param turn:            int     The current turn number. Used to determine mana crystal allotment.
-    :return nextStates: list[State] The possible next states for `state`.
+    :param currentState:    State       The current state for which next states are desired.
+    :param playerIndx:      int         The player that is making the ply for this state.
+    :param turn:            int         The current turn number. Used to determine mana crystal allotment.
+    :return nextStates:     list[State] The possible next states for `state`.
     """
     global heroesList, cardsList
 
-    # Randomly chose a card for the player making this ply.
-    cardsInDeck = state.getCardsInDeck(playerIndx)
-    chosenCardIndx = random.choice(range(len(cardsInDeck)))
-    dealtCard = cardsInDeck[chosenCardIndx]
-    # Remove selected Card from the deck.
-    # chosenCardIndices.sort(reverse=True)
-    # for cardIndx in chosenCardIndices:
-    #     del cardsInDeck[cardIndx]
-    del cardsInDeck[chosenCardIndx]
+    # Avoid modifying `currentState` and create basis state for all next states.
+    # It's used to prevent repeating mana crystal allotment and card allotment for each next state.
+    nextStateBasis = deepcopy(currentState)
+    currentPlayerHand = nextStateBasis.getCardsInHand(playerIndx)
 
-    currentPlayerHand = state.getCardsInHand(playerIndx) + [dealtCard]
+    if turn != 0:
+        # Allot mana crystals.
+        nextStateBasis.setManaCrystals(min(turn, 10), playerIndx)
+
+        # Randomly chose a card for the player making this ply.
+        cardsInDeck = nextStateBasis.getCardsInDeck(playerIndx)
+        if len(cardsInDeck) > 0:
+            chosenCardIndx = random.choice(range(len(cardsInDeck)))
+            dealtCard = deepcopy(cardsInDeck[chosenCardIndx])
+            # Remove selected Card from the deck.
+            # chosenCardIndices.sort(reverse=True)
+            # for cardIndx in chosenCardIndices:
+            #     del cardsInDeck[cardIndx]
+            del cardsInDeck[chosenCardIndx]
+            currentPlayerHand.append(dealtCard)
+
     cardCosts = [cardInHand.getCost() for cardInHand in currentPlayerHand]
-    currentPlayerCardsInPlay = state.getCardsInPlay(playerIndx)
-    currentPlayerCrystals = state.getManaCrystals(playerIndx)
-
+    currentPlayerCardsInPlay = nextStateBasis.getCardsInPlay(playerIndx)
+    currentPlayerCrystals = nextStateBasis.getManaCrystals(playerIndx)
     enemyPlayerIndx = 1 if playerIndx == 0 else 0
-    enemyCardsInPlay = state.getCardsInPlay(enemyPlayerIndx)
+    enemyCardsInPlay = nextStateBasis.getCardsInPlay(enemyPlayerIndx)
 
-    # TODO: For each possible set of card choices for this player (cards in hand - to be put in play)...
+    # For each possible set of card choices for this player (cards in hand - to be put in play)...
     # TODO: Include possibility for choosing no cards?
     # NOTE: For 10 cards in hand, these two loops (as written currently) run 1023 times.
     #       For 5 cards in hand, they run only 30 times.
@@ -55,35 +66,60 @@ def getNextStates(state, playerIndx, turn):
             # (In our limited versions of Hearthstone, there is never a reason to have remaining cards to choose -
             #  only partly because mana crystals do not carry over from turn to turn.)
             remainingCrystals = currentPlayerCrystals - totalCost
-
+            if remainingCrystals < 0:
+                continue  # Choose another set of cards.
             canChooseMoreCards = False
-            for cardCost in cardCosts:
+            # The costs of cards not chosen.
+            unchosenCardCosts = [cardCosts[cardIndx] for cardIndx in range(len(cardCosts))
+                                 if cardIndx not in cardsToChooseIndices]
+            for cardCost in unchosenCardCosts:
                 if remainingCrystals >= cardCost:
                     canChooseMoreCards = True
                     break
             if canChooseMoreCards:
-                continue  # Choose another set of cards.
+                continue
 
+            # Remove the chosen cards from the current player's hand for the next state.
+            nextStateCurrentPlayerHand = [currentPlayerHand[cardIndx] for cardIndx in cardsToChooseIndices
+                                          if cardIndx not in cardsToChooseIndices]
             # Add the chosen cards to the cards in play for this player.
-            cardsInPlay = currentPlayerCardsInPlay + cardsToChoose
+            nextStateCurrentPlayerCardsInPlay = currentPlayerCardsInPlay + cardsToChoose
             # Get subset of the current player's cards that can attack.
-            attackCapableCards = [card for card in cardsInPlay if hasattr(card, 'attack')]
+            # attackCapableCards = [card for card in nextStateCurrentPlayerCardsInPlay if hasattr(card, 'attack')]
+            attackCapableCardIndices = [cardIndx for cardIndx in range(nextStateCurrentPlayerCardsInPlay)
+                                        if hasattr(nextStateCurrentPlayerCardsInPlay[cardIndx], 'attack')]
             # Get subset of enemy cards that are attackable.
-            attackableCards = [card for card in enemyCardsInPlay if hasattr(card, 'reduceHealth')]
-            # TODO: For each possible set of attack-capable cards...
-            for numToChooseFromAttackCapable in range(1, len(attackCapableCards) + 1):
-                for attackCapableCardsToChoose in itertools.combinations(attackCapableCards,
-                                                                         numToChooseFromAttackCapable):
-                    # TODO: For each possible permutation of that set (order of attack matters)...
-                        # TODO: For each possible combination of attackable cards (of this set's size)...
-                            # TODO: Attack the attackable cards with the attack-capable cards.
-                            # TODO: Give `min(turn, 10)` mana crystals to the other player.
-                            # TODO: Add this state to `nextStates`.
-                    continue
+            # attackableCards = [card for card in enemyCardsInPlay if hasattr(card, 'reduceHealth')]
+            attackableCardIndices = [cardIndx for cardIndx in range(enemyCardsInPlay)
+                                     if hasattr(enemyCardsInPlay[cardIndx], 'reduceHealth')]
+            # For each possible set of attack-capable cards (order of attack matters)...
+            for numToChooseFromAttackCapable in range(0, len(attackCapableCardIndices) + 1):
+                for attackCapableCardsToChooseIndices in itertools.permutations(attackCapableCardIndices,
+                                                                                numToChooseFromAttackCapable):
+                        # For each combination of attackable cards (each card can only target one card)...
+                        for attackableCardsToChooseIndices in itertools.combinations(attackableCardIndices,
+                                                                                     numToChooseFromAttackCapable):
+                            # Don't modify the original cards in `nextStateBasis`.
+                            nextStateCurrentPlayerCardsInPlay = deepcopy(nextStateCurrentPlayerCardsInPlay)
+                            nextStateEnemyCardsInPlay = deepcopy(enemyCardsInPlay)
 
-    # TODO: One thing to remember to do here is to give `min(turn, 10)` mana crystals to the current player every ply.
-    # NOTE: Mana crystals do not carry over from previous turns.
-    return nextStates
+                            attackingCards = [nextStateCurrentPlayerCardsInPlay[cardIndx] for cardIndx
+                                              in attackCapableCardsToChooseIndices]
+                            attackedCards = [nextStateEnemyCardsInPlay[cardIndx] for cardIndx
+                                             in attackableCardsToChooseIndices]
+
+                            # Attack the attackable cards with the attack-capable cards.
+                            for attackPairIndices in zip(attackCapableCardsToChooseIndices,
+                                                         attackableCardsToChooseIndices):
+                                attackingCard = attackingCards[attackPairIndices[0]]
+                                attackedCard = attackedCards[attackPairIndices[1]]
+                                attackingCard.attack(attackedCard)
+
+                            # TODO: Assemble the next state.
+
+                            nextState = State(nextStateCurrentPlayerCardsInPlay,)
+                            yield nextState
+
 
 def successorFunction(currentState, playerIndx, firstPlayerIndx, turn):
     """
@@ -115,45 +151,52 @@ def successorFunction(currentState, playerIndx, firstPlayerIndx, turn):
         :return:                int     Ultimately, the alpha-beta value of the tree of states with `node` at the root.
         """
         if depth == maxDepth:
-            score = utilityFunction(currentState)
-            return score
+            return utilityFunction(currentState)
 
         # childNodes = [Node(nextState, None) for nextState in getNextStates(currentState, playerIndx, turn)]
         # if len(childNodes) == 0:
         #     score = utilityFunction(currentState)
         #     return score
 
-        for childState in getNextStates(currentState, playerIndx, turn):
-            if maxPlayer:
-                # Maximum value of child nodes of this max node.
-                childNodesMax = MIN_INT
-                for childNode in childNodes:
-                    childNodeVal = alphabeta(childNode, depth + 1, alpha, beta, False, maxDepth)
-                    if childNodeVal > childNodesMax:
-                        childNodesMax = childNodeVal
-                    alpha = max(alpha, childNodeVal)
-                    if beta <= alpha:
-                        break  # Beta cutoff
-                # If this node is a child of the root, return alpha-beta value for this branch and this node's state.
-                if depth == 1:
-                    return min(alpha, childNodesMax), currentState
-                else:
-                    return min(alpha, childNodesMax)
+        # The best value (whether MIN or MAX) for any child node.
+        bestVal = None
+        numChildren = 0
+        if maxPlayer:
+            # Maximum value of child nodes of this max node.
+            bestVal = MIN_INT
+            for childState in getNextStates(currentState, playerIndx, turn):
+                numChildren += 1
+                childNodeVal = alphabeta(childState, depth + 1, alpha, beta, False, maxDepth)
+                if childNodeVal > bestVal:
+                    bestVal = childNodeVal
+                alpha = max(alpha, childNodeVal)
+                if beta <= alpha:
+                    break  # Beta cutoff
+            if numChildren == 0:
+                return utilityFunction(currentState)
+            # If this node is a child of the root (see context in `successorFunction`),
+            # return alpha-beta value for this branch and this node's state.
+            if depth == 1:
+                return min(alpha, bestVal), currentState
             else:
-                # Minimum value of child nodes of this min node.
-                childNodesMin = MAX_INT
-                for childNode in childNodes:
-                    childNodeVal = alphabeta(childNode, depth+1, alpha, beta, True, maxDepth)
-                    if childNodeVal < childNodesMin:
-                        childNodesMin = childNodeVal
-                    beta = min(beta, childNodeVal)
-                    if beta <= alpha:
-                        break  # Alpha cutoff
-                # If this node is a child of the root, return alpha-beta value for this branch and this node's state.
-                if depth == 1:
-                    return max(beta, childNodesMin), currentState
-                else:
-                    return max(beta, childNodesMin)
+                return min(alpha, bestVal)
+        else:
+            # Minimum value of child nodes of this min node.
+            bestVal = MAX_INT
+            for childState in getNextStates(currentState, playerIndx, turn):
+                numChildren += 1
+                childNodeVal = alphabeta(childState, depth+1, alpha, beta, True, maxDepth)
+                if childNodeVal < bestVal:
+                    bestVal = childNodeVal
+                beta = min(beta, childNodeVal)
+                if beta <= alpha:
+                    break  # Alpha cutoff
+            if numChildren == 0:
+                return utilityFunction(currentState)
+            if depth == 1:
+                return max(beta, bestVal), currentState
+            else:
+                return max(beta, bestVal)
 
     # childNodes = [Node(nextState, None) for nextState in getNextStates(currentState, playerIndx, turn)]
     # initialNode = Node(currentState, childNodes)
@@ -177,13 +220,13 @@ def successorFunction(currentState, playerIndx, firstPlayerIndx, turn):
     # Sort on alpha-beta value.
     alpha_beta_state_tuples.sort(key=lambda x: x[0])
 
-    # Player 0 picks among states with the maximum alpha-beta value.
-    # Player 1 picks among states with the minimum alpha-beta value (when testing player 1 with non-random AI).
+    # Player 0 picks among states with the minimum alpha-beta value.
+    # Player 1 picks among states with the maximum alpha-beta value (when testing player 1 with non-random AI).
     successorState = None
     if playerIndx == 0:
-        successorState = alpha_beta_state_tuples[alpha_beta_state_tuples.size() - 1][1]
-    else:
         successorState = alpha_beta_state_tuples[0][1]
+    else:
+        successorState = alpha_beta_state_tuples[alpha_beta_state_tuples.size() - 1][1]
 
     return successorState
 

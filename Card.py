@@ -66,7 +66,8 @@ class Minion(Card):
 
     def attack(self, card):
         """
-        Attack another card. This Card, the other Card, or both may be left with health <= 0.
+        Attack another card and receive an attack from that card if it can also attack.
+        This Card, the other Card, or both may be left with health <= 0.
         """
         if hasattr(card, 'reduceHealth'):
             # Attack `card`.

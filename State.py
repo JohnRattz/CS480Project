@@ -30,6 +30,9 @@ class State:
             return self._manaCrystals[playerIndx]
         return self._manaCrystals
 
+    def setManaCrystals(self, num, playerIndx):
+        self._manaCrystals[playerIndx] = num
+
     def getCardsInDeck(self, playerIndx=None):
         if playerIndx is not None:
             return self._decks[playerIndx]

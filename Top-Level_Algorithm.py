@@ -90,6 +90,8 @@ def main():
             currentState = nextState
             # Check if this is a terminal state.
             terminate = terminalTest(currentState)
+            if terminate:
+                break
         turn += 1
 
     # Return the last state for analysis purposes (in testing).
