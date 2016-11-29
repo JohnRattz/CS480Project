@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 class State:
     """
     Represents a possible state of the game.
@@ -10,10 +12,10 @@ class State:
         decks        list[list[Card]]   The decks for both players.
     """
     def __init__(self, cardsInPlay, cardsInHand, manaCrystals, decks):
-        self._cardsInPlay = cardsInPlay
-        self._cardsInHand = cardsInHand
-        self._manaCrystals = manaCrystals
-        self._decks = decks
+        self._cardsInPlay = deepcopy(cardsInPlay)
+        self._cardsInHand = deepcopy(cardsInHand)
+        self._manaCrystals = deepcopy(manaCrystals)
+        self._decks = deepcopy(decks)
 
     def getCardsInPlay(self, playerIndx=None):
         if playerIndx is not None:
@@ -30,7 +32,16 @@ class State:
             return self._manaCrystals[playerIndx]
         return self._manaCrystals
 
+    def setManaCrystals(self, num, playerIndx):
+        self._manaCrystals[playerIndx] = num
+
     def getCardsInDeck(self, playerIndx=None):
         if playerIndx is not None:
             return self._decks[playerIndx]
         return self._decks
+
+    def __repr__(self):
+        return  "cardsInPlay: \n{}".format("\n".join('{}'.format(item) for item in self._cardsInPlay)) + "\n" + \
+                "cardsInHand: \n{}".format("\n".join('{}'.format(item) for item in self._cardsInHand)) + "\n" + \
+                "manaCrystals: {}".format(self._manaCrystals) + "\n" + \
+                "decks: \n{}".format("\n".join('{}'.format(item) for item in self._decks)) + "\n"
