@@ -1,5 +1,8 @@
-# TODO: Construct list of Heroes `heroesList` from the JSON data - one instance of each Hero (Josh)
+# List of Heroes `heroesList` from the JSON data - one instance of each Hero
 heroesList = []
-# TODO: Construct list of Cards `cardsList` from the JSON data - one instance of each card,
-# only including minions and excluding Hero cards (Josh)
+# Construct list of Cards `cardsList` from the JSON data - one instance of each card,
+# only including minions and excluding Hero cards
 cardsList = []
+
+# The maximum lookahead depth in the minimax algorithm.
+maxDepth = 2

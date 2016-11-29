@@ -21,6 +21,11 @@ class Card:
     def isLegendary(self):
         return self._isLegendary
 
+    def __repr__(self):
+        # Only take the last 5 digits of `id(self)`.
+        ID = str(id(self))
+        return self.__class__.__name__ + " _ ID: {} _ Name: {}".format(ID[:len(ID)-6:-1], self._name)
+
 
 class Hero(Card):
     """
@@ -41,10 +46,13 @@ class Hero(Card):
     def reduceHealth(self, health):
         self._health -= health
 
+    def __repr__(self):
+        return super(self.__class__, self).__repr__() + " _ Hlth: {}".format(self._health)
+
 
 class Minion(Card):
     """
-    Represents a Minion type Card.
+    Represents a Minion Card.
 
     Attributes:
         health int  The number of health points this Minion has remaining.
@@ -78,14 +86,17 @@ class Minion(Card):
         else:
             raise AttributeError("Cannot attack Card without `health` attribute and `reduceHealth` function.")
 
+    def __repr__(self):
+        return super(self.__class__, self).__repr__() + " _ Hlth: {} _ Atk: {}".format(self._health, self._attack)
 
+# TODO: Include in second iteration tests.
 class Spell(Card):
     """
     Represents a Spell type card.
 
     Attributes:
-        attack      We will only be considering spell cards that do
-                    fixed amounts of damage to one Card.
+        attack int  The amount of health (and/or defense) lost by a Card attacked by this Minion.
+                    We will only be considering spell cards that do fixed amounts of damage to one Card.
     """
     def __init__(self, cost, name, isLegendary, attack):
         super().__init__(cost, name, isLegendary)
@@ -93,10 +104,53 @@ class Spell(Card):
 
     def attack(self, card):
         """
-        Attack another card. This Card, the other Card, or both may be left with health <= 0.
+        Attack another card. The other Card may be left with health <= 0.
         """
         if hasattr(card, 'reduceHealth'):
             # Attack `card`.
             card.reduceHealth(self._attack)
         else:
             raise AttributeError("Cannot attack Card without `health` attribute and `reduceHealth` function.")
+
+    def __repr__(self):
+        return super(self.__class__, self).__repr__() + "_ Atk: {}".format(self._attack)
+
+# TODO: Include in third iteration tests.
+class Weapon(Card):
+    """
+    Represents a Weapon type card.
+
+    Attributes:
+        durability  int The number of attacks remaining before this card is removed from play.
+        attack      int The amount of health (and/or defense) lost by a Card attacked by this Weapon.
+    """
+    def __init__(self, cost, name, isLegendary, durability, attack):
+        super().__init__(cost, name, isLegendary)
+        self._durability = durability
+        self._attack = attack
+
+    def getDurability(self):
+        return self._durability
+
+    def reduceDurability(self, durability):
+        self._durability -= durability
+
+    def getAttack(self):
+        return self._attack
+
+    def attack(self, card):
+        """
+        Attack another card and reduce this card's durability by 1.
+        This Card may be left with durability <= 0, and the other Card may be left with health <= 0.
+        """
+        if hasattr(card, 'reduceHealth'):
+            # Attack `card`.
+            card.reduceHealth(self._attack)
+            # Reduce durability.
+            self.reduceDurability(1)
+        else:
+            raise AttributeError("Cannot attack Card without `health` attribute and `reduceHealth` function.")
+
+    def __repr__(self):
+        return super(self.__class__, self).__repr__() + " _ Dur: {} _ Atk: {}".format(self._durability, self._attack)
+

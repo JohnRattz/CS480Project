@@ -7,19 +7,13 @@ from utilityFunction import utilityFunction
 import globals
 
 
-def terminalTest(currentState):
+def game_playing_AI():
     """
-    Determines if `currentState` is a terminal state.
+    This AI plays Hearthstone with a subset of all possible cards.
+    It is evaluated against a pseudo-random AI.
+
+    :return (winningPlayer, endTurn): int, int  A tuple containing the winning player and the end turn number.
     """
-    # If either player's Hero card has no health, this is a terminal state
-    firstPlayerHero = currentState.getCardsInPlay(0)[0]
-    secondPlayerHero = currentState.getCardsInPlay(1)[0]
-    if firstPlayerHero.getHealth() == 0 or secondPlayerHero.getHealth() == 0:
-        return True
-    return False
-
-
-def main():
     # Loads cards from json file
     loadCards()
     print(len(globals.heroesList))
@@ -58,19 +52,24 @@ def main():
     for cardIndx in chosenCardIndices1:
         del deck1[cardIndx]
     decks = [deck0, deck1]
-    print("cardsInPlay: ", cardsInPlay)
-    print("cardsInHand: ", cardsInHand)
-    print("len(deck0): ", len(deck0))
-    print("len(deck1): ", len(deck1))
+    # print("cardsInPlay: ", cardsInPlay)
+    # print("cardsInHand: ", cardsInHand)
+    # print("len(deck0): ", len(deck0))
+    # print("len(deck1): ", len(deck1))
 
     # Give both players mana crystals (1 for first player, 2 for second player).
-    manaCrystals = [1, 2]
+    manaCrystals = [0, 0]
+    manaCrystals[playerList[0]] = 1
+    manaCrystals[playerList[1]] = 2
 
     # Create variable of type State `currentState` and initialize with the Hero selection and the card allotment.
     currentState = State(cardsInPlay, cardsInHand, manaCrystals, decks)
 
-    # `turn` tracks how many turns (not plys - pairs of plys) have been elapsed.
-    turn = 0
+    # `turn` tracks the current turn number.
+    # (a ply is the set of choices for one player in a turn and turns are pairs of plys)
+    turn = 1
+    # `playerIndx` corresponds to the player making the current ply.
+    playerIndx = playerList[0]
     # `terminate` notes whether a terminal state has been reached.
     terminate = False
 
@@ -94,8 +93,32 @@ def main():
                 break
         turn += 1
 
-    # Return the last state for analysis purposes (in testing).
-    return currentState
+    # Return information for analysis purposes (in testing).
+    print("\nWinner was player", playerIndx, "on turn", turn, "with state:\n{}".format(currentState))
+    # (Winning player index, ending turn)
+    return playerIndx, turn
+
+def deck_evaluating_AI():
+    """
+    Run two equivalent AIs (same game (turn) logic and same lookahead depth) with randomly generated decks.
+    I don't know if there is supposed to be more to this AI than this.
+
+    This is Jerrod's idea, so he has ultimate jurisdiction here.
+
+    :return: ???
+    """
+    # TODO: (Jerrod, John)
+    pass
+
+def deck_choosing_AI():
+    """
+    Given that this is Bart's idea, I defer to him.
+
+    :return:
+    """
+    # TODO: (Bart, John)
+    pass
 
 if __name__ == "__main__":
-    main()
+    # Run game playing AI by default, but these are supposed to be imported and tested in `testing.py`.
+    game_playing_AI()
