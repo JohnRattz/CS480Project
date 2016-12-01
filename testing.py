@@ -8,14 +8,14 @@ def test_game_playing_AI():
     pass
 
 def test_deck_evaluating_AI():
-    # TODO: (Josh)
+    # TODO: (Jerrod)
     # Run this AI against an equivalent AI for some number of randomly generated decks,
     # running multiple times per deck and averaging results for that deck.
     # The AIs run with fixed and equal lookahead depth (some reasonable value like 3 or 4).
     pass
 
 def test_deck_choosing_AI():
-    # TODO: (Josh)
+    # TODO: (Bart)
     # Given that this is Bart's idea, I defer to him.
     pass
 

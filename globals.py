@@ -5,4 +5,4 @@ heroesList = []
 cardsList = []
 
 # The maximum lookahead depth in the minimax algorithm.
-maxDepth = 2
+maxDepth = 3
