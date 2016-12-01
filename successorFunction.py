@@ -26,7 +26,7 @@ def terminalTest(currentState):
     return False
 
 
-# TODO: Finish this. (John)
+# TODO: Make this neither illegible nor as long of a read as Moby Dick (Shut up, Ishmael - I don't care.) (John)
 def getNextStates(currentState, playerIndx, turn):
     """
     Gets all possible next states for State `state`.
@@ -80,11 +80,10 @@ def getNextStates(currentState, playerIndx, turn):
         if isinstance(card, Weapon):
             currentPlayerHasWeapon = True
             break
-    # Determine indices of this player's attack-capable cards in play.
-    # (Select all cards but first since that is a Hero and the only attack-capable cards that can be
-    #  in play at the beginning of a turn are Minions and Weapons)
-    # TODO: Remove this line.
-    # attackCapableCardIndices = list(range(1, len(currentPlayerCardsInPlay)))
+
+    # We can choose the lesser of the total number of cards in our hand
+    # and the remaining number of available slots for cards in play.
+    maxChoosableFromHand = min(len(currentPlayerHand), 7 - len(currentPlayerCardsInPlay)) + 1
 
     # DEBUG
     # print("nextStateBasis: \n{}".format(nextStateBasis))
@@ -93,7 +92,7 @@ def getNextStates(currentState, playerIndx, turn):
     # For each possible set of card choices for this player (cards in hand - to be put in play)...
     # NOTE: For 10 cards in hand, these two loops (as written currently) run 1024 times.
     #       For 5 cards in hand, they run only 30 times.
-    for numToChooseFromHand in range(0, min(len(currentPlayerHand), 7 - len(currentPlayerCardsInPlay)) + 1):
+    for numToChooseFromHand in range(0, maxChoosableFromHand):
         for cardsToChooseIndices in itertools.combinations(range(len(currentPlayerHand)), numToChooseFromHand):
             cardsToChoose = [currentPlayerHand[cardIndx] for cardIndx in cardsToChooseIndices]
             # The maximum number of cards in play for one player is 7. This excludes weapon cards, and spell
