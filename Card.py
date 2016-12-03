@@ -76,6 +76,17 @@ class Minion(Card):
     def getAttack(self):
         return self._attack
 
+    def canAttack(self, *args):
+        # Query whether this Minion can attack on this ply.
+        if len(args) == 0:
+            return self._canAttack
+        # Change whether this Minion can attack on this ply.
+        elif len(args) == 1:
+            self._canAttack = args[0]
+            return
+        else:
+            raise ValueError("Must have either no parameters or one boolean parameter.")
+
     def attack(self, card):
         """
         Attack another card and receive an attack from that card if it can also attack.

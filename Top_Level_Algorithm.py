@@ -7,7 +7,7 @@ from utilityFunction import utilityFunction
 import globals
 
 
-def game_playing_AI():
+def game_playing_AI(printStats = True):
     """
     This AI plays Hearthstone with a subset of all possible cards.
     It is evaluated against a pseudo-random AI.
@@ -16,8 +16,8 @@ def game_playing_AI():
     """
     # Loads cards from json file
     loadCards()
-    print(len(globals.heroesList))
-    print(len(globals.cardsList))
+    #print(len(globals.heroesList))
+    #print(len(globals.cardsList))
 
     # Create a list `playerList` to note the order in which the players take turns (so either [0,1] or [1,0]).
     # The order is decided randomly.
@@ -93,10 +93,13 @@ def game_playing_AI():
                 break
         turn += 1
 
+    # Prints winning state information
+    if printStats:
+        print("\nWinner was player", playerIndx, "on turn", turn, "with state:\n{}".format(currentState))
+
     # Return information for analysis purposes (in testing).
-    print("\nWinner was player", playerIndx, "on turn", turn, "with state:\n{}".format(currentState))
-    # (Winning player index, ending turn)
-    return playerIndx, turn
+    # (Winning player index, ending turn, ending state)
+    return playerIndx, turn, currentState
 
 def deck_evaluating_AI():
     """
@@ -110,12 +113,21 @@ def deck_evaluating_AI():
     # TODO: (Jerrod, John)
     pass
 
+def deck_choosing_AI():
+    """
+    Given that this is Bart's idea, I defer to him.
+
+    :return:
+    """
+    # TODO: (Bart, John)
+    pass
+
 def createDeck(hero, cards):
-    deck = [];
-    deckSize = 30;
-    filteredCards = removeOtherClassCards(hero, cards);
+    deck = []
+    deckSize = 30
+    filteredCards = removeOtherClassCards(hero, cards)
     #TODO: card evaluation function
-    return deck;
+    return deck
 
 def removeOtherClassCards(hero, cards):
     filteredCards = []
