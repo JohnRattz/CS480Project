@@ -1,4 +1,5 @@
 from copy import deepcopy
+from utilityFunction import utilityFunction
 
 class State:
     """
@@ -16,6 +17,7 @@ class State:
         self._cardsInHand = deepcopy(cardsInHand)
         self._manaCrystals = deepcopy(manaCrystals)
         self._decks = deepcopy(decks)
+        self._heuristic = utilityFunction(self)
 
     def getCardsInPlay(self, playerIndx=None):
         if playerIndx is not None:
@@ -34,11 +36,15 @@ class State:
 
     def setManaCrystals(self, num, playerIndx):
         self._manaCrystals[playerIndx] = num
+        self._heuristic = utilityFunction(self)
 
     def getCardsInDeck(self, playerIndx=None):
         if playerIndx is not None:
             return self._decks[playerIndx]
         return self._decks
+
+    def getHeuristic(self):
+        return self._heuristic
 
     def __repr__(self):
         return  "cardsInPlay: \n{}".format("\n".join('{}'.format(item) for item in self._cardsInPlay)) + "\n" + \
