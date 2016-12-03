@@ -36,9 +36,9 @@ class Hero(Card):
     Attributes:
         health int  The number of health points this Hero has remaining.
     """
-    def __init__(self, cost, name, isLegendary, health):
-        super().__init__(cost, name, isLegendary)
-        self._health = health
+    def __init__(self, name):
+        super().__init__(0, name, False)
+        self._health = 30
 
     def getHealth(self):
         return self._health
