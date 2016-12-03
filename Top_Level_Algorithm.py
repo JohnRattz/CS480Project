@@ -33,13 +33,25 @@ def game_playing_AI(printStats = True):
     # Generate decks for both players.
     deckSize = 30
     # First player's deck
-    deck0 = [random.choice(globals.cardsList) for _ in range(deckSize)]
+    deck0 = Deck(selectedHeroes[0], cardsList)
     # Second player's deck
-    deck1 = [random.choice(globals.cardsList) for _ in range(deckSize)]
+    deck1 = Deck(selectedHeroes[1], cardsList)
 
     # Choose initial allotment of cards for both players (default 4 cards per player).
     cardsInHand = []
     numInitialCardsPerPlayer = 3
+
+    ####### code to replace the portion until line "decks = [deck0, deck1]"
+    # deck0.shuffle()
+    # deck1.shuffle()
+    # cardsInHandP1 = []
+    # cardsInHandP2 = [Card("Coin")]
+    # for i in range(numInitialCardsPerPlayer):
+    #   cardsInHandP1.append(deck0.getNextCard())
+    #   cardsInHandP2.append(deck1.getNextCard())
+    #######
+
+
     chosenCardIndices0 = random.sample(range(deckSize), numInitialCardsPerPlayer)
     chosenCardIndices1 = random.sample(range(deckSize), numInitialCardsPerPlayer)
     cardsInHand.append([deck0[chosenCardIndx] for chosenCardIndx in chosenCardIndices0])
@@ -51,6 +63,7 @@ def game_playing_AI(printStats = True):
     chosenCardIndices1.sort(reverse=True)
     for cardIndx in chosenCardIndices1:
         del deck1[cardIndx]
+
     decks = [deck0, deck1]
     print("cardsInPlay: ", cardsInPlay)
     print("cardsInHand: ", cardsInHand)
