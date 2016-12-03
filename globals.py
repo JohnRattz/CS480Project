@@ -6,3 +6,7 @@ cardsList = []
 
 # The maximum lookahead depth in the minimax algorithm.
 maxDepth = 3
+
+def setMaxDepth(max):
+    global maxDepth
+    maxDepth = max
