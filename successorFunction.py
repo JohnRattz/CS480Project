@@ -8,6 +8,7 @@ from Card import *
 from State import State
 from utilityFunction import utilityFunction
 from globals import heroesList, cardsList, maxDepth
+import globals
 
 MAX_INT = 2**31 - 1
 MIN_INT = -2**31
@@ -303,19 +304,23 @@ def alphabeta(currentState, playerIndx, turn, depth, alpha, beta, maxPlayer):#, 
                                     using `utilityFunction`.
     :return:                int     Ultimately, the alpha-beta value of the tree of states with `node` at the root.
     """
-    global maxDepth
+    #global maxDepth
 
-    if depth == maxDepth:
+    if depth == globals.maxDepth:
         # If this node is a child of the root (see context in `successorFunction`),
         # then return the state itself in addition to the alpha-beta value.
         if depth == 1:
-            return utilityFunction(currentState), currentState
-        return utilityFunction(currentState)
+            return currentState.getHeuristic(), currentState
+        return currentState.getHeuristic()
 
     # childNodes = [Node(nextState, None) for nextState in getNextStates(currentState, playerIndx, turn)]
     # if len(childNodes) == 0:
     #     score = utilityFunction(currentState)
     #     return score
+
+    # Gets child states and sorts them (max: descending order, min: ascending order)
+    childStates = list(getNextStates(currentState, playerIndx, turn))
+    childStates.sort(key=lambda x: x.getHeuristic(), reverse=maxPlayer)
 
     # The best value (whether MIN or MAX) for any child node.
     bestVal = None
@@ -323,7 +328,7 @@ def alphabeta(currentState, playerIndx, turn, depth, alpha, beta, maxPlayer):#, 
     if maxPlayer:
         # Maximum value of child nodes of this max node.
         bestVal = MIN_INT
-        for childState in getNextStates(currentState, playerIndx, turn):
+        for childState in childStates:
             numChildren += 1
             childStateVal = alphabeta(childState, playerIndx, turn, depth + 1, alpha, beta, False)#, maxDepth)
             if childStateVal > bestVal:
@@ -334,16 +339,18 @@ def alphabeta(currentState, playerIndx, turn, depth, alpha, beta, maxPlayer):#, 
                 break  # Beta cutoff
         if numChildren == 0:
             if depth == 1:
-                return utilityFunction(currentState), currentState
-            return utilityFunction(currentState)
+                return currentState.getHeuristic(), currentState
+            return currentState.getHeuristic()
         if depth == 1:
             return min(alpha, bestVal), currentState
         else:
             return min(alpha, bestVal)
     else:
+        # Sorts child states in ascending order
+
         # Minimum value of child nodes of this min node.
         bestVal = MAX_INT
-        for childState in getNextStates(currentState, playerIndx, turn):
+        for childState in childStates:
             numChildren += 1
             childStateVal = alphabeta(childState, playerIndx, turn, depth + 1, alpha, beta, True)#, maxDepth)
             if childStateVal < bestVal:
@@ -354,8 +361,8 @@ def alphabeta(currentState, playerIndx, turn, depth, alpha, beta, maxPlayer):#, 
                 break  # Alpha cutoff
         if numChildren == 0:
             if depth == 1:
-                return utilityFunction(currentState), currentState
-            return utilityFunction(currentState)
+                return currentState.getHeuristic(), currentState
+            return currentState.getHeuristic()
         if depth == 1:
             return max(beta, bestVal), currentState
         else:
@@ -411,6 +418,35 @@ def successorFunction(currentState, playerIndx, firstPlayerIndx, turn):
         successorState = alpha_beta_state_tuples[alpha_beta_state_tuples.size() - 1][1]
 
     return successorState
+
+# Implementation without parallelism (WIP)
+def successorFunction2(currentState, playerIndx, firstPlayerIndx, turn):
+    """
+    Based on the current state and which player is making the current ply,
+    returns the best next state (one per invocation) corresponding to card choices and uses.
+
+    :param currentState:    State   A variable of type State representing the current state.
+    :param playerIndx:      int     The player that is making the current ply.
+    :param firstPlayerIndx: int     The index of the player making the first ply of every turn.
+    :param turn:            int     The current turn number.
+    :return successorState: State   A variable of type State representing the best next state for player `playerIndx`.
+    """
+    # childNodes = [Node(nextState, None) for nextState in getNextStates(currentState, playerIndx, turn)]
+    # initialNode = Node(currentState, childNodes)
+
+    # print("len(childStates): ", len(childStates))
+    # print("childStates: ", childStates)
+    # Python integers have arbitrary precision, so choose the min and max values for 32-bit integers.
+    alpha = MIN_INT
+    beta = MAX_INT
+    # `maxDepth` determines N in the N-ply lookahead.
+    # maxDepth = 2
+
+    # This is more general than just using `1` for the `maxPlayer` parameter of `alphabeta()`.
+    # We may want to test the AI when playing against "itself".
+    nextPlayerIndx = 1 if playerIndx == 0 else 0
+
+    return alphabeta(currentState, nextPlayerIndx, turn, 1, alpha, beta, bool(playerIndx))[1]
 
 # TODO: May not need `firstPlayerIndx`.
 def successorFunctionRandom(currentState, playerIndx, firstPlayerIndx, turn):
