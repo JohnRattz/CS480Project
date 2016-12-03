@@ -110,19 +110,14 @@ def deck_evaluating_AI():
     # TODO: (Jerrod, John)
     pass
 
-def createDeck(hero, cards):
-    deck = [];
-    deckSize = 30;
-    filteredCards = removeOtherClassCards(hero, cards);
-    #TODO: card evaluation function
-    return deck;
+def deck_choosing_AI():
+    """
+    Given that this is Bart's idea, I defer to him.
 
-def removeOtherClassCards(hero, cards):
-    filteredCards = []
-    for card in cards:
-        if card.playerClass() == hero.getName() or card.playerClass() == "NEUTRAL":
-            filteredCards.append(card)
-    return filteredCards
+    :return:
+    """
+    # TODO: (Bart, John)
+    pass
 
 def createDeck(hero, cards):
     deck = []
