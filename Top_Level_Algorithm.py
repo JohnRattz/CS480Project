@@ -39,7 +39,7 @@ def game_playing_AI():
 
     # Choose initial allotment of cards for both players (default 4 cards per player).
     cardsInHand = []
-    numInitialCardsPerPlayer = 4
+    numInitialCardsPerPlayer = 3
     chosenCardIndices0 = random.sample(range(deckSize), numInitialCardsPerPlayer)
     chosenCardIndices1 = random.sample(range(deckSize), numInitialCardsPerPlayer)
     cardsInHand.append([deck0[chosenCardIndx] for chosenCardIndx in chosenCardIndices0])
@@ -110,14 +110,19 @@ def deck_evaluating_AI():
     # TODO: (Jerrod, John)
     pass
 
-def deck_choosing_AI():
-    """
-    Given that this is Bart's idea, I defer to him.
+def createDeck(hero, cards):
+    deck = [];
+    deckSize = 30;
+    filteredCards = removeOtherClassCards(hero, cards);
+    #TODO: card evaluation function
+    return deck;
 
-    :return:
-    """
-    # TODO: (Bart, John)
-    pass
+def removeOtherClassCards(hero, cards):
+    filteredCards = []
+    for card in cards:
+        if card.playerClass() == hero.getName() or card.playerClass() == "NEUTRAL":
+            filteredCards.append(card)
+    return filteredCards
 
 def createDeck(hero, cards):
     deck = []
