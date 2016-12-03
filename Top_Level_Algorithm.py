@@ -122,20 +122,6 @@ def deck_choosing_AI():
     # TODO: (Bart, John)
     pass
 
-def createDeck(hero, cards):
-    deck = []
-    deckSize = 30
-    filteredCards = removeOtherClassCards(hero, cards)
-    #TODO: card evaluation function
-    return deck
-
-def removeOtherClassCards(hero, cards):
-    filteredCards = []
-    for card in cards:
-        if card.playerClass() == hero.getName() or card.playerClass() == "NEUTRAL":
-            filteredCards.append(card)
-    return filteredCards
-
 if __name__ == "__main__":
     # Run game playing AI by default, but these are supposed to be imported and tested in `testing.py`.
     game_playing_AI()
