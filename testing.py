@@ -1,11 +1,36 @@
 from Top_Level_Algorithm import *
-from globals import maxDepth
+import globals
+import time
 
 def test_game_playing_AI():
-    # TODO: (Josh)
+    # TODO: (Cisco)
     # Run this AI multiple times and average results at various lookahead depths.
     # To vary the lookahead depth, change `maxDepth` from `globals.py`.
-    pass
+
+    #global maxDepth
+
+    seed = time.time()
+    random.seed(seed)
+    globals.setMaxDepth(3)
+    MAX_RUNS = 5
+
+    # Stats
+    print("Game Playing AI Test")
+    print("====================")
+    print("Seed:", seed)
+    print("Max depth:", globals.maxDepth)
+
+    for i in range(MAX_RUNS):
+        print("")
+
+        # Runs game
+        time_start = time.time()
+        result = game_playing_AI(False)
+        time_end = time.time()
+
+        # Displays stats
+        print("\nWinner was player", result[0], "on turn", result[1])
+        print("Run #", i, "ran for", (time_end - time_start), "seconds")
 
 def test_deck_evaluating_AI():
     # TODO: (Jerrod)
@@ -20,4 +45,5 @@ def test_deck_choosing_AI():
     pass
 
 if __name__ == "__main__":
+    test_game_playing_AI()
     pass
