@@ -7,10 +7,11 @@ class Card:
         name        string  The name of the card.
         isLegendary bool    Whether this card is legendary or not.
     """
-    def __init__(self, cost, name, isLegendary):
+    def __init__(self, cost, name, isLegendary, playerClass):
         self._cost = cost
         self._name = name
         self._isLegendary = isLegendary
+        self._playerClass = playerClass
 
     def getCost(self):
         return self._cost
@@ -20,6 +21,9 @@ class Card:
 
     def isLegendary(self):
         return self._isLegendary
+
+    def playerClass(self):
+        return self._playerClass
 
     def __repr__(self):
         # Only take the last 5 digits of `id(self)`.
@@ -36,9 +40,9 @@ class Hero(Card):
     Attributes:
         health int  The number of health points this Hero has remaining.
     """
-    def __init__(self, cost, name, isLegendary, health):
-        super().__init__(cost, name, isLegendary)
-        self._health = health
+    def __init__(self, name):
+        super().__init__(0, name, False, "")
+        self._health = 30
 
     def getHealth(self):
         return self._health
@@ -58,8 +62,8 @@ class Minion(Card):
         health int  The number of health points this Minion has remaining.
         attack int  The amount of health (and/or defense) lost by a Card attacked by this Minion.
     """
-    def __init__(self, cost, name, isLegendary, health, attack):
-        super().__init__(cost, name, isLegendary)
+    def __init__(self, cost, name, isLegendary, health, attack, playerClass):
+        super().__init__(cost, name, isLegendary, playerClass)
         self._health = health
         self._attack = attack
 
@@ -71,6 +75,17 @@ class Minion(Card):
 
     def getAttack(self):
         return self._attack
+
+    def canAttack(self, *args):
+        # Query whether this Minion can attack on this ply.
+        if len(args) == 0:
+            return self._canAttack
+        # Change whether this Minion can attack on this ply.
+        elif len(args) == 1:
+            self._canAttack = args[0]
+            return
+        else:
+            raise ValueError("Must have either no parameters or one boolean parameter.")
 
     def attack(self, card):
         """
@@ -98,8 +113,8 @@ class Spell(Card):
         attack int  The amount of health (and/or defense) lost by a Card attacked by this Minion.
                     We will only be considering spell cards that do fixed amounts of damage to one Card.
     """
-    def __init__(self, cost, name, isLegendary, attack):
-        super().__init__(cost, name, isLegendary)
+    def __init__(self, cost, name, isLegendary, attack, playerClass):
+        super().__init__(cost, name, isLegendary, playerClass)
         self._attack = attack
 
     def attack(self, card):
@@ -124,8 +139,8 @@ class Weapon(Card):
         durability  int The number of attacks remaining before this card is removed from play.
         attack      int The amount of health (and/or defense) lost by a Card attacked by this Weapon.
     """
-    def __init__(self, cost, name, isLegendary, durability, attack):
-        super().__init__(cost, name, isLegendary)
+    def __init__(self, cost, name, isLegendary, durability, attack, playerClass):
+        super().__init__(cost, name, isLegendary, playerClass)
         self._durability = durability
         self._attack = attack
 

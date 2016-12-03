@@ -26,7 +26,6 @@ def terminalTest(currentState):
     return False
 
 
-# TODO: Make this neither illegible nor as long of a read as Moby Dick (Shut up, Ishmael - I don't care.) (John)
 def getNextStates(currentState, playerIndx, turn):
     """
     Gets all possible next states for State `state`.
@@ -37,6 +36,7 @@ def getNextStates(currentState, playerIndx, turn):
     :return nextStates:     list[State] The possible next states for `state`.
     """
     global heroesList, cardsList
+
     # DEBUG
     # print("currentState: \n{}".format(currentState))
     # print("playerIndx: ", playerIndx)
@@ -56,13 +56,9 @@ def getNextStates(currentState, playerIndx, turn):
         # Randomly chose a card for the player making this ply.
         if len(currentPlayerCardsInDeck) > 0:
             chosenCardIndx = random.choice(range(len(currentPlayerCardsInDeck)))
-            # print("chosenCardIndx: ", chosenCardIndx)
-            # Copy so that the following `del` does not delete this card.
+            # Copy the card so that the following `del` does not delete it.
             dealtCard = deepcopy(currentPlayerCardsInDeck[chosenCardIndx])
             # Remove selected Card from the deck.
-            # chosenCardIndices.sort(reverse=True)
-            # for cardIndx in chosenCardIndices:
-            #     del cardsInDeck[cardIndx]
             del currentPlayerCardsInDeck[chosenCardIndx]
             # If a player has more than 10 cards in hand, any drawn cards are discarded.
             if len(currentPlayerHand) < 10:
@@ -81,25 +77,24 @@ def getNextStates(currentState, playerIndx, turn):
             currentPlayerHasWeapon = True
             break
 
-    # We can choose the lesser of the total number of cards in our hand
-    # and the remaining number of available slots for cards in play.
-    maxChoosableFromHand = min(len(currentPlayerHand), 7 - len(currentPlayerCardsInPlay)) + 1
-
     # DEBUG
     # print("nextStateBasis: \n{}".format(nextStateBasis))
     # DEBUG
 
     # For each possible set of card choices for this player (cards in hand - to be put in play)...
-    # NOTE: For 10 cards in hand, these two loops (as written currently) run 1024 times.
-    #       For 5 cards in hand, they run only 30 times.
-    for numToChooseFromHand in range(0, maxChoosableFromHand):
+    # NOTE: For 10 cards in hand, these two loops (as written currently) run at most 1024 times.
+    #       For 5 cards in hand, they run at most only 32 times.
+    for numToChooseFromHand in range(0, len(currentPlayerHand) + 1):
         for cardsToChooseIndices in itertools.combinations(range(len(currentPlayerHand)), numToChooseFromHand):
             cardsToChoose = [currentPlayerHand[cardIndx] for cardIndx in cardsToChooseIndices]
             # The maximum number of cards in play for one player is 7. This excludes weapon cards, and spell
             # cards are consumed on use. Thus, only chosen minion cards add to the number of cards in play.
             numCardsToPutInPlay = 0
             weaponChosenWhileWeaponInPlay = False
-            # A list of indices of the chosen cards that are attack-capable this turn.
+            # A list of Minion cards added this turn.
+            # They are not attack capable this turn, but they will be in future plys.
+            newMinionCardIndices = []
+            # A list of indices of the chosen cards that are attack capable this turn.
             newAttackCapableCardIndices = []
             # A list of indices of the chosen cards that *must* attack this turn (i.e. Spell cards).
             requiredAttackingCardIndices = []
@@ -107,6 +102,8 @@ def getNextStates(currentState, playerIndx, turn):
                 card = cardsToChoose[cardIndx]
                 if isinstance(card, Minion):
                     numCardsToPutInPlay += 1
+                    newMinionCardIndices.append(len(currentPlayerCardsInPlay) + cardIndx)
+                    # TODO: If "Charge" ability is included, Minion cards that have it are immediately attack capable.
                 if isinstance(card, Weapon):
                     if currentPlayerHasWeapon:
                         weaponChosenWhileWeaponInPlay = True
@@ -117,9 +114,16 @@ def getNextStates(currentState, playerIndx, turn):
                     newAttackCapableCardIndices.append(len(currentPlayerCardsInPlay) + cardIndx)
                     requiredAttackingCardIndices.append(len(currentPlayerCardsInPlay) + cardIndx)
 
+            # DEBUG
+            # print("newMinionCardIndices:", newMinionCardIndices)
+            # DEBUG
+
             numCurrentPlayerCardsInPlay = len(currentPlayerCardsInPlay) + numCardsToPutInPlay
+            # Don't count the Hero card.
+            numCurrentPlayerMinionCardsInPlay = numCurrentPlayerCardsInPlay - 1
             # print("numCurrentPlayerCardsInPlay:", numCurrentPlayerCardsInPlay)
-            if numCurrentPlayerCardsInPlay > 7 or weaponChosenWhileWeaponInPlay:
+            # The limit of seven cards in play does not include Hero cards - only Minion cards.
+            if numCurrentPlayerMinionCardsInPlay > 7 or weaponChosenWhileWeaponInPlay:
                 continue
 
             chosenCardCosts = [cardToChoose.getCost() for cardToChoose in cardsToChoose]
@@ -133,7 +137,7 @@ def getNextStates(currentState, playerIndx, turn):
             if remainingCrystals < 0:
                 continue  # Choose another set of cards.
             # If this player can still have more cards in play...
-            if numCurrentPlayerCardsInPlay < 7:
+            if numCurrentPlayerMinionCardsInPlay < 7:
                 canChooseMoreCards = False
                 # The costs of cards not chosen.
                 unchosenCardCosts = [cardCosts[cardIndx] for cardIndx in range(len(cardCosts))
@@ -154,24 +158,24 @@ def getNextStates(currentState, playerIndx, turn):
                                           if cardIndx not in cardsToChooseIndices]
             # print("len(currentPlayerHand): ", len(currentPlayerHand))
             # print("len(nextStateCurrentPlayerHand): ", len(nextStateCurrentPlayerHand))
+
             # Add the chosen cards to the cards in play for this player.
             nextStateCurrentPlayerCardsInPlay = currentPlayerCardsInPlay + cardsToChoose
             # print("len(currentPlayerCardsInPlay): ", len(currentPlayerCardsInPlay))
             # print("len(nextStateCurrentPlayerCardsInPlay): ", len(nextStateCurrentPlayerCardsInPlay))
-            # TODO: If "Charge" ability is included, this will need to be altered.
-            # Determine indices of this player's attack-capable cards in play.
-            # (Of initial cards, select all cards but first since that is a Hero and the only attack-capable cards
+
+            # Determine indices of this player's attack capable cards in play.
+            # (Of initial cards, select all cards but first since that is a Hero, and the only attack capable cards
             #  that can be in play at the beginning of a turn are Minions and Weapons)
             attackCapableCardIndices = list(range(1, len(currentPlayerCardsInPlay))) + newAttackCapableCardIndices
             # print("attackCapableCardIndices: ", attackCapableCardIndices)
-            # attackCapableCardIndices = [cardIndx for cardIndx in range(len(nextStateCurrentPlayerCardsInPlay) - len(cardsToChoose))
-            #                             if hasattr(nextStateCurrentPlayerCardsInPlay[cardIndx], 'attack')]
+
             # Get subset of enemy cards that are attackable.
-            # attackableCards = [card for card in enemyCardsInPlay if hasattr(card, 'reduceHealth')]
             attackableCardIndices = [cardIndx for cardIndx in range(len(enemyCardsInPlay))
                                      if hasattr(enemyCardsInPlay[cardIndx], 'reduceHealth')]
             # print("attackableCardIndices: ", attackableCardIndices)
-            # For each possible set of attack-capable cards (order of attack matters)...
+
+            # For each possible set of attack capable cards (order of attack matters)...
             for numToChooseFromAttackCapable in range(0, len(attackCapableCardIndices) + 1):
                 for attackCapableCardsToChooseIndices in itertools.permutations(attackCapableCardIndices,
                                                                                 numToChooseFromAttackCapable):
@@ -190,13 +194,21 @@ def getNextStates(currentState, playerIndx, turn):
                         # Don't modify the original cards in `nextStateBasis`.
                         nextStateCurrentPlayerCardsInPlayAfterAttack = deepcopy(nextStateCurrentPlayerCardsInPlay)
                         nextStateEnemyCardsInPlayAfterAttack = deepcopy(enemyCardsInPlay)
+                        # Get a list of the Minion cards added to the cards in play this ply to
+                        # record them as being attack capable for future plys.
+                        newMinionCards = [nextStateCurrentPlayerCardsInPlayAfterAttack[cardIndx]
+                                          for cardIndx in newMinionCardIndices]
 
                         attackingCards = [nextStateCurrentPlayerCardsInPlayAfterAttack[cardIndx] for cardIndx
                                           in attackCapableCardsToChooseIndices]
                         attackedCards = [nextStateEnemyCardsInPlayAfterAttack[cardIndx] for cardIndx
                                          in attackableCardsToChooseIndices]
+
                         # DEBUG
-                        # print("nextStateCurrentPlayerCardsInPlayAfterAttack", nextStateCurrentPlayerCardsInPlayAfterAttack)
+                        # print("nextStateCurrentPlayerCardsInPlay (before set attack capable):", nextStateCurrentPlayerCardsInPlay)
+                        # print("newMinionCards:", newMinionCards)
+                        # print("nextStateCurrentPlayerCardsInPlayAfterAttack:\n",
+                        #       nextStateCurrentPlayerCardsInPlayAfterAttack)
                         # print("nextStateEnemyCardsInPlayAfterAttack", nextStateEnemyCardsInPlayAfterAttack)
                         # print("attackCapableCardsToChooseIndices: ", attackCapableCardsToChooseIndices)
                         # print("attackableCardsToChooseIndices: ", attackableCardsToChooseIndices)
@@ -204,7 +216,7 @@ def getNextStates(currentState, playerIndx, turn):
                         # print("attackedCards[:5]: ", attackedCards[:5])
                         # DEBUG
 
-                        # Attack the attackable cards with the attack-capable cards.
+                        # Attack the attackable cards with the attack capable cards.
                         invalidAttack = False
                         for attackPairIndices in zip(attackCapableCardsToChooseIndices,
                                                      attackableCardsToChooseIndices):
@@ -248,14 +260,21 @@ def getNextStates(currentState, playerIndx, turn):
                             elif isinstance(attackingCard, Weapon):
                                 if attackingCard.getDurability() <= 0:
                                     del nextStateCurrentPlayerCardsInPlayAfterAttack[attackingCardIndx]
-                            else: # This is a Spell card. We only allow spell cards that are consumed on use.
+                            else: # This is a Spell card. Spell cards are consumed on use.
                                 del nextStateCurrentPlayerCardsInPlayAfterAttack[attackingCardIndx]
                             # Check the enemy player's cards in play.
                             if attackedCard.getHealth() <= 0 and not isinstance(attackedCard, Hero):
                                 del nextStateEnemyCardsInPlayAfterAttack[attackedCardIndx]
 
+                        # Set all new Minion cards for this player to be attack capable in future plys.
+                        for minionCard in newMinionCards:
+                            minionCard.canAttack(True)
+                        # print("nextStateCurrentPlayerCardsInPlayAfterAttack (after set attack capable):\n",
+                        #       nextStateCurrentPlayerCardsInPlayAfterAttack)
+
                         # Assemble the next state.
                         # print("Assembling next state!")
+
                         # Get cards in play.
                         nextStateCardsInPlay = [0, 0]
                         nextStateCardsInPlay[playerIndx] = nextStateCurrentPlayerCardsInPlayAfterAttack
@@ -379,8 +398,6 @@ def successorFunction(currentState, playerIndx, firstPlayerIndx, turn):
     # Python integers have arbitrary precision, so choose the min and max values for 32-bit integers.
     alpha = MIN_INT
     beta = MAX_INT
-    # `maxDepth` determines N in the N-ply lookahead.
-    # maxDepth = 2
 
     # This is more general than just using `1` for the `maxPlayer` parameter of `alphabeta()`.
     # We may want to test the AI when playing against "itself".
@@ -396,7 +413,10 @@ def successorFunction(currentState, playerIndx, firstPlayerIndx, turn):
     pool.close()
     pool.join()
 
-    # print("len(alpha_beta_state_tuples)", len(alpha_beta_state_tuples))
+    # Get the alpha-beta value of all child nodes sequentially (nodes for which the *next* player is making the ply).
+    # alpha_beta_state_tuples = [alphabeta(childState, playerIndx, turn, 1, alpha, beta, bool(nextPlayerIndx))
+    #                            for childState in childStates]
+
     # Sort on alpha-beta value.
     alpha_beta_state_tuples.sort(key=lambda x: x[0])
     print("len(alpha_beta_state_tuples):", len(alpha_beta_state_tuples))

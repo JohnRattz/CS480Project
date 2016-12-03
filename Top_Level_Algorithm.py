@@ -52,10 +52,10 @@ def game_playing_AI():
     for cardIndx in chosenCardIndices1:
         del deck1[cardIndx]
     decks = [deck0, deck1]
-    # print("cardsInPlay: ", cardsInPlay)
-    # print("cardsInHand: ", cardsInHand)
-    # print("len(deck0): ", len(deck0))
-    # print("len(deck1): ", len(deck1))
+    print("cardsInPlay: ", cardsInPlay)
+    print("cardsInHand: ", cardsInHand)
+    print("len(deck0): ", len(deck0))
+    print("len(deck1): ", len(deck1))
 
     # Give both players mana crystals (1 for first player, 2 for second player).
     manaCrystals = [0, 0]
@@ -118,6 +118,20 @@ def deck_choosing_AI():
     """
     # TODO: (Bart, John)
     pass
+
+def createDeck(hero, cards):
+    deck = []
+    deckSize = 30
+    filteredCards = removeOtherClassCards(hero, cards)
+    #TODO: card evaluation function
+    return deck
+
+def removeOtherClassCards(hero, cards):
+    filteredCards = []
+    for card in cards:
+        if card.playerClass() == hero.getName() or card.playerClass() == "NEUTRAL":
+            filteredCards.append(card)
+    return filteredCards
 
 if __name__ == "__main__":
     # Run game playing AI by default, but these are supposed to be imported and tested in `testing.py`.

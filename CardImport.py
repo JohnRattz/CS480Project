@@ -11,6 +11,7 @@ def loadCards():
     heroesList.clear()
     cardsList.clear()
 
+    populatHeroesList(heroesList)
     jsonData = None
 
     try:
@@ -26,11 +27,7 @@ def loadCards():
     for card in jsonData:
         type = card["type"]
 
-        # Filters card by type
-        if type == "HERO":
-            # 171 cards
-            heroesList.append(parseHeroCard(card))
-        elif type == "MINION":
+        if type == "MINION":
             # 1038 cards
             cardsList.append(parseMinionCard(card))
         elif type == "SPELL":
@@ -42,14 +39,16 @@ def loadCards():
     
     print("Loaded", len(heroesList), "hero cards and", len(cardsList), "minion cards")
     
-def parseHeroCard(card):
-    # Gets card info from json object
-    cost = 0 # Hero has no cost attribute?
-    name = card["name"]
-    isLegendary = card.get("rarity", "") == "LEGENDARY" # Rarity attribute isn't always present
-    health = card["health"]
-    
-    return Hero(cost, name, isLegendary, health)
+def populatHeroesList(list):
+    list.append(Hero("Paladin"))
+    list.append(Hero("Rogue"))
+    list.append(Hero("Warrior"))
+    list.append(Hero("Shaman"))
+    list.append(Hero("Mage"))
+    list.append(Hero("Hunter"))
+    list.append(Hero("Warlock"))
+    list.append(Hero("Druid"))
+    list.append(Hero("Priest"))
 
 def parseMinionCard(card):
     # Gets card info from json object
@@ -59,7 +58,7 @@ def parseMinionCard(card):
     health = card["health"]
     attack = card["attack"]
 
-    return Minion(cost, name, isLegendary, health, attack)
+    return Minion(cost, name, isLegendary, health, attack, card["playerClass"])
 
 def parseSpellCard(card):
     # Gets card info from json object
@@ -70,4 +69,4 @@ def parseSpellCard(card):
 
     # TODO: Parse damage/attack value from text attribute (Might be too much work)
 
-    return Spell(cost, name, isLegendary, attack)
+    return Spell(cost, name, isLegendary, attack, card["playerClass"])
