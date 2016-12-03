@@ -10,7 +10,7 @@ def test_game_playing_AI():
     #global maxDepth
 
     seed = time.time()
-    random.seed(seed)
+    random.seed(0)
     globals.setMaxDepth(3)
     MAX_RUNS = 5
 
@@ -29,7 +29,7 @@ def test_game_playing_AI():
         time_end = time.time()
 
         # Displays stats
-        print("\nWinner was player", result[0], "on turn", result[1])
+        print("\nWinner was player", result[0], "on turn", result[1], "\nState:\n{}".format(result[2]))
         print("Run #", i, "ran for", (time_end - time_start), "seconds")
 
 def test_deck_evaluating_AI():
