@@ -58,7 +58,7 @@ def parseMinionCard(card):
     health = card["health"]
     attack = card["attack"]
 
-    return Minion(cost, name, isLegendary, health, attack)
+    return Minion(cost, name, isLegendary, health, attack, card["playerClass"])
 
 def parseSpellCard(card):
     # Gets card info from json object
@@ -69,4 +69,4 @@ def parseSpellCard(card):
 
     # TODO: Parse damage/attack value from text attribute (Might be too much work)
 
-    return Spell(cost, name, isLegendary, attack)
+    return Spell(cost, name, isLegendary, attack, card["playerClass"])

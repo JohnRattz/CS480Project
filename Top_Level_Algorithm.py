@@ -39,7 +39,7 @@ def game_playing_AI():
 
     # Choose initial allotment of cards for both players (default 4 cards per player).
     cardsInHand = []
-    numInitialCardsPerPlayer = 4
+    numInitialCardsPerPlayer = 3
     chosenCardIndices0 = random.sample(range(deckSize), numInitialCardsPerPlayer)
     chosenCardIndices1 = random.sample(range(deckSize), numInitialCardsPerPlayer)
     cardsInHand.append([deck0[chosenCardIndx] for chosenCardIndx in chosenCardIndices0])
@@ -52,10 +52,10 @@ def game_playing_AI():
     for cardIndx in chosenCardIndices1:
         del deck1[cardIndx]
     decks = [deck0, deck1]
-    # print("cardsInPlay: ", cardsInPlay)
-    # print("cardsInHand: ", cardsInHand)
-    # print("len(deck0): ", len(deck0))
-    # print("len(deck1): ", len(deck1))
+    print("cardsInPlay: ", cardsInPlay)
+    print("cardsInHand: ", cardsInHand)
+    print("len(deck0): ", len(deck0))
+    print("len(deck1): ", len(deck1))
 
     # Give both players mana crystals (1 for first player, 2 for second player).
     manaCrystals = [0, 0]
@@ -110,14 +110,19 @@ def deck_evaluating_AI():
     # TODO: (Jerrod, John)
     pass
 
-def deck_choosing_AI():
-    """
-    Given that this is Bart's idea, I defer to him.
+def createDeck(hero, cards):
+    deck = [];
+    deckSize = 30;
+    filteredCards = removeOtherClassCards(hero, cards);
+    #TODO: card evaluation function
+    return deck;
 
-    :return:
-    """
-    # TODO: (Bart, John)
-    pass
+def removeOtherClassCards(hero, cards):
+    filteredCards = []
+    for card in cards:
+        if card.playerClass() == hero.getName() or card.playerClass() == "NEUTRAL":
+            filteredCards.append(card)
+    return filteredCards
 
 if __name__ == "__main__":
     # Run game playing AI by default, but these are supposed to be imported and tested in `testing.py`.

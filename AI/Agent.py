@@ -1,6 +1,6 @@
 
 class Agent(object):
-    def __init__(self, hero, deck):
+    def __init__(self, hero, deck, state):
         self.hero = hero
         self.deck = deck
     
