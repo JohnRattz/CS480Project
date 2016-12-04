@@ -65,43 +65,6 @@ def playGame(printStats = True):
         currentPlayer.refreshCardsInPlay()
         gameOver = turnCount == 10
 
-
-
-    '''
-
-    # Create variable of type State `currentState` and initialize with the Hero selection and the card allotment.
-    currentState = State(cardsInPlay, cardsInHand, manaCrystals, decks)
-
-
-    # Run the game.
-    while not terminate:
-        # Create variable `nextState` to hold the next proposed state.
-        nextState = None
-        for playerIndx in playerList:
-            # Find the best next state.
-            # If this player is the main AI...
-            if playerIndx == 0:
-                # Get next state based on MiniMax algorithm.
-                nextState = successorFunction(currentState, playerIndx, firstPlayerIndx, turn)
-            else: # choose nextState randomly for the other AI
-                nextState = successorFunctionRandom(currentState, playerIndx, firstPlayerIndx, turn)
-            # Go to that state.
-            currentState = nextState
-            # Check if this is a terminal state.
-            terminate = terminalTest(currentState)
-            if terminate:
-                break
-        turn += 1
-
-    # Prints winning state information
-    if printStats:
-        print("\nWinner was player", playerIndx, "on turn", turn, "with state:\n{}".format(currentState))
-
-    # Return information for analysis purposes (in testing).
-    # (Winning player index, ending turn, ending state)
-    return playerIndx, turn, currentState
-    '''
-
 def getRandomElement(list):
     index = random.randint(0, len(list)-1)
     return list[index]

@@ -259,18 +259,6 @@
       "text":"Transforming into random minions."
    },
    {
-      "playerClass":"NEUTRAL",
-      "cost":3,
-      "type":"MINION",
-      "name":"Brian Birmingham",
-      "id":"CRED_20",
-      "attack":4,
-      "set":"CREDITS",
-      "text":"<b>Choose One</b> - Restore a Mech to full Health; or Give a Designer <b>Windfury.</b>",
-      "health":2,
-      "rarity":"LEGENDARY"
-   },
-   {
       "playerClass":"ROGUE",
       "cost":2,
       "flavor":"He stole the deed to town years ago, so technically the town <i>is</i> his. He just calls people Scrub to be mean.",
@@ -1869,18 +1857,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "cost":2,
-      "type":"MINION",
-      "name":"Keith Landes",
-      "id":"CRED_46",
-      "attack":2,
-      "set":"CREDITS",
-      "text":"At the start of your turn, get -2 Health due to hunger.",
-      "health":6,
-      "rarity":"LEGENDARY"
-   },
-   {
-      "playerClass":"NEUTRAL",
       "type":"ENCHANTMENT",
       "name":"Dark Fusion",
       "id":"AT_024e",
@@ -3303,18 +3279,6 @@
       "text":"<b></b> ",
       "health":1,
       "rarity":"COMMON"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":5,
-      "type":"MINION",
-      "name":"Seyil Yoon",
-      "id":"CRED_41",
-      "attack":2,
-      "set":"CREDITS",
-      "text":"<b>Battlecry:</b> Add 3 Sprints and a Marathon to your hand.",
-      "health":9,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"WARLOCK",
@@ -5056,18 +5020,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "cost":2,
-      "type":"MINION",
-      "name":"Michael Schweitzer",
-      "id":"CRED_10",
-      "attack":2,
-      "set":"CREDITS",
-      "text":"<b>C-C-C-COMBO:</b> Destroy a minion.",
-      "health":2,
-      "rarity":"LEGENDARY"
-   },
-   {
-      "playerClass":"NEUTRAL",
       "cost":1,
       "type":"MINION",
       "name":"Herold",
@@ -5543,18 +5495,6 @@
       "artist":"Skan Srisuwan"
    },
    {
-      "playerClass":"NEUTRAL",
-      "cost":3,
-      "type":"MINION",
-      "name":"Cameron Chrisman",
-      "id":"CRED_22",
-      "attack":3,
-      "set":"CREDITS",
-      "text":"While this is in your hand, Golden cards cost (1) less.",
-      "health":3,
-      "rarity":"LEGENDARY"
-   },
-   {
       "playerClass":"PRIEST",
       "cost":0,
       "flavor":"But the minion arrives covered in goo.",
@@ -5870,18 +5810,6 @@
       "set":"LOE",
       "text":"At the end of your turn, turn a random enemy minion into a 0/2 Statue.",
       "health":10,
-      "rarity":"LEGENDARY"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":3,
-      "type":"MINION",
-      "name":"Ben Brode",
-      "id":"CRED_08",
-      "attack":4,
-      "set":"CREDITS",
-      "text":"Your volume can't be reduced below maximum.",
-      "health":1,
       "rarity":"LEGENDARY"
    },
    {
@@ -6416,18 +6344,6 @@
       "name":"Interloper!",
       "type":"ENCHANTMENT",
       "id":"NAX15_01e"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":2,
-      "type":"MINION",
-      "name":"Rachelle Davis",
-      "id":"CRED_12",
-      "attack":1,
-      "set":"CREDITS",
-      "text":"<b>Battlecry:</b> Draw TWO cards. <i>She's not a novice engineer.</i>",
-      "health":2,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"NEUTRAL",
@@ -7568,18 +7484,6 @@
       "id":"BRMA05_2H",
       "set":"BRM",
       "text":"<b>Hero Power</b>\nDeal 10 damage to the enemy hero if they have any unspent Mana."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":5,
-      "type":"MINION",
-      "name":"Jon Bankard",
-      "id":"CRED_43",
-      "attack":5,
-      "set":"CREDITS",
-      "text":"50% chance to be 100% right.",
-      "health":5,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"NEUTRAL",
@@ -9749,18 +9653,6 @@
       "rarity":"COMMON"
    },
    {
-      "playerClass":"ROGUE",
-      "cost":4,
-      "type":"MINION",
-      "name":"Ryan Masterson",
-      "id":"CRED_40",
-      "attack":7,
-      "set":"CREDITS",
-      "text":"<b>Battlecry:</b> Cast copies of Backstab, Cold Blood, and Eviscerate. <i>(targets chosen randomly).</i>",
-      "health":2,
-      "rarity":"LEGENDARY"
-   },
-   {
       "playerClass":"SHAMAN",
       "cost":2,
       "flavor":"It was just a flesh wound.",
@@ -10013,18 +9905,6 @@
       "name":"Explosive Trap",
       "rarity":"COMMON",
       "artist":"Brandon Kitkouski"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":7,
-      "type":"MINION",
-      "name":"Dean Ayala",
-      "id":"CRED_24",
-      "attack":7,
-      "set":"CREDITS",
-      "text":"You can't lose stars while this is in your deck.",
-      "health":5,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"NEUTRAL",
@@ -10311,18 +10191,6 @@
       "artist":"Jakub Kasper",
       "howToEarnGolden":"Crafting unlocked in the Temple of Orsis, in the League of Explorers adventure.",
       "rarity":"EPIC"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":4,
-      "type":"MINION",
-      "name":"Robin Fredericksen",
-      "id":"CRED_38",
-      "attack":4,
-      "set":"CREDITS",
-      "text":"<b>Battlecry:</b> If you have no other Erics on the battlefield, rename this card to \"Eric\".",
-      "health":4,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"HUNTER",
@@ -11163,18 +11031,6 @@
       "artist":"Gonzalo Ordonez",
       "health":6,
       "rarity":"EPIC"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":4,
-      "type":"MINION",
-      "name":"Elizabeth Cho",
-      "id":"CRED_25",
-      "attack":2,
-      "set":"CREDITS",
-      "text":"<b>Battlecry:</b> Add Echo of Medivh and Echoing Ooze to your hand. ",
-      "health":4,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"NEUTRAL",
@@ -12802,18 +12658,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "cost":6,
-      "type":"MINION",
-      "name":"Mike Donais",
-      "id":"CRED_36",
-      "attack":4,
-      "set":"CREDITS",
-      "text":"<b>Battlecry:</b> Replace all minions in the battlefield, in both hands, and in both decks with random minions.",
-      "health":8,
-      "rarity":"LEGENDARY"
-   },
-   {
-      "playerClass":"NEUTRAL",
       "type":"HERO",
       "name":"Kel'Thuzad",
       "id":"NAX15_01",
@@ -13052,18 +12896,6 @@
       "id":"GVG_014a",
       "set":"GVG",
       "text":"Health was swapped."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":1,
-      "type":"MINION",
-      "name":"Steven Gabriel",
-      "id":"CRED_04",
-      "attack":3,
-      "set":"CREDITS",
-      "text":"<b>Battlecry:</b> Summon a frothy beverage.",
-      "health":3,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"NEUTRAL",
@@ -13635,18 +13467,6 @@
       "text":"When this attacks, restore 4 Health to the hero of the player who buffed it."
    },
    {
-      "playerClass":"NEUTRAL",
-      "cost":2,
-      "type":"MINION",
-      "name":"Jerry Mascho",
-      "id":"CRED_32",
-      "attack":3,
-      "set":"CREDITS",
-      "text":"At the start of your turn, deal 1 damage. If this card is golden, deal 1 damage at the end of your turn instead. THIS IS A HAN SOLO JOKE.",
-      "health":2,
-      "rarity":"LEGENDARY"
-   },
-   {
       "playerClass":"DRUID",
       "cost":2,
       "type":"HERO_POWER",
@@ -14053,18 +13873,6 @@
          "REQ_TARGET_TO_PLAY":0
       },
       "text":"Destroy a minion. Gain 10 Armor."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":4,
-      "type":"MINION",
-      "name":"Jay Baxter",
-      "id":"CRED_11",
-      "attack":1,
-      "set":"CREDITS",
-      "text":"<b>Battlecry:</b> Summon FIVE random Inventions.",
-      "health":4,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"NEUTRAL",
@@ -14805,18 +14613,6 @@
       "health":10
    },
    {
-      "playerClass":"NEUTRAL",
-      "cost":3,
-      "type":"MINION",
-      "name":"Max Ma",
-      "id":"CRED_34",
-      "attack":6,
-      "set":"CREDITS",
-      "text":"Can only be played on a mobile device.",
-      "health":3,
-      "rarity":"LEGENDARY"
-   },
-   {
       "playerClass":"WARRIOR",
       "type":"ENCHANTMENT",
       "name":"Bolstered",
@@ -15170,18 +14966,6 @@
       "rarity":"COMMON"
    },
    {
-      "playerClass":"NEUTRAL",
-      "cost":4,
-      "type":"MINION",
-      "name":"Max McCall",
-      "id":"CRED_35",
-      "attack":9,
-      "set":"CREDITS",
-      "text":"Your emotes have no cooldown and can't be squelched.",
-      "health":2,
-      "rarity":"LEGENDARY"
-   },
-   {
       "playerClass":"PALADIN",
       "cost":1,
       "flavor":"Repentance often comes in the moment before obliteration. Curious.",
@@ -15407,18 +15191,6 @@
       "id":"TB_FactionWar_Boss_Rag",
       "set":"TB",
       "text":"<b>Hero Power</b>\nDeal $8 damage to random enemy."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":5,
-      "type":"MINION",
-      "name":"Jason MacAllister",
-      "id":"CRED_29",
-      "attack":6,
-      "set":"CREDITS",
-      "text":"<i>He's a real stand-up guy.</i>",
-      "health":5,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"SHAMAN",
@@ -15743,30 +15515,6 @@
       "text":"Going second makes your first minion stronger."
    },
    {
-      "playerClass":"NEUTRAL",
-      "cost":9,
-      "type":"MINION",
-      "name":"Rob Pardo",
-      "id":"CRED_17",
-      "attack":9,
-      "set":"CREDITS",
-      "text":"You can't start a game without this minion in your deck.",
-      "health":9,
-      "rarity":"LEGENDARY"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":2,
-      "type":"HERO_POWER",
-      "name":"Pile On!!!",
-      "id":"BRMA01_2H_2_TB",
-      "set":"TB",
-      "playRequirements":{
-         "REQ_NUM_MINION_SLOTS":1
-      },
-      "text":"<b>Hero Power</b>\nPut a minion from each deck into the battlefield."
-   },
-   {
       "playerClass":"HUNTER",
       "cost":2,
       "type":"HERO_POWER",
@@ -15790,15 +15538,6 @@
          "REQ_NUM_MINION_SLOTS":1
       },
       "text":"<b>Hero Power</b>\nSummon a Totem of your choice."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":2,
-      "type":"HERO_POWER",
-      "name":"Wild Magic",
-      "id":"TBA01_5",
-      "set":"TB",
-      "text":"<b>Hero Power</b>\nAdd a random spell from any class to your hand. It costs (0)."
    },
    {
       "playerClass":"PALADIN",
@@ -15889,18 +15628,6 @@
       "id":"NAX8_02",
       "set":"NAXX",
       "text":"<b>Hero Power</b>\nDraw a card."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":3,
-      "type":"MINION",
-      "name":"Henry Ho",
-      "id":"CRED_27",
-      "attack":3,
-      "set":"CREDITS",
-      "text":"<b>Battlecry:</b> Spectate your opponent's hand.",
-      "health":4,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"HUNTER",
@@ -17307,18 +17034,6 @@
       "artist":"Alex Aleksandrov"
    },
    {
-      "playerClass":"NEUTRAL",
-      "cost":4,
-      "type":"MINION",
-      "name":"Ricardo Robaina",
-      "id":"CRED_37",
-      "attack":3,
-      "set":"CREDITS",
-      "text":"<b>Battlecry:</b> Summon three 1/1 Chinchillas.",
-      "health":4,
-      "rarity":"LEGENDARY"
-   },
-   {
       "playerClass":"SHAMAN",
       "cost":2,
       "id":"EX1_tk11",
@@ -18017,18 +17732,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "cost":7,
-      "type":"MINION",
-      "name":"Hamilton Chu",
-      "id":"CRED_16",
-      "attack":9,
-      "set":"CREDITS",
-      "text":"<i>Was successfully NOT part of the problem! ...most of the time.</i>",
-      "health":5,
-      "rarity":"LEGENDARY"
-   },
-   {
-      "playerClass":"NEUTRAL",
       "cost":1,
       "flavor":"Oh man! Runic omelettes are the best!",
       "collectible":true,
@@ -18295,18 +17998,6 @@
       "artist":"Jomaro Kindred",
       "howToEarnGolden":"Crafting unlocked in Blackrock Spire, in the Blackrock Mountain adventure.",
       "rarity":"RARE"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":4,
-      "type":"MINION",
-      "name":"Tim Erskine",
-      "id":"CRED_42",
-      "attack":3,
-      "set":"CREDITS",
-      "text":"Whenever this minion destroys another minion, draw a card.",
-      "health":5,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"NEUTRAL",
@@ -19357,18 +19048,6 @@
       "rarity":"COMMON"
    },
    {
-      "playerClass":"NEUTRAL",
-      "cost":7,
-      "type":"MINION",
-      "name":"JC Park",
-      "id":"CRED_30",
-      "attack":2,
-      "set":"CREDITS",
-      "text":"<b>Battlecry:</b> Add a new platform for Hearthstone.",
-      "health":4,
-      "rarity":"LEGENDARY"
-   },
-   {
       "playerClass":"PALADIN",
       "type":"ENCHANTMENT",
       "name":"Rally",
@@ -19395,18 +19074,6 @@
       "artist":"Zoltan Boros",
       "health":10,
       "rarity":"COMMON"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":2,
-      "type":"MINION",
-      "name":"Ryan Chew",
-      "id":"CRED_39",
-      "attack":2,
-      "set":"CREDITS",
-      "text":"<b>Chews One</b> - Sing karaoke; or Leave on time and tell everyone about it.",
-      "health":3,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"NEUTRAL",
@@ -19951,18 +19618,6 @@
       "text":"+2/+2.  Full of Murloc."
    },
    {
-      "playerClass":"NEUTRAL",
-      "cost":6,
-      "type":"MINION",
-      "name":"Jonas Laster",
-      "id":"CRED_45",
-      "attack":6,
-      "set":"CREDITS",
-      "text":"Whenever a <b>Silenced</b> minion dies, gain +1/+1.",
-      "health":6,
-      "rarity":"LEGENDARY"
-   },
-   {
       "playerClass":"ROGUE",
       "type":"HERO",
       "name":"Valeera Sanguinar",
@@ -20086,18 +19741,6 @@
       "text":"<b>Taunt</b>\nCan't attack.",
       "health":6,
       "attack":3
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":4,
-      "type":"MINION",
-      "name":"Walter Kong",
-      "id":"CRED_44",
-      "attack":3,
-      "set":"CREDITS",
-      "text":"<b>Battlecry:</b> Deal 1 damage to each of 2 strategic targets.",
-      "health":2,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"NEUTRAL",
@@ -21361,18 +21004,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "cost":1,
-      "type":"MINION",
-      "name":"Andy Brock",
-      "id":"CRED_15",
-      "attack":1,
-      "set":"CREDITS",
-      "text":"Can't be <b>Silenced. Divine Shield, Stealth.</b>",
-      "health":3,
-      "rarity":"LEGENDARY"
-   },
-   {
-      "playerClass":"NEUTRAL",
       "cost":2,
       "flavor":"She can tell you all about the history of people not STANDING IN THE GREEN BEAM!",
       "collectible":true,
@@ -21575,18 +21206,6 @@
       "id":"FP1_023e",
       "set":"NAXX",
       "text":"+3 Health."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":2,
-      "type":"MINION",
-      "name":"Becca Abel",
-      "id":"CRED_18",
-      "attack":2,
-      "set":"CREDITS",
-      "text":"Whenever you draw a card, make it Golden.",
-      "health":2,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"DREAM",
@@ -23443,18 +23062,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "cost":6,
-      "type":"MINION",
-      "name":"Jomaro Kindred",
-      "id":"CRED_33",
-      "attack":7,
-      "set":"CREDITS",
-      "text":"<b>Battlecry:</b> TAKE any cards from your opponent's hand that they don't want.",
-      "health":6,
-      "rarity":"LEGENDARY"
-   },
-   {
-      "playerClass":"NEUTRAL",
       "type":"ENCHANTMENT",
       "name":"Eating",
       "id":"KAR_036e",
@@ -23532,18 +23139,6 @@
          "REQ_MINIMUM_TOTAL_MINIONS":1
       },
       "text":"Give your minions +1/+1 and <b>Taunt</b>."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":3,
-      "type":"MINION",
-      "name":"Kyle Harrison",
-      "id":"CRED_05",
-      "attack":5,
-      "set":"CREDITS",
-      "text":"<i>3 for a 5/4? That's a good deal!</i>",
-      "health":4,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"NEUTRAL",
@@ -23676,18 +23271,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "cost":4,
-      "type":"MINION",
-      "name":"He-Rim Woo",
-      "id":"CRED_28",
-      "attack":4,
-      "set":"CREDITS",
-      "text":"<b>Choose One</b> - Punch an arm; Offer a treat; or Give a big hug.",
-      "health":3,
-      "rarity":"LEGENDARY"
-   },
-   {
-      "playerClass":"NEUTRAL",
       "cost":2,
       "type":"HERO_POWER",
       "name":"Hello! Hello! Hello!",
@@ -23709,18 +23292,6 @@
          "TAG_ONE_TURN_EFFECT"
       ],
       "text":"<b>Immune</b> this turn."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":3,
-      "type":"MINION",
-      "name":"Eric Del Priore",
-      "id":"CRED_26",
-      "attack":1,
-      "set":"CREDITS",
-      "text":"Has <b>Taunt</b> if it's 3 AM.",
-      "health":6,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"NEUTRAL",
@@ -24139,18 +23710,6 @@
       "rarity":"COMMON"
    },
    {
-      "playerClass":"NEUTRAL",
-      "cost":1,
-      "type":"MINION",
-      "name":"Derek Sakamoto",
-      "id":"CRED_06",
-      "attack":3,
-      "set":"CREDITS",
-      "text":"<i>The notorious Footclapper.</i>",
-      "health":1,
-      "rarity":"LEGENDARY"
-   },
-   {
       "playerClass":"HUNTER",
       "cost":2,
       "flavor":"A great sniper hits the spot.  Just like a delicious flank of boar. Mmmmm.",
@@ -24341,18 +23900,6 @@
          "MORPH"
       ],
       "text":"This minion has been transformed!"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":4,
-      "type":"MINION",
-      "name":"Jeremy Cranford",
-      "id":"CRED_31",
-      "attack":5,
-      "set":"CREDITS",
-      "text":"When the game starts, this card climbs to the top of the deck.",
-      "health":4,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"PRIEST",
@@ -24837,18 +24384,6 @@
       "id":"KARA_00_01H",
       "set":"KARA",
       "health":60
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":1,
-      "type":"MINION",
-      "name":"Bryan Chang",
-      "id":"CRED_21",
-      "attack":1,
-      "set":"CREDITS",
-      "text":"<b>Foodie:</b> Make all minions edible.",
-      "health":3,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"NEUTRAL",
@@ -25896,18 +25431,6 @@
       "set":"MISSIONS",
       "health":30,
       "rarity":"COMMON"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":6,
-      "type":"MINION",
-      "name":"Jason Chayes",
-      "id":"CRED_01",
-      "attack":7,
-      "set":"CREDITS",
-      "text":"<b>Enrage:</b> Just kidding! He never Enrages.",
-      "health":6,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"PALADIN",
@@ -29104,18 +28627,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "cost":3,
-      "type":"MINION",
-      "name":"Bob Fitch",
-      "id":"CRED_03",
-      "attack":2,
-      "set":"CREDITS",
-      "text":"<b>Super Taunt</b> <i>(EVERY character must attack this minion.)</i>",
-      "health":4,
-      "rarity":"LEGENDARY"
-   },
-   {
-      "playerClass":"NEUTRAL",
       "cost":4,
       "flavor":"Twilight drakes feed on Mystical Energy.  And Tacos.",
       "collectible":true,
@@ -29631,18 +29142,6 @@
       "id":"AT_006e",
       "set":"TGT",
       "text":"Increased Spell Damage."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":10,
-      "type":"MINION",
-      "name":"Brian Schwab",
-      "id":"CRED_13",
-      "attack":10,
-      "set":"CREDITS",
-      "text":"At the end of your turn, give a random minion +1 Attack.",
-      "health":10,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"PALADIN",
@@ -30438,18 +29937,6 @@
       "id":"EX1_178be",
       "set":"EXPERT1",
       "text":"+5 Attack."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":6,
-      "type":"MINION",
-      "name":"Eric Dodds",
-      "id":"CRED_02",
-      "attack":5,
-      "set":"CREDITS",
-      "text":"<b>Battlecry:</b> Summon a 2/2 Pirate and destroy all Ninjas.",
-      "health":5,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"ROGUE",
@@ -32710,18 +32197,6 @@
       "artist":"Alex Horley Orlandelli"
    },
    {
-      "playerClass":"NEUTRAL",
-      "cost":4,
-      "type":"MINION",
-      "name":"Christopher Yim",
-      "id":"CRED_23",
-      "attack":6,
-      "set":"CREDITS",
-      "text":"<b>Battlecry:</b> Your emotes are now spoken in \"Radio Voice.\"",
-      "health":5,
-      "rarity":"LEGENDARY"
-   },
-   {
       "playerClass":"PRIEST",
       "cost":2,
       "type":"HERO_POWER",
@@ -34564,18 +34039,6 @@
       "health":30
    },
    {
-      "playerClass":"NEUTRAL",
-      "cost":5,
-      "type":"MINION",
-      "name":"Yong Woo",
-      "id":"CRED_14",
-      "attack":3,
-      "set":"CREDITS",
-      "text":"Your other minions have +3 Attack and <b>Charge</b>.",
-      "health":2,
-      "rarity":"LEGENDARY"
-   },
-   {
       "playerClass":"HUNTER",
       "cost":2,
       "flavor":"For the times when a regular bazooka just isn't enough.",
@@ -34927,18 +34390,6 @@
       "set":"CORE",
       "id":"CS2_082",
       "rarity":"FREE"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":4,
-      "type":"MINION",
-      "name":"Beomki Hong",
-      "id":"CRED_19",
-      "attack":6,
-      "set":"CREDITS",
-      "text":"<b>Taunt.</b> Friendly minions can’t be <b>Frozen.</b>",
-      "health":3,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"NEUTRAL",
@@ -35939,18 +35390,6 @@
       "set":"TB",
       "text":"Gain an empty Mana Crystal. Can only play one of these per turn.",
       "rarity":"FREE"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":2,
-      "type":"MINION",
-      "name":"Zwick",
-      "id":"CRED_07",
-      "attack":2,
-      "set":"CREDITS",
-      "text":"<b>Battlecry:</b> Complain about bacon prices.",
-      "health":2,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"NEUTRAL",
