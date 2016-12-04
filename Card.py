@@ -25,10 +25,13 @@ class Card:
     def playerClass(self):
         return self._playerClass
 
-    def __repr__(self):
+    def printId(self):
         # Only take the last 5 digits of `id(self)`.
         ID = str(id(self))
-        return self.__class__.__name__ + " ID: {} Name: {} Cost: {}".format(ID[:len(ID)-6:-1], self._name, self._cost)
+        print (ID[:len(ID)-6:-1])
+
+    def __repr__(self):
+        return self.__class__.__name__ + "Name: {} Cost: {}".format(self._name, self._cost)
 
 
 class Hero(Card):
@@ -51,7 +54,7 @@ class Hero(Card):
         self._health -= health
 
     def __repr__(self):
-        return super(self.__class__, self).__repr__() + " _ Hlth: {}".format(self._health)
+        return super(self.__class__, self).__repr__() + " Hlth: {}".format(self._health)
 
 
 class Minion(Card):
@@ -102,7 +105,7 @@ class Minion(Card):
             raise AttributeError("Cannot attack Card without `health` attribute and `reduceHealth` function.")
 
     def __repr__(self):
-        return super(self.__class__, self).__repr__() + " _ Hlth: {} _ Atk: {}".format(self._health, self._attack)
+        return super(self.__class__, self).__repr__() + " Hlth: {} Atk: {}".format(self._health, self._attack)
 
 # TODO: Include in second iteration tests.
 class Spell(Card):

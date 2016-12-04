@@ -1,5 +1,5 @@
 import random
-import Card
+from Card import Card
 
 class Deck:
 
@@ -35,7 +35,7 @@ class Deck:
     def canAddCard(self, card):
         if card.isLegendary() and card in self.deckCards:
             return False
-        if self.deckCards.count(c) > 1:
+        if self.deckCards.count(card) > 1:
             return False
         return True
 
@@ -46,4 +46,8 @@ class Deck:
         return len(self.deckCards)
 
     def shuffle(self):
-        print "Shuffling deck"
+        random.shuffle(self.deckCards)
+
+    def printSelf(self):
+        for card in self.deckCards:
+            print(card.getName())

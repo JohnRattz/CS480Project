@@ -5,8 +5,8 @@ import json # For Json handling
 JSON_CARD_PATH = "data\cards.json"
 
 def loadCards():
-    global heroesList, cardsList
-
+    global heroesList
+    cardsList = []
     # Re-initializes global card lists
     heroesList.clear()
     cardsList.clear()
@@ -38,6 +38,7 @@ def loadCards():
             continue
     
     print("Loaded", len(heroesList), "hero cards and", len(cardsList), "minion cards")
+    return cardsList
     
 def populatHeroesList(list):
     list.append(Hero("Paladin"))
