@@ -1,5 +1,6 @@
 import random
 import Card
+from Deck import Deck
 from CardImport import loadCards
 from State import State
 from successorFunction import *
@@ -33,13 +34,23 @@ def game_playing_AI(printStats = True):
     # Generate decks for both players.
     deckSize = 30
     # First player's deck
-    deck0 = [random.choice(globals.cardsList) for _ in range(deckSize)]
+    deck0 = Deck(selectedHeroes[0], cardsList)
     # Second player's deck
-    deck1 = [random.choice(globals.cardsList) for _ in range(deckSize)]
+    deck1 = Deck(selectedHeroes[1], cardsList)
 
     # Choose initial allotment of cards for both players (default 4 cards per player).
     cardsInHand = []
     numInitialCardsPerPlayer = 3
+
+    ####### code to replace the portion until line "decks = [deck0, deck1]"
+    # cardsInHandP1 = []
+    # cardsInHandP2 = [Card("Coin")]
+    # for i in range(numInitialCardsPerPlayer):
+    #   cardsInHandP1.append(deck0.getNextCard())
+    #   cardsInHandP2.append(deck1.getNextCard())
+    #######
+
+
     chosenCardIndices0 = random.sample(range(deckSize), numInitialCardsPerPlayer)
     chosenCardIndices1 = random.sample(range(deckSize), numInitialCardsPerPlayer)
     cardsInHand.append([deck0[chosenCardIndx] for chosenCardIndx in chosenCardIndices0])
@@ -51,6 +62,7 @@ def game_playing_AI(printStats = True):
     chosenCardIndices1.sort(reverse=True)
     for cardIndx in chosenCardIndices1:
         del deck1[cardIndx]
+
     decks = [deck0, deck1]
     print("cardsInPlay: ", cardsInPlay)
     print("cardsInHand: ", cardsInHand)
@@ -121,20 +133,6 @@ def deck_choosing_AI():
     """
     # TODO: (Bart, John)
     pass
-
-def createDeck(hero, cards):
-    deck = []
-    deckSize = 30
-    filteredCards = removeOtherClassCards(hero, cards)
-    #TODO: card evaluation function
-    return deck
-
-def removeOtherClassCards(hero, cards):
-    filteredCards = []
-    for card in cards:
-        if card.playerClass() == hero.getName() or card.playerClass() == "NEUTRAL":
-            filteredCards.append(card)
-    return filteredCards
 
 if __name__ == "__main__":
     # Run game playing AI by default, but these are supposed to be imported and tested in `testing.py`.
