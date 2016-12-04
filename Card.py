@@ -28,7 +28,7 @@ class Card:
     def __repr__(self):
         # Only take the last 5 digits of `id(self)`.
         ID = str(id(self))
-        return self.__class__.__name__ + " _ ID: {} _ Name: {}".format(ID[:len(ID)-6:-1], self._name)
+        return self.__class__.__name__ + " ID: {} Name: {} Cost: {}".format(ID[:len(ID)-6:-1], self._name, self._cost)
 
 
 class Hero(Card):

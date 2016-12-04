@@ -1,5 +1,6 @@
 import random
 import Card
+from Deck import Deck
 from CardImport import loadCards
 from State import State
 from successorFunction import *
@@ -42,8 +43,6 @@ def game_playing_AI(printStats = True):
     numInitialCardsPerPlayer = 3
 
     ####### code to replace the portion until line "decks = [deck0, deck1]"
-    # deck0.shuffle()
-    # deck1.shuffle()
     # cardsInHandP1 = []
     # cardsInHandP2 = [Card("Coin")]
     # for i in range(numInitialCardsPerPlayer):

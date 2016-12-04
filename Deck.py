@@ -2,23 +2,22 @@ import random
 import Card
 
 class Deck:
-    deckSize = 30
 
     def __init__(self, hero, cards):
         self.hero = hero
+        self.deckSize = 30
         self.deckCards = []
         self.createDeck(cards)
         self.shuffle()
 
     def createDeck(self, cards):
-        deck = []
         filteredCards = self.removeOtherClassCards(cards)
-        while len(deck) != self.deckSize:
-            selectedCard = filteredCards[random.randint(0, len(filteredCards))]
-            score = self.evaluateCard(deck, selectedCard)
+        while len(self.deckCards) != self.deckSize:
+            roll = random.randint(0, len(filteredCards) -1)
+            selectedCard = filteredCards[roll]
+            score = self.evaluateCard(selectedCard)
             if score > 0:
-                deck.append((selectedCard))
-        return deck
+                self.deckCards.append((selectedCard))
 
     def removeOtherClassCards(self, cards):
         filteredCards = []
