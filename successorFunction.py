@@ -7,11 +7,8 @@ from copy import deepcopy
 from Card import *
 from State import State
 from utilityFunction import utilityFunction
-from globals import heroesList, cardsList, maxDepth
+from globals import heroesList, cardsList, maxDepth, MIN_INT, MAX_INT
 import globals
-
-MAX_INT = 2**31 - 1
-MIN_INT = -2**31
 
 def terminalTest(currentState):
     """
@@ -416,6 +413,7 @@ def alphabeta2(currentState, playerIndx, turn, depth, alpha, beta, maxPlayer):#,
         return currentState.getHeuristic(), currentState
     
     bestMove = None
+    playerIndx = 0 if playerIndx == 1 else 1 # Alternates player
 
     if (maxPlayer):
         for childState in childStates:
@@ -484,6 +482,8 @@ def successorFunction(currentState, playerIndx, firstPlayerIndx, turn):
     # alpha_beta_state_tuples = [alphabeta(childState, playerIndx, turn, 1, alpha, beta, bool(nextPlayerIndx))
     #                            for childState in childStates]
 
+    print("P0:", currentState.getCardsInPlay(0)[0].getHealth(), "P1:", currentState.getCardsInPlay(1)[0].getHealth())
+
     # Sort on alpha-beta value.
     alpha_beta_state_tuples.sort(key=lambda x: x[0])
     print("len(alpha_beta_state_tuples):", len(alpha_beta_state_tuples))
@@ -526,8 +526,10 @@ def successorFunction2(currentState, playerIndx, firstPlayerIndx, turn):
     nextPlayerIndx = 1 if playerIndx == 0 else 0
 
     # Returns best next move
-    return alphabeta2(currentState, nextPlayerIndx, turn, maxDepth, alpha, beta, bool(playerIndx))[1]
-    #return alphabeta(currentState, nextPlayerIndx, turn, 1, alpha, beta, bool(playerIndx))[1]
+    print("P0:", currentState.getCardsInPlay(0)[0].getHealth(), "P1:", currentState.getCardsInPlay(1)[0].getHealth())
+
+    return alphabeta2(currentState, playerIndx, turn, globals.maxDepth, alpha, beta, bool(playerIndx))[1]
+    #return alphabeta(currentState, playerIndx, turn, 1, alpha, beta, bool(playerIndx))[1]
 
 # TODO: May not need `firstPlayerIndx`.
 def successorFunctionRandom(currentState, playerIndx, firstPlayerIndx, turn):
