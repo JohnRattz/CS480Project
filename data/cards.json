@@ -1,14 +1,6 @@
 [
    {
       "playerClass":"NEUTRAL",
-      "type":"HERO",
-      "name":"Nefarian",
-      "id":"TB_FactionWar_Hero_Nef",
-      "set":"TB",
-      "health":30
-   },
-   {
-      "playerClass":"NEUTRAL",
       "cost":2,
       "flavor":"Lorewalker Cho archives and shares tales from the land of Pandaria, but his favorite story is the one where Joey and Phoebe go on a road trip.",
       "collectible":true,
@@ -41,7 +33,6 @@
    {
       "playerClass":"HUNTER",
       "cost":1,
-      "flavor":"This is a \"bearly\" concealed reference.",
       "collectible":true,
       "id":"AT_059",
       "set":"TGT",
@@ -67,12 +58,6 @@
       "cost":1,
       "type":"MINION",
       "name":"Damaged Golem",
-      "dust":[
-         40,
-         400,
-         5,
-         50
-      ],
       "id":"skele21",
       "race":"MECHANICAL",
       "set":"EXPERT1",
@@ -83,7 +68,6 @@
    {
       "playerClass":"NEUTRAL",
       "cost":0,
-      "flavor":"The engineering equivalent of a \"Kick Me\" sticker.",
       "collectible":true,
       "id":"GVG_093",
       "race":"MECHANICAL",
@@ -92,12 +76,6 @@
          "TAUNT"
       ],
       "text":"<b>Taunt</b>",
-      "dust":[
-         100,
-         800,
-         20,
-         100
-      ],
       "type":"MINION",
       "name":"Target Dummy",
       "attack":0,
@@ -129,14 +107,6 @@
       "text":"Your minions have +1 Attack.",
       "health":4,
       "attack":2
-   },
-   {
-      "playerClass":"DRUID",
-      "type":"ENCHANTMENT",
-      "name":"Forbidden Power",
-      "id":"OG_051e",
-      "set":"OG",
-      "text":"Increased stats."
    },
    {
       "playerClass":"NEUTRAL",
@@ -212,23 +182,6 @@
       "rarity":"COMMON"
    },
    {
-      "playerClass":"HUNTER",
-      "cost":3,
-      "id":"KAR_004a",
-      "race":"BEAST",
-      "set":"KARA",
-      "mechanics":[
-         "STEALTH"
-      ],
-      "text":"<b>Stealth</b>",
-      "type":"MINION",
-      "name":"Cat in a Hat",
-      "attack":4,
-      "faction":"HORDE",
-      "health":2,
-      "artist":"Mike Sass"
-   },
-   {
       "playerClass":"NEUTRAL",
       "set":"TB",
       "name":"Player Choice Enchant On Curve",
@@ -288,14 +241,6 @@
       "id":"EX1_059e",
       "set":"EXPERT1",
       "text":"Attack and Health have been swapped by Crazed Alchemist."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"ENCHANTMENT",
-      "name":"Emboldened!",
-      "id":"Mekka3e",
-      "set":"PROMO",
-      "text":"Increased Stats."
    },
    {
       "playerClass":"NEUTRAL",
@@ -482,15 +427,6 @@
       "text":"+1 Attack."
    },
    {
-      "playerClass":"MAGE",
-      "type":"HERO",
-      "name":"Millhouse Manastorm",
-      "id":"TU4b_001",
-      "set":"MISSIONS",
-      "health":20,
-      "rarity":"COMMON"
-   },
-   {
       "playerClass":"PALADIN",
       "cost":5,
       "flavor":"This card causes double the trouble AND double the fun.",
@@ -598,14 +534,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "type":"HERO",
-      "name":"Lady Naz'jar",
-      "id":"LOEA12_1H",
-      "set":"LOE",
-      "health":30
-   },
-   {
-      "playerClass":"NEUTRAL",
       "cost":7,
       "type":"MINION",
       "name":"Giant Insect",
@@ -640,14 +568,6 @@
       "id":"TB_CoOpv3_003",
       "set":"TB",
       "text":"Swap player's hands."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"HERO",
-      "name":"Giantfin",
-      "id":"LOEA10_1H",
-      "set":"LOE",
-      "health":30
    },
    {
       "playerClass":"DRUID",
@@ -759,14 +679,6 @@
       "artist":"Doug Alexander",
       "health":5,
       "rarity":"RARE"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"HERO",
-      "name":"City of Stormwind",
-      "id":"TB_SPT_Boss",
-      "set":"TB",
-      "health":1
    },
    {
       "playerClass":"NEUTRAL",
@@ -1179,14 +1091,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "type":"HERO",
-      "name":"Maloriak",
-      "id":"BRMA15_1",
-      "set":"BRM",
-      "health":30
-   },
-   {
-      "playerClass":"NEUTRAL",
       "cost":6,
       "flavor":"This champion has learned from the best.  Except for his target selection.",
       "collectible":true,
@@ -1208,16 +1112,6 @@
       "artist":"Steve Prescott",
       "health":5,
       "rarity":"RARE"
-   },
-   {
-      "playerClass":"MAGE",
-      "type":"HERO",
-      "name":"Khadgar",
-      "collectible":true,
-      "id":"HERO_08b",
-      "set":"HERO_SKINS",
-      "health":30,
-      "rarity":"EPIC"
    },
    {
       "playerClass":"PALADIN",
@@ -1416,14 +1310,6 @@
       "artist":"Ittoku Seta",
       "howToEarnGolden":"Crafting unlocked in Frostwyrm Lair, in the Naxxramas adventure.",
       "rarity":"EPIC"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"HERO",
-      "name":"White King",
-      "id":"KAR_a10_Boss1H_TB",
-      "set":"TB",
-      "health":10
    },
    {
       "playerClass":"NEUTRAL",
@@ -1721,14 +1607,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "type":"HERO",
-      "name":"Zinaar",
-      "id":"LOEA02_01",
-      "set":"LOE",
-      "health":30
-   },
-   {
-      "playerClass":"NEUTRAL",
       "cost":0,
       "type":"MINION",
       "name":"Cauldron",
@@ -1833,17 +1711,6 @@
       "text":"Increased Attack."
    },
    {
-      "playerClass":"NEUTRAL",
-      "type":"HERO",
-      "name":"Coren Direbrew",
-      "id":"BRMA01_1",
-      "set":"BRM",
-      "mechanics":[
-         "AI_MUST_PLAY"
-      ],
-      "health":30
-   },
-   {
       "playerClass":"WARLOCK",
       "type":"ENCHANTMENT",
       "name":"Master Summoner",
@@ -1877,14 +1744,6 @@
          1600
       ],
       "rarity":"LEGENDARY"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"HERO",
-      "name":"Chieftain Scarvash",
-      "id":"LOEA05_01h",
-      "set":"LOE",
-      "health":30
    },
    {
       "playerClass":"NEUTRAL",
@@ -2174,41 +2033,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "cost":0,
-      "type":"HERO_POWER",
-      "name":"Twister",
-      "id":"KARA_04_02hp",
-      "set":"KARA",
-      "text":"<b>Hero Power</b>\nDeal 100 damage. Can't be used if Dorothee is alive.",
-      "rarity":"COMMON",
-      "artist":"Rafael Zanchetin"
-   },
-   {
-      "playerClass":"PRIEST",
-      "type":"ENCHANTMENT",
-      "name":"Bring it on!",
-      "id":"AT_116e",
-      "set":"TGT",
-      "text":"+1 Attack and <b>Taunt</b>."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "set":"LOE",
-      "name":"Temple Escape Enchant",
-      "type":"ENCHANTMENT",
-      "id":"LOEA04_01e"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":2,
-      "type":"HERO_POWER",
-      "name":"Harvest",
-      "id":"NAX8_02H_TB",
-      "set":"TB",
-      "text":"<b>Hero Power</b>\nDraw a card. Gain a Mana Crystal."
-   },
-   {
-      "playerClass":"NEUTRAL",
       "cost":5,
       "flavor":"Just between us, if things get tight the Menagerie Magician position will probably be the first to go.",
       "collectible":true,
@@ -2228,45 +2052,6 @@
       "rarity":"COMMON"
    },
    {
-      "playerClass":"NEUTRAL",
-      "type":"HERO",
-      "name":"Terestian Illhoof",
-      "id":"KARA_09_01heroic",
-      "set":"KARA",
-      "health":40
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":4,
-      "type":"MINION",
-      "name":"Dorothee",
-      "id":"TB_Dorothee_001",
-      "attack":0,
-      "set":"TB",
-      "text":"Minions to the left have <b>Charge</b>. Minions to the right have <b>Taunt</b>.",
-      "health":10
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":0,
-      "type":"MINION",
-      "name":"Avatar of the Coin",
-      "id":"GAME_002",
-      "attack":1,
-      "set":"CORE",
-      "text":"<i>You lost the coin flip, but gained a friend.</i>",
-      "health":1,
-      "rarity":"FREE"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"ENCHANTMENT",
-      "name":"Reflection",
-      "id":"KAR_A01_02e",
-      "set":"KARA",
-      "text":"1/1."
-   },
-   {
       "playerClass":"WARLOCK",
       "cost":0,
       "flavor":"Actually, C'Thun gives his full support for this ritual.",
@@ -2284,18 +2069,6 @@
       "name":"Forbidden Ritual",
       "rarity":"RARE",
       "artist":"Evgeniy Zagumennyy"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":6,
-      "type":"HERO_POWER",
-      "name":"Activate Magmatron",
-      "id":"BRMA14_8H",
-      "set":"BRM",
-      "mechanics":[
-         "AI_MUST_PLAY"
-      ],
-      "text":"<b>Hero Power</b>\nActivate Magmatron!"
    },
    {
       "playerClass":"HUNTER",
@@ -2591,18 +2364,6 @@
          50
       ],
       "rarity":"COMMON"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":3,
-      "type":"MINION",
-      "name":"Cellar Spider",
-      "id":"KAR_030",
-      "race":"BEAST",
-      "set":"KARA",
-      "health":3,
-      "attack":1,
-      "artist":"Dave Allsop"
    },
    {
       "playerClass":"HUNTER",
@@ -3114,22 +2875,6 @@
       "artist":"Peerasak Senalai"
    },
    {
-      "playerClass":"NEUTRAL",
-      "type":"ENCHANTMENT",
-      "name":"Darkness Calls",
-      "id":"FP1_028e",
-      "set":"NAXX",
-      "text":"Increased stats."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"ENCHANTMENT",
-      "name":"Draconic Power",
-      "id":"BRM_020e",
-      "set":"BRM",
-      "text":"Increased stats."
-   },
-   {
       "playerClass":"WARRIOR",
       "cost":2,
       "type":"HERO_POWER",
@@ -3174,18 +2919,6 @@
       "text":"At the end of your turn, add a Blessing of the Sun to your hand.",
       "health":5,
       "rarity":"LEGENDARY"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":1,
-      "type":"HERO_POWER",
-      "name":"Wild Magic",
-      "id":"BRMA13_4",
-      "set":"BRM",
-      "mechanics":[
-         "AI_MUST_PLAY"
-      ],
-      "text":"<b>Hero Power</b>\nPut a random spell from your opponent's class into your hand."
    },
    {
       "playerClass":"WARRIOR",
@@ -3322,18 +3055,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "cost":0,
-      "type":"HERO_POWER",
-      "name":"Nefarian Strikes!",
-      "id":"BRMA17_8",
-      "set":"BRM",
-      "mechanics":[
-         "AI_MUST_PLAY"
-      ],
-      "text":"<b>Hero Power</b>\nNefarian rains fire from above!"
-   },
-   {
-      "playerClass":"NEUTRAL",
       "cost":3,
       "type":"SPELL",
       "name":"Demons Loose!",
@@ -3466,17 +3187,6 @@
          "REQ_NUM_MINION_SLOTS":1
       },
       "text":"<b>Hero Power</b>\nSummon Gyth. Get a new Hero Power."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"HERO",
-      "name":"Patchwerk",
-      "id":"NAX10_01",
-      "set":"NAXX",
-      "mechanics":[
-         "AI_MUST_PLAY"
-      ],
-      "health":30
    },
    {
       "playerClass":"NEUTRAL",
@@ -3794,18 +3504,6 @@
       "id":"TB_EndlessMinions01",
       "set":"TB",
       "text":"+2/+2."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":0,
-      "type":"HERO_POWER",
-      "name":"The Rookery",
-      "id":"BRMA10_3H",
-      "set":"BRM",
-      "mechanics":[
-         "AI_MUST_PLAY"
-      ],
-      "text":"<b>Hero Power</b>\nGive all Corrupted Eggs +1 Health, then summon one."
    },
    {
       "playerClass":"NEUTRAL",
@@ -4544,21 +4242,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "cost":0,
-      "type":"HERO_POWER",
-      "playRequirements":{
-         "REQ_NUM_MINION_SLOTS":1
-      },
-      "name":"Pile On!",
-      "id":"BRMA01_2H",
-      "set":"BRM",
-      "mechanics":[
-         "AI_MUST_PLAY"
-      ],
-      "text":"<b>Hero Power</b>\nPut two minions from your deck and one from your opponent's into the battlefield."
-   },
-   {
-      "playerClass":"NEUTRAL",
       "cost":2,
       "type":"MINION",
       "name":"Whirling Ash",
@@ -4876,19 +4559,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "cost":0,
-      "type":"HERO_POWER",
-      "name":"Frost Blast",
-      "id":"NAX15_02H",
-      "set":"NAXX",
-      "mechanics":[
-         "AI_MUST_PLAY",
-         "FREEZE"
-      ],
-      "text":"<b>Hero Power</b>\nDeal 3 damage to the enemy hero and <b>Freeze</b> it."
-   },
-   {
-      "playerClass":"NEUTRAL",
       "cost":9,
       "collectible":true,
       "flavor":"They call him \"Blackwing\" because he's a black dragon...... and he's got wings.",
@@ -4988,24 +4658,6 @@
       },
       "rarity":"EPIC",
       "artist":"Wayne Reynolds"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":1,
-      "type":"HERO_POWER",
-      "name":"True Form",
-      "id":"BRMA13_2H",
-      "entourage":[
-         "BRMA13_6",
-         "BRMA13_8",
-         "BRMA13_7",
-         "BRMA13_5"
-      ],
-      "set":"BRM",
-      "mechanics":[
-         "AI_MUST_PLAY"
-      ],
-      "text":"<b>Hero Power</b>\nLet the games begin!"
    },
    {
       "playerClass":"SHAMAN",
@@ -5508,17 +5160,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "type":"HERO",
-      "name":"Coren Direbrew",
-      "id":"BRMA01_1H",
-      "set":"BRM",
-      "mechanics":[
-         "AI_MUST_PLAY"
-      ],
-      "health":30
-   },
-   {
-      "playerClass":"NEUTRAL",
       "cost":3,
       "collectible":true,
       "flavor":"You have to admit, they make a cute couple.",
@@ -5802,14 +5443,6 @@
       "artist":"Matt Dixon",
       "howToEarnGolden":"Crafting unlocked in The Ruined City, in the League of Explorers adventure.",
       "rarity":"LEGENDARY"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"ENCHANTMENT",
-      "name":"Frostwolf Banner",
-      "id":"CS2_226e",
-      "set":"CORE",
-      "text":"Increased stats."
    },
    {
       "playerClass":"NEUTRAL",
@@ -6482,21 +6115,6 @@
       "rarity":"FREE"
    },
    {
-      "playerClass":"NEUTRAL",
-      "cost":0,
-      "type":"HERO_POWER",
-      "playRequirements":{
-         "REQ_MINIMUM_ENEMY_MINIONS":0
-      },
-      "name":"Eruption",
-      "id":"NAX5_02H",
-      "set":"NAXX",
-      "mechanics":[
-         "AI_MUST_PLAY"
-      ],
-      "text":"<b>Hero Power</b>\nDeal 3 damage to the left-most enemy minion."
-   },
-   {
       "playerClass":"WARLOCK",
       "cost":3,
       "flavor":"From the secret research labs of the Swiss Army.",
@@ -6729,18 +6347,6 @@
       "text":"<b>Hero Power</b>\nDestroy a minion."
    },
    {
-      "playerClass":"NEUTRAL",
-      "cost":0,
-      "type":"HERO_POWER",
-      "name":"Mrglmrgl MRGL!",
-      "id":"LOEA10_2",
-      "set":"LOE",
-      "mechanics":[
-         "AI_MUST_PLAY"
-      ],
-      "text":"<b>Hero Power</b>\nDraw cards until you have as many in hand as your opponent."
-   },
-   {
       "playerClass":"PALADIN",
       "type":"ENCHANTMENT",
       "name":"Blessing of Might",
@@ -6803,24 +6409,6 @@
       "set":"KARA",
       "text":"Draw a card for each of your Plates.",
       "artist":"L. Lullabi & N. Thitinunthakorn"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":1,
-      "type":"HERO_POWER",
-      "name":"True Form",
-      "id":"BRMA13_2",
-      "entourage":[
-         "BRMA13_6",
-         "BRMA13_8",
-         "BRMA13_7",
-         "BRMA13_5"
-      ],
-      "set":"BRM",
-      "mechanics":[
-         "AI_MUST_PLAY"
-      ],
-      "text":"<b>Hero Power</b>\nLet the games begin!"
    },
    {
       "playerClass":"NEUTRAL",
@@ -7360,21 +6948,6 @@
       "artist":"Turovec Konstantin",
       "howToEarnGolden":"Crafting unlocked in Uldaman, in the League of Explorers adventure.",
       "rarity":"COMMON"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":0,
-      "type":"HERO_POWER",
-      "playRequirements":{
-         "REQ_MINIMUM_ENEMY_MINIONS":1
-      },
-      "name":"Decimate",
-      "id":"NAX12_02H",
-      "set":"NAXX",
-      "mechanics":[
-         "AI_MUST_PLAY"
-      ],
-      "text":"<b>Hero Power</b>\nChange the Health of enemy minions to 1."
    },
    {
       "playerClass":"NEUTRAL",
@@ -9425,18 +8998,6 @@
       "playerClass":"NEUTRAL",
       "cost":0,
       "type":"HERO_POWER",
-      "name":"Polarity Shift",
-      "id":"NAX13_02",
-      "set":"NAXX",
-      "mechanics":[
-         "AI_MUST_PLAY"
-      ],
-      "text":"<b>Hero Power</b>\nSwap the Attack and Health of all minions."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":0,
-      "type":"HERO_POWER",
       "name":"Intense Gaze",
       "id":"BRMA08_2H",
       "set":"BRM",
@@ -10022,19 +9583,6 @@
       "health":45
    },
    {
-      "playerClass":"NEUTRAL",
-      "cost":0,
-      "type":"HERO_POWER",
-      "name":"Frost Blast",
-      "id":"NAX15_02",
-      "set":"NAXX",
-      "mechanics":[
-         "AI_MUST_PLAY",
-         "FREEZE"
-      ],
-      "text":"<b>Hero Power</b>\nDeal 2 damage to the enemy hero and <b>Freeze</b> it."
-   },
-   {
       "playerClass":"DRUID",
       "cost":4,
       "playRequirements":{
@@ -10445,17 +9993,6 @@
       "id":"AT_045ee"
    },
    {
-      "playerClass":"WARLOCK",
-      "cost":1,
-      "type":"MINION",
-      "name":"Candle",
-      "id":"KAR_025a",
-      "attack":1,
-      "set":"KARA",
-      "health":1,
-      "artist":"Matt O'Connor"
-   },
-   {
       "playerClass":"HUNTER",
       "cost":2,
       "flavor":"It traps your food AND cooks it for you!",
@@ -10504,14 +10041,6 @@
       "id":"AT_034e",
       "set":"TGT",
       "text":"Increased Attack."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"ENCHANTMENT",
-      "name":"Huge Ego",
-      "id":"AT_121e",
-      "set":"TGT",
-      "text":"Increased stats."
    },
    {
       "playerClass":"NEUTRAL",
@@ -10992,14 +10521,6 @@
       "artist":"E.M. Gist",
       "howToEarnGolden":"Unlocked at Hunter Level 51.",
       "rarity":"COMMON"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"ENCHANTMENT",
-      "name":"Inspired",
-      "id":"AT_119e",
-      "set":"TGT",
-      "text":"Increased stats."
    },
    {
       "playerClass":"SHAMAN",
@@ -11828,21 +11349,6 @@
    {
       "playerClass":"NEUTRAL",
       "cost":2,
-      "type":"MINION",
-      "name":"Animated Shield",
-      "id":"KAR_710m",
-      "attack":0,
-      "set":"KARA",
-      "mechanics":[
-         "TAUNT"
-      ],
-      "text":"<b>Taunt</b>",
-      "health":5,
-      "artist":"Anton Zemskov"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":2,
       "flavor":"The inventor of the Annoy-o-Tron was immediately expelled from Tinkerschool, Tinkertown, and was eventually exiled from the Eastern Kingdoms altogether.",
       "collectible":true,
       "id":"GVG_085",
@@ -11903,14 +11409,6 @@
          "REQ_TARGET_TO_PLAY":0
       },
       "text":"<b>Hero Power</b>\nDestroy a minion."
-   },
-   {
-      "playerClass":"ROGUE",
-      "type":"ENCHANTMENT",
-      "name":"Ironed Out",
-      "id":"GVG_027e",
-      "set":"GVG",
-      "text":"Increased stats."
    },
    {
       "playerClass":"NEUTRAL",
@@ -12105,18 +11603,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "cost":1,
-      "type":"HERO_POWER",
-      "name":"Wild Magic",
-      "id":"BRMA13_4H",
-      "set":"BRM",
-      "mechanics":[
-         "AI_MUST_PLAY"
-      ],
-      "text":"<b>Hero Power</b>\nPut a random spell from your opponent's class into your hand."
-   },
-   {
-      "playerClass":"NEUTRAL",
       "cost":3,
       "flavor":"Yeah, I think we can agree that killing the squirming tentacle first is a good idea.",
       "collectible":true,
@@ -12138,17 +11624,6 @@
       "artist":"L. Lullabi & Nutchapol ",
       "health":4,
       "rarity":"COMMON"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":0,
-      "type":"MINION",
-      "name":"AI Buddy - Destroy Minions",
-      "id":"XXX_097",
-      "attack":1,
-      "set":"CHEAT",
-      "text":"Spawn into play to destroy all minions.",
-      "health":1
    },
    {
       "playerClass":"NEUTRAL",
@@ -12174,18 +11649,6 @@
       "artist":"Paul Warzecha",
       "health":3,
       "rarity":"COMMON"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":3,
-      "type":"MINION",
-      "name":"Sir Zeliek",
-      "id":"NAX9_04H",
-      "attack":2,
-      "set":"NAXX",
-      "text":"Your hero is <b>Immune</b>.",
-      "health":7,
-      "rarity":"LEGENDARY"
    },
    {
       "playerClass":"ROGUE",
@@ -12335,28 +11798,6 @@
       "rarity":"EPIC"
    },
    {
-      "playerClass":"NEUTRAL",
-      "cost":1,
-      "type":"MINION",
-      "name":"Pandaren Scout",
-      "id":"TU4f_002",
-      "attack":1,
-      "set":"MISSIONS",
-      "health":1,
-      "rarity":"COMMON"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":5,
-      "type":"MINION",
-      "name":"Spectral Rider",
-      "id":"NAX8_05t",
-      "attack":0,
-      "set":"NAXX",
-      "text":"At the start of your turn, deal 1 damage to your hero.",
-      "health":6
-   },
-   {
       "playerClass":"PALADIN",
       "type":"ENCHANTMENT",
       "name":"Blessing of Kings",
@@ -12432,15 +11873,6 @@
          5,
          50
       ],
-      "rarity":"COMMON"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"HERO",
-      "name":"Big Bad Wolf",
-      "id":"KARA_05_01hheroic",
-      "set":"KARA",
-      "health":20,
       "rarity":"COMMON"
    },
    {
@@ -13369,14 +12801,6 @@
       "health":30
    },
    {
-      "playerClass":"MAGE",
-      "type":"ENCHANTMENT",
-      "name":"Raw Power!",
-      "id":"EX1_274e",
-      "set":"EXPERT1",
-      "text":"Increased stats."
-   },
-   {
       "playerClass":"NEUTRAL",
       "cost":6,
       "type":"MINION",
@@ -13419,17 +12843,6 @@
       "id":"NEW1_018e",
       "set":"EXPERT1",
       "text":"Increased Attack."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"ENCHANTMENT",
-      "name":"Devotion of the Blade",
-      "id":"OG_282e",
-      "set":"OG",
-      "mechanics":[
-         "BATTLECRY"
-      ],
-      "text":"Increased stats."
    },
    {
       "playerClass":"NEUTRAL",
@@ -13552,17 +12965,6 @@
       "health":2,
       "attack":3,
       "artist":"Matt Dixon"
-   },
-   {
-      "playerClass":"WARLOCK",
-      "cost":2,
-      "type":"MINION",
-      "name":"Broom",
-      "id":"KAR_025b",
-      "attack":2,
-      "set":"KARA",
-      "health":2,
-      "artist":"Jim Nelson"
    },
    {
       "playerClass":"MAGE",
@@ -13971,17 +13373,6 @@
       "attack":2,
       "set":"LOE",
       "health":1
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":4,
-      "type":"MINION",
-      "name":"Faceless Destroyer",
-      "id":"OG_272t",
-      "attack":5,
-      "set":"OG",
-      "health":5,
-      "artist":"Josh Harris"
    },
    {
       "playerClass":"NEUTRAL",
@@ -15344,14 +14735,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "type":"ENCHANTMENT",
-      "name":"Dark Guardian",
-      "id":"OG_293f",
-      "set":"OG",
-      "text":"Increased Stats."
-   },
-   {
-      "playerClass":"NEUTRAL",
       "cost":0,
       "type":"SPELL",
       "name":"Kill the Lorewalker",
@@ -15420,14 +14803,6 @@
       "attack":5,
       "set":"LOE",
       "health":10
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"ENCHANTMENT",
-      "name":"Primally Infused",
-      "id":"OG_023t",
-      "set":"OG",
-      "text":"Increased stats."
    },
    {
       "playerClass":"NEUTRAL",
@@ -15556,14 +14931,6 @@
       "artist":"Alex Horley Orlandelli",
       "health":5,
       "rarity":"LEGENDARY"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"ENCHANTMENT",
-      "name":"Fanatic Devotion",
-      "id":"OG_281e",
-      "set":"OG",
-      "text":"Increased Stats."
    },
    {
       "playerClass":"WARRIOR",
@@ -16708,14 +16075,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "type":"ENCHANTMENT",
-      "name":"Tasty!",
-      "id":"OG_300e",
-      "set":"OG",
-      "text":"Increased stats."
-   },
-   {
-      "playerClass":"NEUTRAL",
       "cost":6,
       "type":"MINION",
       "name":"Dark Iron Bouncer",
@@ -17649,14 +17008,6 @@
       "text":"Restore 30 health to Nefarian. Deal 30 damage to all other minions."
    },
    {
-      "playerClass":"NEUTRAL",
-      "type":"ENCHANTMENT",
-      "name":"Keeping Secrets",
-      "id":"EX1_080o",
-      "set":"EXPERT1",
-      "text":"Increased stats."
-   },
-   {
       "playerClass":"WARRIOR",
       "type":"ENCHANTMENT",
       "name":"Upgraded",
@@ -18168,17 +17519,6 @@
       },
       "rarity":"COMMON",
       "artist":"Clint Langley"
-   },
-   {
-      "playerClass":"WARLOCK",
-      "cost":3,
-      "type":"MINION",
-      "name":"Teapot",
-      "id":"KAR_025c",
-      "attack":3,
-      "set":"KARA",
-      "health":3,
-      "artist":"Sam Nielsen"
    },
    {
       "playerClass":"NEUTRAL",
@@ -20222,17 +19562,6 @@
       "artist":"Daren Bader",
       "howToEarnGolden":"Unlocked when you have all the Golden Pirates from the Expert Set.",
       "rarity":"EPIC"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":2,
-      "type":"MINION",
-      "name":"Grumbly Runt",
-      "id":"LOE_089t3",
-      "attack":2,
-      "set":"LOE",
-      "health":2,
-      "artist":"Matt Dixon"
    },
    {
       "playerClass":"HUNTER",
@@ -23809,14 +23138,6 @@
       "artist":"Anton Zemskov"
    },
    {
-      "playerClass":"SHAMAN",
-      "type":"ENCHANTMENT",
-      "name":"Experienced",
-      "id":"AT_047e",
-      "set":"TGT",
-      "text":"Increased stats."
-   },
-   {
       "playerClass":"NEUTRAL",
       "cost":1,
       "flavor":"He was so excited to get season tickets to this year's Grand Tournament.  He normally doesn't get them at first and has to buy them from Ogre scalpers.",
@@ -24261,14 +23582,6 @@
       "rarity":"COMMON"
    },
    {
-      "playerClass":"WARLOCK",
-      "type":"ENCHANTMENT",
-      "name":"Consume",
-      "id":"EX1_304e",
-      "set":"EXPERT1",
-      "text":"Increased stats."
-   },
-   {
       "playerClass":"NEUTRAL",
       "cost":1,
       "type":"MINION",
@@ -24385,14 +23698,6 @@
          "REQ_FRIENDLY_TARGET":0
       },
       "text":"<b>Hero Power</b>\nGive your lowest attack minion <b>Divine Shield</b> and <b>Taunt</b>."
-   },
-   {
-      "playerClass":"ROGUE",
-      "type":"ENCHANTMENT",
-      "name":"VanCleef's Vengeance",
-      "id":"EX1_613e",
-      "set":"EXPERT1",
-      "text":"Increased stats."
    },
    {
       "playerClass":"HUNTER",
@@ -25281,18 +24586,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "cost":0,
-      "type":"MINION",
-      "name":"Chicken",
-      "id":"Mekka4t",
-      "race":"BEAST",
-      "set":"PROMO",
-      "text":"<i>Hey Chicken!</i>",
-      "health":1,
-      "attack":1
-   },
-   {
-      "playerClass":"NEUTRAL",
       "type":"ENCHANTMENT",
       "name":"Dragonhawkery",
       "id":"AT_083e",
@@ -25862,14 +25155,6 @@
       "set":"CHEAT",
       "text":"Force the AI to use their Hero Power every turn from now on.",
       "rarity":"COMMON"
-   },
-   {
-      "playerClass":"SHAMAN",
-      "type":"ENCHANTMENT",
-      "name":"Overloading",
-      "id":"EX1_258e",
-      "set":"EXPERT1",
-      "text":"Increased stats."
    },
    {
       "playerClass":"NEUTRAL",
@@ -26588,14 +25873,6 @@
       "artist":"Daarken",
       "health":5,
       "rarity":"COMMON"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"ENCHANTMENT",
-      "name":"Consume",
-      "id":"FP1_005e",
-      "set":"NAXX",
-      "text":"Increased stats."
    },
    {
       "playerClass":"NEUTRAL",
@@ -28312,16 +27589,6 @@
    },
    {
       "playerClass":"NEUTRAL",
-      "cost":4,
-      "type":"SPELL",
-      "name":"Set the Table",
-      "id":"KAR_A02_09",
-      "set":"KARA",
-      "text":"Give your Plates +1/+1.",
-      "artist":"L. Lullabi & A.Thawornsathitwong"
-   },
-   {
-      "playerClass":"NEUTRAL",
       "type":"ENCHANTMENT",
       "name":"Metabolized Magic",
       "id":"GVG_067a",
@@ -28878,14 +28145,6 @@
          "AI_MUST_PLAY"
       ],
       "text":"<b>Hero Power</b>\nDraw 2 cards."
-   },
-   {
-      "playerClass":"PALADIN",
-      "type":"ENCHANTMENT",
-      "name":"Pure",
-      "id":"GVG_101e",
-      "set":"GVG",
-      "text":"Increased Stats."
    },
    {
       "playerClass":"ROGUE",
@@ -30364,14 +29623,6 @@
       "attack":3,
       "rarity":"RARE",
       "artist":"Zoltan & Gabor"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"ENCHANTMENT",
-      "name":"Secretly Sated",
-      "id":"OG_254e",
-      "set":"OG",
-      "text":"Increased stats."
    },
    {
       "playerClass":"MAGE",
@@ -33618,14 +32869,6 @@
       "artist":"Joe Madureira & Grace Liu"
    },
    {
-      "playerClass":"WARLOCK",
-      "type":"ENCHANTMENT",
-      "name":"Brow Furrow",
-      "id":"GVG_100e",
-      "set":"GVG",
-      "text":"Increased stats."
-   },
-   {
       "playerClass":"NEUTRAL",
       "type":"HERO",
       "name":"Maexxna",
@@ -35675,14 +34918,6 @@
       "text":"Deal $2 damage to all enemy minions."
    },
    {
-      "playerClass":"NEUTRAL",
-      "type":"ENCHANTMENT",
-      "name":"Junked Up",
-      "id":"GVG_106e",
-      "set":"GVG",
-      "text":"Increased stats."
-   },
-   {
       "playerClass":"ROGUE",
       "cost":1,
       "type":"WEAPON",
@@ -35999,14 +35234,6 @@
       "health":5
    },
    {
-      "playerClass":"WARLOCK",
-      "type":"ENCHANTMENT",
-      "name":"Felrage",
-      "id":"AT_021e",
-      "set":"TGT",
-      "text":"Increased stats."
-   },
-   {
       "playerClass":"NEUTRAL",
       "cost":4,
       "type":"MINION",
@@ -36116,18 +35343,6 @@
       "rarity":"COMMON"
    },
    {
-      "playerClass":"NEUTRAL",
-      "cost":1,
-      "type":"HERO_POWER",
-      "name":"Unbalancing Strike",
-      "id":"NAX7_03H",
-      "set":"NAXX",
-      "playRequirements":{
-         "REQ_TARGET_TO_PLAY":0
-      },
-      "text":"<b>Hero Power</b>\nDeal 4 damage."
-   },
-   {
       "playerClass":"DRUID",
       "cost":3,
       "type":"MINION",
@@ -36141,17 +35356,6 @@
       "rarity":"COMMON"
    },
    {
-      "playerClass":"NEUTRAL",
-      "cost":1,
-      "type":"MINION",
-      "name":"Steward",
-      "id":"KAR_044a",
-      "attack":1,
-      "set":"KARA",
-      "health":1,
-      "artist":"Max Grecke"
-   },
-   {
       "playerClass":"DRUID",
       "cost":1,
       "type":"MINION",
@@ -36160,14 +35364,6 @@
       "attack":1,
       "set":"TGT",
       "health":1
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"HERO",
-      "name":"Gluth",
-      "id":"NAX12_01H",
-      "set":"NAXX",
-      "health":45
    },
    {
       "playerClass":"MAGE",
@@ -36427,14 +35623,6 @@
    {
       "playerClass":"NEUTRAL",
       "type":"ENCHANTMENT",
-      "name":"Luck of the Coin",
-      "id":"GAME_001",
-      "set":"CORE",
-      "text":"Going second grants you increased Health."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"ENCHANTMENT",
       "name":"Seal of Light",
       "id":"GVG_057a",
       "set":"GVG",
@@ -36442,14 +35630,6 @@
          "TAG_ONE_TURN_EFFECT"
       ],
       "text":"+2 Attack this turn."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"ENCHANTMENT",
-      "name":"Burning Adrenaline",
-      "id":"BRMC_97e",
-      "set":"TB",
-      "text":"Costs (2) less."
    },
    {
       "playerClass":"WARRIOR",
@@ -36594,52 +35774,6 @@
       "rarity":"LEGENDARY"
    },
    {
-      "playerClass":"NEUTRAL",
-      "cost":0,
-      "type":"HERO_POWER",
-      "name":"Essence of the Red",
-      "id":"BRMA11_2H",
-      "set":"BRM",
-      "mechanics":[
-         "AI_MUST_PLAY"
-      ],
-      "text":"<b>Hero Power</b>\nEach player draws 3 cards. Gain a Mana Crystal."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":3,
-      "type":"MINION",
-      "name":"Flying Monkey",
-      "id":"KARA_04_05",
-      "attack":4,
-      "set":"KARA",
-      "mechanics":[
-         "CHARGE"
-      ],
-      "text":"<b>Charge</b>",
-      "health":2,
-      "artist":"Matt Dixon"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":6,
-      "type":"SPELL",
-      "name":"Dragons Free!",
-      "id":"KARA_07_08",
-      "set":"KARA",
-      "text":"Summon a random Dragon.",
-      "artist":"Arthur Bozonnet"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":0,
-      "type":"SPELL",
-      "name":"Murloc Bonus",
-      "id":"TB_PickYourFate_11b",
-      "set":"TB",
-      "text":"Summon a 1/1 Murloc at the end of your turn."
-   },
-   {
       "playerClass":"SHAMAN",
       "cost":3,
       "flavor":"Turns out the tuskarr aren't real choosy about their totems.",
@@ -36662,15 +35796,6 @@
       "artist":"Eva Widermann",
       "health":2,
       "rarity":"COMMON"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "cost":0,
-      "type":"HERO_POWER",
-      "name":"Intense Gaze",
-      "id":"BRMA08_2",
-      "set":"BRM",
-      "text":"<b>Passive Hero Power</b>\nAll cards cost (1). Players are capped at 1 Mana Crystal."
    },
    {
       "playerClass":"SHAMAN",
@@ -37101,7 +36226,8 @@
       "name":"Explorer's Hat",
       "id":"LOE_105e",
       "set":"LOE",
-      "text":"+1/+1. <b>Deathrattle:</b> Add an Explorer's Hat to your hand."
+      "text": "+1/+1. <b>Deathrattle:</b> Add an Explorer's Hat to your hand.",
+      "rarity":  "COMMON"
    },
    {
       "playerClass":"ROGUE",
@@ -37172,14 +36298,6 @@
       "set":"EXPERT1",
       "health":15,
       "rarity":"LEGENDARY"
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"ENCHANTMENT",
-      "name":"Heroic Mode",
-      "id":"LOEA01_11he",
-      "set":"LOE",
-      "text":"+3/+3 if Phaerix controls the Rod."
    },
    {
       "playerClass":"MAGE",
@@ -37758,13 +36876,5 @@
       "id":"BRMA10_6e",
       "set":"BRM",
       "text":"Increased Attack."
-   },
-   {
-      "playerClass":"NEUTRAL",
-      "type":"HERO",
-      "name":"Grand Widow Faerlina",
-      "id":"NAX2_01",
-      "set":"NAXX",
-      "health":30
    }
 ]
