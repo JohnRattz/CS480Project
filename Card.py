@@ -7,11 +7,12 @@ class Card:
         name        string  The name of the card.
         isLegendary bool    Whether this card is legendary or not.
     """
-    def __init__(self, cost, name, isLegendary, playerClass):
+    def __init__(self, cost, name, isLegendary, playerClass, text):
         self._cost = cost
         self._name = name
         self._isLegendary = isLegendary
         self._playerClass = playerClass
+        self._text = text
 
     def getCost(self):
         return self._cost
@@ -25,33 +26,28 @@ class Card:
     def playerClass(self):
         return self._playerClass
 
-    def __repr__(self):
+    def printId(self):
         # Only take the last 5 digits of `id(self)`.
         ID = str(id(self))
-        return self.__class__.__name__ + " _ ID: {} _ Name: {}".format(ID[:len(ID)-6:-1], self._name)
+        print (ID[:len(ID)-6:-1])
+
+    def getText(self):
+        return self._text
+
+    def __repr__(self):
+        #return self.__class__.__name__ + "Name: {} Cost: {}".format(self._name, self._cost)
+        return self.__class__.__name__ + "Name: {} Cost: {} Text: {}".format(self._name, self._cost, self._text)
 
 
 class Hero(Card):
     """
     Represents a Hero Card.
-
-    Hero type is currently not represented.
-
-    Attributes:
-        health int  The number of health points this Hero has remaining.
     """
     def __init__(self, name):
-        super().__init__(0, name, False, "")
-        self._health = 30
-
-    def getHealth(self):
-        return self._health
-
-    def reduceHealth(self, health):
-        self._health -= health
+        super().__init__(0, name, False, "", "")
 
     def __repr__(self):
-        return super(self.__class__, self).__repr__() + " _ Hlth: {}".format(self._health)
+        return self._name
 
 
 class Minion(Card):
@@ -62,10 +58,11 @@ class Minion(Card):
         health int  The number of health points this Minion has remaining.
         attack int  The amount of health (and/or defense) lost by a Card attacked by this Minion.
     """
-    def __init__(self, cost, name, isLegendary, health, attack, playerClass):
-        super().__init__(cost, name, isLegendary, playerClass)
+    def __init__(self, cost, name, isLegendary, health, attack, playerClass, text):
+        super().__init__(cost, name, isLegendary, playerClass, text)
         self._health = health
         self._attack = attack
+        self.canAttack = False
 
     def getHealth(self):
         return self._health
@@ -76,16 +73,18 @@ class Minion(Card):
     def getAttack(self):
         return self._attack
 
+    '''
     def canAttack(self, *args):
         # Query whether this Minion can attack on this ply.
         if len(args) == 0:
-            return self._canAttack
+            return self._canAttack and self.canAttack
         # Change whether this Minion can attack on this ply.
         elif len(args) == 1:
             self._canAttack = args[0]
             return
         else:
             raise ValueError("Must have either no parameters or one boolean parameter.")
+    '''
 
     def attack(self, card):
         """
@@ -98,11 +97,15 @@ class Minion(Card):
             # Receive attack from `card`.
             if hasattr(card, 'attack'):
                 self.reduceHealth(card.getAttack())
+            self.canAttack = False
         else:
             raise AttributeError("Cannot attack Card without `health` attribute and `reduceHealth` function.")
 
+    def refreshCard(self):
+        self.canAttack = True
+
     def __repr__(self):
-        return super(self.__class__, self).__repr__() + " _ Hlth: {} _ Atk: {}".format(self._health, self._attack)
+        return super(self.__class__, self).__repr__() + " Hlth: {} Atk: {}".format(self._health, self._attack)
 
 # TODO: Include in second iteration tests.
 class Spell(Card):
@@ -113,8 +116,8 @@ class Spell(Card):
         attack int  The amount of health (and/or defense) lost by a Card attacked by this Minion.
                     We will only be considering spell cards that do fixed amounts of damage to one Card.
     """
-    def __init__(self, cost, name, isLegendary, attack, playerClass):
-        super().__init__(cost, name, isLegendary, playerClass)
+    def __init__(self, cost, name, isLegendary, attack, playerClass, text):
+        super().__init__(cost, name, isLegendary, playerClass, text)
         self._attack = attack
 
     def attack(self, card):
@@ -139,8 +142,8 @@ class Weapon(Card):
         durability  int The number of attacks remaining before this card is removed from play.
         attack      int The amount of health (and/or defense) lost by a Card attacked by this Weapon.
     """
-    def __init__(self, cost, name, isLegendary, durability, attack, playerClass):
-        super().__init__(cost, name, isLegendary, playerClass)
+    def __init__(self, cost, name, isLegendary, durability, attack, playerClass, text):
+        super().__init__(cost, name, isLegendary, playerClass, text)
         self._durability = durability
         self._attack = attack
 
