@@ -26,7 +26,6 @@ def loadCards():
     # Enumerates through each card
     for card in jsonData:
         type = card["type"]
-
         if type == "MINION":
             # 1038 cards
             cardsList.append(parseMinionCard(card))
@@ -58,8 +57,11 @@ def parseMinionCard(card):
     isLegendary = card.get("rarity", "") == "LEGENDARY"
     health = card["health"]
     attack = card["attack"]
+    text = ""
+    if "text" in card:
+        text = card["text"]
 
-    return Minion(cost, name, isLegendary, health, attack, card["playerClass"])
+    return Minion(cost, name, isLegendary, health, attack, card["playerClass"], text)
 
 def parseSpellCard(card):
     # Gets card info from json object
@@ -67,7 +69,9 @@ def parseSpellCard(card):
     name = card["name"]
     isLegendary = card.get("rarity", "") == "LEGENDARY"
     attack = 0
-
+    text = ""
+    if "text" in card:
+        text = card["text"]
     # TODO: Parse damage/attack value from text attribute (Might be too much work)
 
-    return Spell(cost, name, isLegendary, attack, card["playerClass"])
+    return Spell(cost, name, isLegendary, attack, card["playerClass"], text)

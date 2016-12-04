@@ -48,7 +48,6 @@ def playGame(printStats = True):
             currentPlayer = playerOne
             opponent = playerTwo
 
-
         currentPlayer.addManaCrystal()
         currentPlayer.rechargeMana()
         currentPlayer.drawCard()
@@ -58,10 +57,13 @@ def playGame(printStats = True):
         if currentPlayer.hasAvailableMoves():
             # successorFunction(currentPlayer, opponent, turn)
             print("get next move from successor function and execute")
+            cardToPlay = currentPlayer.getHand()[0]
+            currentPlayer.playCard(cardToPlay)
             if (opponent.isDead()):
                 gameOver = True
 
-        gameOver = turnCount == 4
+        currentPlayer.refreshCardsInPlay()
+        gameOver = turnCount == 10
 
 
 
