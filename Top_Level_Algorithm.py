@@ -47,6 +47,14 @@ def game_playing_AI(printStats=True, maxDepth1=2, maxDepth2=None):
     cardsInHand = []
     numInitialCardsPerPlayer = 3
 
+    ####### code to replace the portion until line "decks = [deck0, deck1]"
+    # cardsInHandP1 = []
+    # cardsInHandP2 = [Card("Coin")]
+    # for i in range(numInitialCardsPerPlayer):
+    #   cardsInHandP1.append(deck0.getNextCard())
+    #   cardsInHandP2.append(deck1.getNextCard())
+    #######
+
 
     chosenCardIndices0 = random.sample(range(deckSize), numInitialCardsPerPlayer)
     chosenCardIndices1 = random.sample(range(deckSize), numInitialCardsPerPlayer)
@@ -59,14 +67,6 @@ def game_playing_AI(printStats=True, maxDepth1=2, maxDepth2=None):
     chosenCardIndices1.sort(reverse=True)
     for cardIndx in chosenCardIndices1:
         del deck1[cardIndx]
-
-    ####### code to replace the portion until line "decks = [deck0, deck1]"
-    # cardsInHandP1 = []
-    # cardsInHandP2 = [Card("Coin")]
-    # for i in range(numInitialCardsPerPlayer):
-    #   cardsInHandP1.append(deck0.getNextCard())
-    #   cardsInHandP2.append(deck1.getNextCard())
-    #######
 
     decks = [deck0, deck1]
     print("cardsInPlay: ", cardsInPlay)
