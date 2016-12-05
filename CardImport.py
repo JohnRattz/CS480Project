@@ -57,10 +57,7 @@ def parseMinionCard(card):
     isLegendary = card.get("rarity", "") == "LEGENDARY"
     health = card["health"]
     attack = card["attack"]
-    text = ""
-    # TODO: This should be a one-liner.
-    if "text" in card:
-        text = card["text"]
+    text = card.get("text", "")
 
     return Minion(cost, name, isLegendary, health, attack, card["playerClass"], text)
 
@@ -70,10 +67,7 @@ def parseSpellCard(card):
     name = card["name"]
     isLegendary = card.get("rarity", "") == "LEGENDARY"
     attack = 0
-    text = ""
-    # TODO: This should be a one-liner.
-    if "text" in card:
-        text = card["text"]
+    text = card.get("text", "")
     # TODO: Parse damage/attack value from text attribute (Might be too much work)
 
     return Spell(cost, name, isLegendary, attack, card["playerClass"], text)

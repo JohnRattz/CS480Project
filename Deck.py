@@ -13,7 +13,7 @@ class Deck:
     def createDeck(self, cards):
         filteredCards = self.removeOtherClassCards(cards)
         while len(self.deckCards) != self.deckSize:
-            roll = random.randint(0, len(filteredCards) -1)
+            roll = random.randint(0, len(filteredCards) - 1)
             selectedCard = filteredCards[roll]
             score = self.evaluateCard(selectedCard)
             if score > 0:

@@ -1,6 +1,6 @@
 from State import State
 
-# TODO: Don't store a Node's children in itself. We should not conduct a BFS of the state space.
+# TODO: Don't store a Node's children in itself.
 # TODO: This class is very likely useless. Remove it whenever that is certain.
 class Node:
     """
