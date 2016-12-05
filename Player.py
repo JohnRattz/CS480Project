@@ -25,6 +25,9 @@ class Player:
     def getHand(self):
         return self.hand
 
+    def getHP(self):
+        return self.hp
+
     def getDeck(self):
         return self.deck
 

@@ -37,6 +37,7 @@ def playGame(printStats = True):
     gameOver = False
     currentPlayer = None
     opponent = None
+
     ### start game
     while not gameOver:
         turnCount += 1
