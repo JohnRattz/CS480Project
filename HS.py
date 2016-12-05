@@ -8,7 +8,10 @@ from successorFunction import *
 from utilityFunction import utilityFunction
 import globals
 
-
+# TODO: Allow the following options:
+# 1) Two AIs compete - each with their own lookahead depths.
+# 2) One AI and the AI that chooses among next states "randomly" (uses `successorFunctionRandom()`) compete.
+# See `game_playing_AI()` in `Top_Level_Algorithm.py` for what this refers to.
 def playGame(printStats = True):
     numInitialCardsPerPlayer = 3
     allCards = loadCards()
@@ -19,8 +22,8 @@ def playGame(printStats = True):
 
     playerList = random.sample([0, 1], 2)
 
-    playerOne = Player(getRandomElement(heroes), allCards, True)
-    playerTwo = Player(getRandomElement(heroes), allCards, False)
+    playerOne = Player(random.choice(heroes), allCards, True)
+    playerTwo = Player(random.choice(heroes), allCards, False)
 
     print(playerOne.hero)
     print(playerTwo.hero)
@@ -66,13 +69,18 @@ def playGame(printStats = True):
         currentPlayer.refreshCardsInPlay()
         gameOver = turnCount == 10
 
-def getRandomElement(list):
-    index = random.randint(0, len(list)-1)
-    return list[index]
+# TODO: Don't call this an AI if it does not use AI principles.
+def deck_choosing_AI():
+    """
+    Given that this is Bart's idea, I defer to him.
+
+    :return:
+    """
+    # TODO: (Bart, John)
+    pass
 
 if __name__ == "__main__":
     # Run game playing AI by default, but these are supposed to be imported and tested in `testing.py`.
-    # game_playing_AI()
     playGame()
 
 

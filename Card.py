@@ -42,6 +42,9 @@ class Card:
 class Hero(Card):
     """
     Represents a Hero Card.
+
+    Attributes:
+        health int  The number of health points this Hero has remaining.
     """
     def __init__(self, name):
         super().__init__(0, name, False, "", "")
@@ -62,7 +65,7 @@ class Minion(Card):
         super().__init__(cost, name, isLegendary, playerClass, text)
         self._health = health
         self._attack = attack
-        self.canAttack = False
+        self._canAttack = False
 
     def getHealth(self):
         return self._health
@@ -77,7 +80,7 @@ class Minion(Card):
     def canAttack(self, *args):
         # Query whether this Minion can attack on this ply.
         if len(args) == 0:
-            return self._canAttack and self.canAttack
+            return self._canAttack
         # Change whether this Minion can attack on this ply.
         elif len(args) == 1:
             self._canAttack = args[0]
@@ -97,7 +100,7 @@ class Minion(Card):
             # Receive attack from `card`.
             if hasattr(card, 'attack'):
                 self.reduceHealth(card.getAttack())
-            self.canAttack = False
+            self._canAttack = False
         else:
             raise AttributeError("Cannot attack Card without `health` attribute and `reduceHealth` function.")
 

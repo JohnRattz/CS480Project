@@ -7,11 +7,16 @@ from successorFunction import *
 from utilityFunction import utilityFunction
 import globals
 
+# TODO: HS.py supercedes this file. When this file is no longer valuable as a reference, delete it.
 
-def game_playing_AI(printStats = True):
+def game_playing_AI(printStats=True, maxDepth1=2, maxDepth2=None):
     """
     This AI plays Hearthstone with a subset of all possible cards.
     It is evaluated against a pseudo-random AI.
+
+    :param printStats: bool Determines whether or not statistics are printed at the end of the game.
+    :param maxDepth1:  int  The lookahead depth for the first AI.
+    :param maxDepth2:  bool The lookahead depth for the second AI.
 
     :return (winningPlayer, endTurn): int, int  A tuple containing the winning player and the end turn number.
     """
@@ -94,9 +99,12 @@ def game_playing_AI(printStats = True):
             # If this player is the main AI...
             if playerIndx == 0:
                 # Get next state based on MiniMax algorithm.
-                nextState = successorFunction(currentState, playerIndx, firstPlayerIndx, turn)
-            else: # choose nextState randomly for the other AI
-                nextState = successorFunctionRandom(currentState, playerIndx, firstPlayerIndx, turn)
+                nextState = successorFunction(currentState, playerIndx, firstPlayerIndx, turn, maxDepth1)
+            else: # Choose nextState either randomly or using MiniMax for the other AI.
+                if maxDepth2 is not None:
+                    nextState = successorFunction(currentState, playerIndx, firstPlayerIndx, turn, maxDepth2)
+                else:
+                    nextState = successorFunctionRandom(currentState, playerIndx, firstPlayerIndx, turn)
             # Go to that state.
             currentState = nextState
             # Check if this is a terminal state.
@@ -111,28 +119,7 @@ def game_playing_AI(printStats = True):
 
     # Return information for analysis purposes (in testing).
     # (Winning player index, ending turn, ending state)
-    return playerIndx, turn, currentState
-
-def deck_evaluating_AI():
-    """
-    Run two equivalent AIs (same game (turn) logic and same lookahead depth) with randomly generated decks.
-    I don't know if there is supposed to be more to this AI than this.
-
-    This is Jerrod's idea, so he has ultimate jurisdiction here.
-
-    :return: ???
-    """
-    # TODO: (Jerrod, John)
-    pass
-
-def deck_choosing_AI():
-    """
-    Given that this is Bart's idea, I defer to him.
-
-    :return:
-    """
-    # TODO: (Bart, John)
-    pass
+    return playerIndx, turn#, currentState
 
 if __name__ == "__main__":
     # Run game playing AI by default, but these are supposed to be imported and tested in `testing.py`.
