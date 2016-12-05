@@ -7,6 +7,7 @@ from successorFunction import *
 from utilityFunction import utilityFunction
 import globals
 
+# TODO: HS.py supercedes this file. When this file is no longer valuable as a reference, delete it.
 
 def game_playing_AI(printStats=True, maxDepth1=2, maxDepth2=None):
     """
