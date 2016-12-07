@@ -17,10 +17,9 @@ def utilityFunction(state):
     # TODO: Game Logic...
     # TODO: return utilityValue
 
-    # Remove this when the utility function is completed - it only serves as a placeholder.
-    # It only *vaguely* reflects the state of the game.
-    player0HeroHealth = state.getCardsInPlay(0)[0].getHealth()
-    player1HeroHealth = state.getCardsInPlay(1)[0].getHealth()
+    # Gets health of both players
+    player0HeroHealth = state.getPlayers[0].getHP()
+    player1HeroHealth = state.getPlayers[1].getHP()
 
     # Checks if it's a win state
     if (player0HeroHealth <= 0):
@@ -50,9 +49,9 @@ def utilityFunction(state):
     player0HeroHealth = player0HeroHealth - player1Attacks[1]
     player1HeroHealth = player1HeroHealth - player0Attacks[1]
 
-    # Total mana crystal cost of this player's cards - excluding the Hero card.
-    player0TotalManaCrystalCost = sum([card.getCost() for card in state.getCardsInPlay(0)[1:]])
-    player1TotalManaCrystalCost = sum([card.getCost() for card in state.getCardsInPlay(1)[1:]])
+    # Total mana crystal cost of this player's cards
+    player0TotalManaCrystalCost = sum([card.getCost() for card in state.getCardsInPlay(0)])
+    player1TotalManaCrystalCost = sum([card.getCost() for card in state.getCardsInPlay(1)])
 
     return (player1HeroHealth + player1TotalManaCrystalCost / 3) - (player0HeroHealth + player0TotalManaCrystalCost / 3)
     '''
