@@ -17,16 +17,12 @@ def utilityFunction(state):
     # TODO: Game Logic...
     # TODO: return utilityValue
 
-    # Remove this when the utility function is completed - it only serves as a placeholder.
-    # It only *vaguely* reflects the state of the game.
-    players = state.getPlayers()
-    playerOneHealth = players[0].getHP()
-    playerTwoHealth = players[1].getHP()
+    # Gets health of both players
+    player0HeroHealth = state.getPlayers(0).getHP()
+    player1HeroHealth = state.getPlayers(1).getHP()
 
-    # TODO: Everything below this line needs to be changed given that players are now in `State`.
-
-    player0HeroHealth = state.getCardsInPlay(0)[0].getHealth()
-    player1HeroHealth = state.getCardsInPlay(1)[0].getHealth()
+    # TODO: Some things below this line may need to be changed
+    #       given that players are now in `State`.
 
     # Checks if it's a win state
     if (player0HeroHealth <= 0):
