@@ -54,9 +54,6 @@ class Player:
     def playCard(self, card):
         print("play card")
 
-
-
-
     def addManaCrystal(self):
         # The maximum number of mana crystals a player can have
         # and can be allotted at the beginning of a turn is 10.

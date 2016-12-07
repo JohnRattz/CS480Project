@@ -38,6 +38,7 @@ class State:
         return self._manaCrystals
 
     def setManaCrystals(self, num, playerIndx):
+        self._players[playerIndx].setAvailableMana(num)
         self._manaCrystals[playerIndx] = num
         self._heuristic = utilityFunction(self)
 
