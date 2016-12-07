@@ -50,6 +50,9 @@ class Player:
     def getAvailableMana(self):
         return self._availableMana
 
+    def setAvailableMana(self, num):
+        self._availableMana = num
+
     # TODO: Finish this (is it really needed?).
     def playCard(self, card):
         print("play card")
