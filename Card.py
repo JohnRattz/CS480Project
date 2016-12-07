@@ -38,7 +38,6 @@ class Card:
         return self.__class__.__name__ + " Name: \"{}\" Cost: {}".format(self._name, self._cost)
         # return self.__class__.__name__ + " Name: {} Cost: {} Text: {}".format(self._name, self._cost, self._text)
 
-
 class Hero(Card):
     """
     Represents a Hero Card.

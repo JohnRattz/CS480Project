@@ -21,15 +21,14 @@ def playGame(printStats = True, maxDepth1=1, maxDepth2=None):
     print(len(allCards))
 
     playerList = random.sample([0, 1], 2)
-    print(playerList)
+    print("Player order:", playerList)
 
-    # TODO: Simplify the last parameter?
     # `bool(playerList[0/1])` determines whether or not that player goes first.
     playerOne = Player(random.choice(heroes), allCards, bool(playerList[1]))
     playerTwo = Player(random.choice(heroes), allCards, bool(playerList[0]))
 
-    print(playerOne.hero)
-    print(playerTwo.hero)
+    print(playerOne._hero)
+    print(playerTwo._hero)
 
     for i in range(0, numInitialCardsPerPlayer):
         playerOne.drawCard()

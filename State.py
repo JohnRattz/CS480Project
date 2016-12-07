@@ -7,11 +7,8 @@ class State:
     Represents a possible state of the game.
 
     Attributes:
-        cardsInPlay  list[list[Card]]   The Cards in play for both players, with the outer list indexed by the players.
-        cardsInHand  list[list[Card]]   The Cards in the players' hands, with the outer list indexed by the players.
-                                        `cardsInHand[playerIndx][0]` is always the Hero card for player `playerIndx`.
-        manaCrystals list[int]          The number of mana crystals for both players.
-        decks        list[list[Card]]   The decks for both players.
+        players     list[Player] A list of two players - not necessarily in the order they play.
+        heuristic   function     A heuristic function used to evaluate the utility value of states.
     """
     def __init__(self, players):
         """
