@@ -11,7 +11,7 @@ def loadCards():
     heroesList.clear()
     cardsList.clear()
 
-    populatHeroesList(heroesList)
+    populateHeroesList(heroesList)
     jsonData = None
 
     try:
@@ -39,7 +39,7 @@ def loadCards():
     print("Loaded", len(heroesList), "hero cards and", len(cardsList), "minion cards")
     return cardsList
 
-def populatHeroesList(list):
+def populateHeroesList(list):
     list.append(Hero("Paladin"))
     list.append(Hero("Rogue"))
     list.append(Hero("Warrior"))

@@ -35,8 +35,8 @@ class Card:
         return self._text
 
     def __repr__(self):
-        #return self.__class__.__name__ + "Name: {} Cost: {}".format(self._name, self._cost)
-        return self.__class__.__name__ + "Name: {} Cost: {} Text: {}".format(self._name, self._cost, self._text)
+        return self.__class__.__name__ + " Name: \"{}\" Cost: {}".format(self._name, self._cost)
+        # return self.__class__.__name__ + " Name: {} Cost: {} Text: {}".format(self._name, self._cost, self._text)
 
 
 class Hero(Card):
@@ -110,6 +110,7 @@ class Minion(Card):
     def __repr__(self):
         return super(self.__class__, self).__repr__() + " Hlth: {} Atk: {}".format(self._health, self._attack)
 
+
 # TODO: Include in second iteration tests.
 class Spell(Card):
     """
@@ -134,7 +135,7 @@ class Spell(Card):
             raise AttributeError("Cannot attack Card without `health` attribute and `reduceHealth` function.")
 
     def __repr__(self):
-        return super(self.__class__, self).__repr__() + "_ Atk: {}".format(self._attack)
+        return super(self.__class__, self).__repr__() + " Atk: {}".format(self._attack)
 
 # TODO: Include in third iteration tests.
 class Weapon(Card):
@@ -173,5 +174,5 @@ class Weapon(Card):
             raise AttributeError("Cannot attack Card without `health` attribute and `reduceHealth` function.")
 
     def __repr__(self):
-        return super(self.__class__, self).__repr__() + " _ Dur: {} _ Atk: {}".format(self._durability, self._attack)
+        return super(self.__class__, self).__repr__() + " Dur: {} Atk: {}".format(self._durability, self._attack)
 

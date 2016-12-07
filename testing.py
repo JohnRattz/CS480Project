@@ -47,7 +47,7 @@ def test_game_playing_AI():
             print("====================")
             print("Lookahead Depth:", maxDepth)
             print("Iteration:", i)
-            winningPlayerIndx, turnsElapsed = game_playing_AI(False, maxDepth)
+            winningPlayerIndx, turnsElapsed = playGame(False, maxDepth)
             # If the first player (the AI under test) won the game...
             if winningPlayerIndx == 0:
                 numGamesWon += 1
@@ -99,25 +99,25 @@ def test_game_playing_AI():
                 outfile.write(str(val) + " ")
             outfile.write("\n")
 
-def test_deck_choosing_AI():
-    # TODO: (Bart)
-    # Given that this is Bart's idea, I defer to him.
-    # Below are some suggestions.
-
-    # 1) Test generated decks by having two equally capable AIs (same lookahead depth) use them against each other.
-
-    # TODO: Generate 3 to 5 decks.
-    # (I cannot guarantee even 5 will finish in time to draft the report - Python is slow.)
-    # TODO: For each deck, run it against the other decks 10 times for N=2 for both AI players and average results.
-    # (N>2 takes an hour or longer to run each game.)
-
-    # For 3 decks, that would require 30 games to be played (deck1 vs. deck2, deck1 vs. deck3, deck2 vs. deck3).
-
-    # 2) Test professional decks by having two equally capable AIs (same lookahead depth) use them against each other.
-
-    # I would pick at most five professional decks and test as was done for the first test.
-
-    pass
+# def test_deck_choosing_AI():
+#     # TODO: (Bart)
+#     # Given that this is Bart's idea, I defer to him.
+#     # Below are some suggestions.
+#
+#     # 1) Test generated decks by having two equally capable AIs (same lookahead depth) use them against each other.
+#
+#     # TODO: Generate 3 to 5 decks.
+#     # (I cannot guarantee even 5 will finish in time to draft the report - Python is slow.)
+#     # TODO: For each deck, run it against the other decks 10 times for N=2 for both AI players and average results.
+#     # (N>2 takes an hour or longer to run each game.)
+#
+#     # For 3 decks, that would require 30 games to be played (deck1 vs. deck2, deck1 vs. deck3, deck2 vs. deck3).
+#
+#     # 2) Test professional decks by having two equally capable AIs (same lookahead depth) use them against each other.
+#
+#     # I would pick at most five professional decks and test as was done for the first test.
+#
+#     pass
 
 if __name__ == "__main__":
     test_game_playing_AI()

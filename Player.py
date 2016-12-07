@@ -16,8 +16,12 @@ class Player:
     def drawCard(self):
         self.hand.append(self.deck.getNextCard())
 
-    def getCoin(self):
-        self.hand.append(Spell(0, "Coin", False, 0, "NEUTRAL", ""))
+    # TODO: Include in second iteration.
+    # def getCoin(self):
+    #     self.hand.append(Spell(0, "Coin", False, 0, "NEUTRAL", ""))
+
+    def getCardsInPlay(self):
+        return inPlay
 
     def playCard(self, card):
         print("play card")
@@ -32,7 +36,10 @@ class Player:
         return self.deck
 
     def addManaCrystal(self):
-        self.manaCrystals += 1
+        # The maximum number of mana crystals a player can have
+        # and can be allotted at the beginning of a turn is 10.
+        if self.manaCrystals < 10:
+            self.manaCrystals += 1
 
     def rechargeMana(self):
         self.availableMana = self.manaCrystals
@@ -82,4 +89,6 @@ class Player:
             print("Cannot play this card: {}".format(card.getName()))
 
     def __repr__(self):
-        return "Hero: {} First: {} \nHand({}): {} \nInPlay({}): {} \nCrystals: {} Mana: {}".format(self.hero, self.isFirstPlayer, len(self.hand), self.hand,len(self.inPlay), self.inPlay, self.manaCrystals, self.availableMana)
+        return "Hero: {} First: {} \nHand({}): {} \nInPlay({}): {} \nCrystals: {} Mana: {}".format\
+            (self.hero, self.isFirstPlayer, len(self.hand), self.hand,
+             len(self.inPlay), self.inPlay, self.manaCrystals, self.availableMana)

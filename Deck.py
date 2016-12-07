@@ -22,6 +22,8 @@ class Deck:
     def removeOtherClassCards(self, cards):
         filteredCards = []
         for card in cards:
+            # TODO: Should "NEUTRAL" be in all caps?
+            print("removeOtherClassCards: card.playerClass():". card.playerClass())
             if card.playerClass() == self.hero.getName() or card.playerClass() == "NEUTRAL":
                 filteredCards.append(card)
         return filteredCards
@@ -33,8 +35,11 @@ class Deck:
         return -1
 
     def canAddCard(self, card):
+        # TODO: Doesn't this check for objects being the same rather than values?
+        # You will have to define `__eq__()` to do this.
         if card.isLegendary() and card in self.deckCards:
             return False
+        # Again, this checks for object address equality rather than value equality.
         if self.deckCards.count(card) > 1:
             return False
         return True

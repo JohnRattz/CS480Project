@@ -99,10 +99,10 @@ def game_playing_AI(printStats=True, maxDepth1=2, maxDepth2=None):
             # If this player is the main AI...
             if playerIndx == 0:
                 # Get next state based on MiniMax algorithm.
-                nextState = successorFunction(currentState, playerIndx, firstPlayerIndx, turn, maxDepth1)
+                nextState = successorFunctionHS(currentState, turn, maxDepth1)
             else: # Choose nextState either randomly or using MiniMax for the other AI.
                 if maxDepth2 is not None:
-                    nextState = successorFunction(currentState, playerIndx, firstPlayerIndx, turn, maxDepth2)
+                    nextState = successorFunctionHS(currentState, turn, maxDepth2)
                 else:
                     nextState = successorFunctionRandom(currentState, playerIndx, firstPlayerIndx, turn)
             # Go to that state.
