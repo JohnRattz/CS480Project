@@ -28,6 +28,8 @@ class State:
             return self._players[playerIndx].getCardsInPlay()
         return self._players[0].getCardsInPlay(), self._players[1].getCardsInPlay()
 
+# TODO: Everything below this line has not be rewritten yet (getCardsInPlay() has been rewritten).
+
     def getCardsInHand(self, playerIndx=None):
         if playerIndx is not None:
             return self._cardsInHand[playerIndx]
