@@ -1,35 +1,39 @@
+from Player import Player
+from Card import *
+
 
 class Agent(object):
-    def __init__(self, hero, deck, state):
-        self.hero = hero
-        self.deck = deck
+    def __init__(self, player, opponent):
+        self.player = player
+        self.opponent = opponent
     
-    def get_available_mana(self):
-        return 0
-
-    def get_turn_count(self):
+    def evaluateBoard(self):
         return 0
     
-    def evaluate_board(self):
-        return 0
-    
-    def can_win_this_turn(self):
+    def canWinThisTurn(self):
+        if getMyMaxDamageThisTurn() >= opponent.getHP():
+            return True
         return False
     
-    def can_loose_with_current_board(self):
+    def canLooseWithCurrentBoard(self):
+        if getMinionOnBoardDamage(opponent) >= player.getHP():
+            return True
         return False
     
-    def get_this_turn_max_damage(self):
+    def getMyMaxDamageThisTurn(self):
+        dmg = self.get_minion_on_board_damage(self.player)
+        dmg += getDamageFromHand()
+        return dmg
+
+    def getMinionOnBoardDamage(self, player):
+        dmg = 0
+        for minion in player.inPlay():
+            if minion.canAttack:
+                dmg += minion.getAttack()
+        return dmg
+
+    def getDamageFromHand(self):
         return 0
 
-    def get_minion_on_board_damage(self):
-        return 0
-
-    def get_damage_from_hand(self):
-        return 0
-
-    def create_decision_tree(self):
-        return 0
-    
-    def get_current_hand(self):
+    def createDecisionTree(self):
         return 0
