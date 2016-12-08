@@ -18,7 +18,7 @@ def test_game_playing_AI_vs_random_AI():
 
     # The lookahead depths for the AI player(s).
     maxDepthsToTest = [1, 2, 3]
-    numRuns = 10
+    numRuns = 20
 
     print(r'Game Playing AI Test - AI vs "Random" AI')
     print("====================")
@@ -96,7 +96,7 @@ def test_game_playing_AI_vs_other_AI():
                     print("Iteration:", i)
 
                     t0 = time.time()
-                    winningPlayerIndx, turnsElapsed = game_playing_AI(False, maxDepth1, 1)
+                    winningPlayerIndx, turnsElapsed = game_playing_AI(False, maxDepth1, maxDepth2)
                     avgElapsedTime += time.time() - t0
 
                     # If the first player (the AI under test) won the game...
