@@ -6,7 +6,8 @@ JSON_CARD_PATH = "data\cards.json"
 
 def loadCards():
     global heroesList
-    cardsList = []
+    global cardsList
+
     # Re-initializes global card lists
     heroesList.clear()
     cardsList.clear()
@@ -36,8 +37,7 @@ def loadCards():
         else:
             continue
     
-    print("Loaded", len(heroesList), "hero cards and", len(cardsList), "minion cards")
-    return cardsList
+    # print("Loaded", len(heroesList), "hero cards and", len(cardsList), "minion cards")
 
 def populatHeroesList(list):
     list.append(Hero("Paladin"))
@@ -57,9 +57,8 @@ def parseMinionCard(card):
     isLegendary = card.get("rarity", "") == "LEGENDARY"
     health = card["health"]
     attack = card["attack"]
-    text = card.get("text", "")
 
-    return Minion(cost, name, isLegendary, health, attack, card["playerClass"], text)
+    return Minion(cost, name, isLegendary, health, attack, card["playerClass"])
 
 def parseSpellCard(card):
     # Gets card info from json object
@@ -67,7 +66,6 @@ def parseSpellCard(card):
     name = card["name"]
     isLegendary = card.get("rarity", "") == "LEGENDARY"
     attack = 0
-    text = card.get("text", "")
     # TODO: Parse damage/attack value from text attribute (Might be too much work)
 
-    return Spell(cost, name, isLegendary, attack, card["playerClass"], text)
+    return Spell(cost, name, isLegendary, attack, card["playerClass"])

@@ -1,15 +1,13 @@
 import random
 import Card
-from Deck import Deck
 from CardImport import loadCards
 from State import State
 from successorFunction import *
 from utilityFunction import utilityFunction
 import globals
 
-# TODO: HS.py supercedes this file. When this file is no longer valuable as a reference, delete it.
 
-def game_playing_AI(printStats=True, maxDepth1=2, maxDepth2=None):
+def game_playing_AI(printStats=True, maxDepth1=1, maxDepth2=None):
     """
     This AI plays Hearthstone with a subset of all possible cards.
     It is evaluated against a pseudo-random AI.
@@ -22,8 +20,8 @@ def game_playing_AI(printStats=True, maxDepth1=2, maxDepth2=None):
     """
     # Loads cards from json file
     loadCards()
-    #print(len(globals.heroesList))
-    #print(len(globals.cardsList))
+    # print(len(globals.heroesList))
+    # print(len(globals.cardsList))
 
     # Create a list `playerList` to note the order in which the players take turns (so either [0,1] or [1,0]).
     # The order is decided randomly.
@@ -39,23 +37,13 @@ def game_playing_AI(printStats=True, maxDepth1=2, maxDepth2=None):
     # Generate decks for both players.
     deckSize = 30
     # First player's deck
-    deck0 = Deck(selectedHeroes[0], cardsList)
+    deck0 = [random.choice(globals.cardsList) for _ in range(deckSize)]
     # Second player's deck
-    deck1 = Deck(selectedHeroes[1], cardsList)
+    deck1 = [random.choice(globals.cardsList) for _ in range(deckSize)]
 
     # Choose initial allotment of cards for both players (default 4 cards per player).
     cardsInHand = []
     numInitialCardsPerPlayer = 3
-
-    ####### code to replace the portion until line "decks = [deck0, deck1]"
-    # cardsInHandP1 = []
-    # cardsInHandP2 = [Card("Coin")]
-    # for i in range(numInitialCardsPerPlayer):
-    #   cardsInHandP1.append(deck0.getNextCard())
-    #   cardsInHandP2.append(deck1.getNextCard())
-    #######
-
-
     chosenCardIndices0 = random.sample(range(deckSize), numInitialCardsPerPlayer)
     chosenCardIndices1 = random.sample(range(deckSize), numInitialCardsPerPlayer)
     cardsInHand.append([deck0[chosenCardIndx] for chosenCardIndx in chosenCardIndices0])
@@ -69,10 +57,10 @@ def game_playing_AI(printStats=True, maxDepth1=2, maxDepth2=None):
         del deck1[cardIndx]
 
     decks = [deck0, deck1]
-    print("cardsInPlay: ", cardsInPlay)
-    print("cardsInHand: ", cardsInHand)
-    print("len(deck0): ", len(deck0))
-    print("len(deck1): ", len(deck1))
+    # print("cardsInPlay: ", cardsInPlay)
+    # print("cardsInHand: ", cardsInHand)
+    # print("len(deck0): ", len(deck0))
+    # print("len(deck1): ", len(deck1))
 
     # Give both players mana crystals (1 for first player, 2 for second player).
     manaCrystals = [0, 0]
@@ -99,12 +87,12 @@ def game_playing_AI(printStats=True, maxDepth1=2, maxDepth2=None):
             # If this player is the main AI...
             if playerIndx == 0:
                 # Get next state based on MiniMax algorithm.
-                nextState = successorFunction(currentState, playerIndx, firstPlayerIndx, turn, maxDepth1)
+                nextState = successorFunction(currentState, playerIndx, turn, maxDepth1)
             else: # Choose nextState either randomly or using MiniMax for the other AI.
                 if maxDepth2 is not None:
-                    nextState = successorFunction(currentState, playerIndx, firstPlayerIndx, turn, maxDepth2)
+                    nextState = successorFunction(currentState, playerIndx, turn, maxDepth2)
                 else:
-                    nextState = successorFunctionRandom(currentState, playerIndx, firstPlayerIndx, turn)
+                    nextState = successorFunctionRandom(currentState, playerIndx, turn)
             # Go to that state.
             currentState = nextState
             # Check if this is a terminal state.

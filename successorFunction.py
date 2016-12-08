@@ -343,7 +343,7 @@ def alphabeta(currentState, playerIndx, turn, depth, alpha, beta, maxPlayer, max
         bestVal = MIN_INT
         for childState in childStates:
             numChildren += 1
-            childStateVal = alphabeta(childState, playerIndx, turn, depth + 1, alpha, beta, False)#, maxDepth)
+            childStateVal = alphabeta(childState, playerIndx, turn, depth + 1, alpha, beta, False, maxDepth)
             if childStateVal > bestVal:
                 bestVal = childStateVal
             alpha = max(alpha, childStateVal)
@@ -363,7 +363,7 @@ def alphabeta(currentState, playerIndx, turn, depth, alpha, beta, maxPlayer, max
         bestVal = MAX_INT
         for childState in childStates:
             numChildren += 1
-            childStateVal = alphabeta(childState, playerIndx, turn, depth + 1, alpha, beta, True)#, maxDepth)
+            childStateVal = alphabeta(childState, playerIndx, turn, depth + 1, alpha, beta, True, maxDepth)
             if childStateVal < bestVal:
                 bestVal = childStateVal
             beta = min(beta, childStateVal)
@@ -379,14 +379,13 @@ def alphabeta(currentState, playerIndx, turn, depth, alpha, beta, maxPlayer, max
         else:
             return max(beta, bestVal)
 
-def successorFunction(currentState, playerIndx, firstPlayerIndx, turn, maxDepth):
+def successorFunction(currentState, playerIndx, turn, maxDepth):
     """
     Based on the current state and which player is making the current ply,
     returns the best next state (one per invocation) corresponding to card choices and uses.
 
     :param currentState:    State   A variable of type State representing the current state.
     :param playerIndx:      int     The player that is making the current ply.
-    :param firstPlayerIndx: int     The index of the player making the first ply of every turn.
     :param turn:            int     The current turn number.
     :param maxDepth:        int     See `alphabeta()` in this file for description.
     :return successorState: State   A variable of type State representing the best next state for player `playerIndx`.
@@ -404,25 +403,26 @@ def successorFunction(currentState, playerIndx, firstPlayerIndx, turn, maxDepth)
     # We may want to test the AI when playing against "itself".
     nextPlayerIndx = 1 if playerIndx == 0 else 0
 
-    # Create a multiprocessing pool with the number of threads equal to the number of logical processors.
-    pool = mp.Pool(mp.cpu_count())
+    # Create a multiprocessing pool with the number of threads being, at most,
+    # the number of logical processors minus two to avoid excessively throttling the performance of the host PC.
+    pool = mp.Pool(max(1, mp.cpu_count() - 2))
 
     # Get the alpha-beta value of all child nodes in parallel (nodes for which the *next* player is making the ply).
-    alpha_beta_state_tuples = [pool.apply(alphabeta, [childState, playerIndx, turn, 1,
-                                                      alpha, beta, bool(nextPlayerIndx), maxDepth])
+    alpha_beta_state_tuples = [pool.apply_async(alphabeta, [childState, playerIndx, turn, 1,
+                                                alpha, beta, bool(nextPlayerIndx), maxDepth])
                                for childState in childStates]
     pool.close()
     pool.join()
+    # Get the results.
+    alpha_beta_state_tuples = [alpha_beta_state_tuple.get() for alpha_beta_state_tuple in alpha_beta_state_tuples]
 
     # Get the alpha-beta value of all child nodes sequentially (nodes for which the *next* player is making the ply).
     # alpha_beta_state_tuples = [alphabeta(childState, playerIndx, turn, 1, alpha, beta, bool(nextPlayerIndx))
     #                            for childState in childStates]
 
-    print("P0:", currentState.getCardsInPlay(0)[0].getHealth(), "P1:", currentState.getCardsInPlay(1)[0].getHealth())
-
     # Sort on alpha-beta value.
     alpha_beta_state_tuples.sort(key=lambda x: x[0])
-    print("len(alpha_beta_state_tuples):", len(alpha_beta_state_tuples))
+    # print("len(alpha_beta_state_tuples):", len(alpha_beta_state_tuples))
     # print("alpha_beta_state_tuples[:3]:", alpha_beta_state_tuples[:3])
     # Player 0 picks among states with the minimum alpha-beta value.
     # Player 1 picks among states with the maximum alpha-beta value (when testing player 1 with non-random AI).
@@ -430,12 +430,11 @@ def successorFunction(currentState, playerIndx, firstPlayerIndx, turn, maxDepth)
     if playerIndx == 0:
         successorState = alpha_beta_state_tuples[0][1]
     else:
-        successorState = alpha_beta_state_tuples[alpha_beta_state_tuples.size() - 1][1]
+        successorState = alpha_beta_state_tuples[len(alpha_beta_state_tuples) - 1][1]
 
     return successorState
 
-# TODO: May not need `firstPlayerIndx`.
-def successorFunctionRandom(currentState, playerIndx, firstPlayerIndx, turn):
+def successorFunctionRandom(currentState, playerIndx, turn):
     """
     Based on the current state,
     returns a random next state (one per invocation) corresponding to card choices and uses.
