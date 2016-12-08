@@ -60,7 +60,7 @@ def test_game_playing_AI_vs_other_AI():
     """
     Second set of tests for the game playing AI.
 
-    Test the AI against another AI, varying the lookahead depth for one but not the other.
+    Test the AI against another AI, varying the lookahead depth between them.
     """
 
     # Create the test results directory if it does not exist.
@@ -99,6 +99,7 @@ def test_game_playing_AI_vs_other_AI():
                     winningPlayerIndx, turnsElapsed = game_playing_AI(False, maxDepth1, 1)
                     avgElapsedTime += time.time() - t0
 
+                    # If the first player (the AI under test) won the game...
                     if winningPlayerIndx == 0:
                         numGamesWon += 1
                     avgTurnsElapsed += turnsElapsed
