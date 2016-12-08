@@ -35,12 +35,6 @@ def getNextStates(currentState, playerIndx, turn):
     """
     global heroesList, cardsList
 
-    # DEBUG
-    # print("currentState: \n{}".format(currentState))
-    # print("playerIndx: ", playerIndx)
-    # print("turn: ", turn)
-    # DEBUG
-
     # Avoid modifying `currentState` and create basis state for all next states.
     # It is used to prevent repeating mana crystal allotment and card allotment for each next state.
     nextStateBasis = deepcopy(currentState)
@@ -75,13 +69,7 @@ def getNextStates(currentState, playerIndx, turn):
             currentPlayerHasWeapon = True
             break
 
-    # DEBUG
-    # print("nextStateBasis: \n{}".format(nextStateBasis))
-    # DEBUG
-
     # For each possible set of card choices for this player (cards in hand - to be put in play)...
-    # NOTE: For 10 cards in hand, these two loops (as written currently) run at most 1024 times.
-    #       For 5 cards in hand, they run at most only 32 times.
     for numToChooseFromHand in range(0, len(currentPlayerHand) + 1):
         for cardsToChooseIndices in itertools.combinations(range(len(currentPlayerHand)), numToChooseFromHand):
             cardsToChoose = [currentPlayerHand[cardIndx] for cardIndx in cardsToChooseIndices]
@@ -112,26 +100,19 @@ def getNextStates(currentState, playerIndx, turn):
                     newAttackCapableCardIndices.append(len(currentPlayerCardsInPlay) + cardIndx)
                     requiredAttackingCardIndices.append(len(currentPlayerCardsInPlay) + cardIndx)
 
-            # DEBUG
-            # print("newMinionCardIndices:", newMinionCardIndices)
-            # DEBUG
-
             numCurrentPlayerCardsInPlay = len(currentPlayerCardsInPlay) + numCardsToPutInPlay
             # Don't count the Hero card.
             numCurrentPlayerMinionCardsInPlay = numCurrentPlayerCardsInPlay - 1
-            # print("numCurrentPlayerCardsInPlay:", numCurrentPlayerCardsInPlay)
             # The limit of seven cards in play does not include Hero cards - only Minion cards.
             if numCurrentPlayerMinionCardsInPlay > 7 or weaponChosenWhileWeaponInPlay:
                 continue
 
             chosenCardCosts = [cardToChoose.getCost() for cardToChoose in cardsToChoose]
             totalCost = sum(chosenCardCosts)
-            # print("chosenCardCosts:", chosenCardCosts)
             # If there are enough manacrystals remaining to choose another card...
             # (In our limited versions of Hearthstone, there is never a reason to have remaining cards to choose -
             #  only partly because mana crystals do not carry over from turn to turn.)
             remainingCrystals = currentPlayerCrystals - totalCost
-            # print("remainingCrystals:", remainingCrystals)
             if remainingCrystals < 0:
                 continue  # Choose another set of cards.
             # If this player can still have more cards in play...
@@ -147,31 +128,21 @@ def getNextStates(currentState, playerIndx, turn):
                 if canChooseMoreCards:
                     continue
 
-            # DEBUG
-            # print("Can't choose any more cards!")
-            # DEBUG
-
             # Remove the chosen cards from the current player's hand for the next state.
             nextStateCurrentPlayerHand = [currentPlayerHand[cardIndx] for cardIndx in range(len(currentPlayerHand))
                                           if cardIndx not in cardsToChooseIndices]
-            # print("len(currentPlayerHand): ", len(currentPlayerHand))
-            # print("len(nextStateCurrentPlayerHand): ", len(nextStateCurrentPlayerHand))
 
             # Add the chosen cards to the cards in play for this player.
             nextStateCurrentPlayerCardsInPlay = currentPlayerCardsInPlay + cardsToChoose
-            # print("len(currentPlayerCardsInPlay): ", len(currentPlayerCardsInPlay))
-            # print("len(nextStateCurrentPlayerCardsInPlay): ", len(nextStateCurrentPlayerCardsInPlay))
 
             # Determine indices of this player's attack capable cards in play.
             # (Of initial cards, select all cards but first since that is a Hero, and the only attack capable cards
             #  that can be in play at the beginning of a turn are Minions and Weapons)
             attackCapableCardIndices = list(range(1, len(currentPlayerCardsInPlay))) + newAttackCapableCardIndices
-            # print("attackCapableCardIndices: ", attackCapableCardIndices)
 
             # Get subset of enemy cards that are attackable.
             attackableCardIndices = [cardIndx for cardIndx in range(len(enemyCardsInPlay))
                                      if hasattr(enemyCardsInPlay[cardIndx], 'reduceHealth')]
-            # print("attackableCardIndices: ", attackableCardIndices)
 
             # For each possible set of attack capable cards (order of attack matters)...
             for numToChooseFromAttackCapable in range(0, len(attackCapableCardIndices) + 1):
@@ -179,11 +150,8 @@ def getNextStates(currentState, playerIndx, turn):
                                                                                 numToChooseFromAttackCapable):
                     # Some cards must attack on deployment (Spell cards).
                     setRequiredAttackingCardIndices = set(requiredAttackingCardIndices)
-                    # print("setRequiredAttackingCardIndices: ", setRequiredAttackingCardIndices)
                     setAttackCapableCardsToChooseIndices = set(attackCapableCardsToChooseIndices)
-                    # print("setAttackCapableCardsToChooseIndices: ", setAttackCapableCardsToChooseIndices)
                     if not setRequiredAttackingCardIndices.issubset(setAttackCapableCardsToChooseIndices):
-                        # print("Required card not included in attacking cards, skipping.")
                         continue
 
                     # For each combination of attackable cards (each card can only target one card)...
@@ -196,23 +164,6 @@ def getNextStates(currentState, playerIndx, turn):
                         # record them as being attack capable for future plys.
                         newMinionCards = [nextStateCurrentPlayerCardsInPlayAfterAttack[cardIndx]
                                           for cardIndx in newMinionCardIndices]
-
-                        attackingCards = [nextStateCurrentPlayerCardsInPlayAfterAttack[cardIndx] for cardIndx
-                                          in attackCapableCardsToChooseIndices]
-                        attackedCards = [nextStateEnemyCardsInPlayAfterAttack[cardIndx] for cardIndx
-                                         in attackableCardsToChooseIndices]
-
-                        # DEBUG
-                        # print("nextStateCurrentPlayerCardsInPlay (before set attack capable):", nextStateCurrentPlayerCardsInPlay)
-                        # print("newMinionCards:", newMinionCards)
-                        # print("nextStateCurrentPlayerCardsInPlayAfterAttack:\n",
-                        #       nextStateCurrentPlayerCardsInPlayAfterAttack)
-                        # print("nextStateEnemyCardsInPlayAfterAttack", nextStateEnemyCardsInPlayAfterAttack)
-                        # print("attackCapableCardsToChooseIndices: ", attackCapableCardsToChooseIndices)
-                        # print("attackableCardsToChooseIndices: ", attackableCardsToChooseIndices)
-                        # print("attackingCards[:5]: ", attackingCards[:5])
-                        # print("attackedCards[:5]: ", attackedCards[:5])
-                        # DEBUG
 
                         # Attack the attackable cards with the attack capable cards.
                         invalidAttack = False
@@ -267,11 +218,8 @@ def getNextStates(currentState, playerIndx, turn):
                         # Set all new Minion cards for this player to be attack capable in future plys.
                         for minionCard in newMinionCards:
                             minionCard.canAttack(True)
-                        # print("nextStateCurrentPlayerCardsInPlayAfterAttack (after set attack capable):\n",
-                        #       nextStateCurrentPlayerCardsInPlayAfterAttack)
 
                         # Assemble the next state.
-                        # print("Assembling next state!")
 
                         # Get cards in play.
                         nextStateCardsInPlay = [0, 0]
@@ -296,7 +244,6 @@ def getNextStates(currentState, playerIndx, turn):
 
                         nextState = State(nextStateCardsInPlay, nextStateCardsInHand,
                                           nextStateManaCrystals, nextStateDecks)
-                        # print("nextState: ", nextState)
                         yield nextState
 
 def alphabeta(currentState, playerIndx, turn, depth, alpha, beta, maxPlayer, maxDepth):
@@ -326,10 +273,6 @@ def alphabeta(currentState, playerIndx, turn, depth, alpha, beta, maxPlayer, max
             return currentState.getHeuristic(), currentState
         return currentState.getHeuristic()
 
-    # childNodes = [Node(nextState, None) for nextState in getNextStates(currentState, playerIndx, turn)]
-    # if len(childNodes) == 0:
-    #     score = utilityFunction(currentState)
-    #     return score
 
     # Gets child states and sorts them (max: descending order, min: ascending order)
     childStates = list(getNextStates(currentState, playerIndx, turn))
@@ -390,11 +333,8 @@ def successorFunction(currentState, playerIndx, turn, maxDepth):
     :param maxDepth:        int     See `alphabeta()` in this file for description.
     :return successorState: State   A variable of type State representing the best next state for player `playerIndx`.
     """
-    # childNodes = [Node(nextState, None) for nextState in getNextStates(currentState, playerIndx, turn)]
-    # initialNode = Node(currentState, childNodes)
     childStates = [nextState for nextState in getNextStates(currentState, playerIndx, turn)]
-    # print("len(childStates): ", len(childStates))
-    # print("childStates: ", childStates)
+
     # Python integers have arbitrary precision, so choose the min and max values for 32-bit integers.
     alpha = MIN_INT
     beta = MAX_INT
@@ -413,17 +353,12 @@ def successorFunction(currentState, playerIndx, turn, maxDepth):
                                for childState in childStates]
     pool.close()
     pool.join()
-    # Get the results.
+    # Get the results from `pool`.
     alpha_beta_state_tuples = [alpha_beta_state_tuple.get() for alpha_beta_state_tuple in alpha_beta_state_tuples]
-
-    # Get the alpha-beta value of all child nodes sequentially (nodes for which the *next* player is making the ply).
-    # alpha_beta_state_tuples = [alphabeta(childState, playerIndx, turn, 1, alpha, beta, bool(nextPlayerIndx))
-    #                            for childState in childStates]
 
     # Sort on alpha-beta value.
     alpha_beta_state_tuples.sort(key=lambda x: x[0])
-    # print("len(alpha_beta_state_tuples):", len(alpha_beta_state_tuples))
-    # print("alpha_beta_state_tuples[:3]:", alpha_beta_state_tuples[:3])
+
     # Player 0 picks among states with the minimum alpha-beta value.
     # Player 1 picks among states with the maximum alpha-beta value (when testing player 1 with non-random AI).
     successorState = None
@@ -446,7 +381,6 @@ def successorFunctionRandom(currentState, playerIndx, turn):
     :return successorState: State   A variable of type State representing the best next state for player `playerIndx`.
     """
     nextStates = [nextState for nextState in getNextStates(currentState, playerIndx, turn)]
-    # print("len(nextStates):", len(nextStates))
     successorState = random.choice(nextStates)
     return successorState
 

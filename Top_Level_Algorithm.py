@@ -20,8 +20,6 @@ def game_playing_AI(printStats=True, maxDepth1=1, maxDepth2=None):
     """
     # Loads cards from json file
     loadCards()
-    # print(len(globals.heroesList))
-    # print(len(globals.cardsList))
 
     # Create a list `playerList` to note the order in which the players take turns (so either [0,1] or [1,0]).
     # The order is decided randomly.
@@ -57,10 +55,6 @@ def game_playing_AI(printStats=True, maxDepth1=1, maxDepth2=None):
         del deck1[cardIndx]
 
     decks = [deck0, deck1]
-    # print("cardsInPlay: ", cardsInPlay)
-    # print("cardsInHand: ", cardsInHand)
-    # print("len(deck0): ", len(deck0))
-    # print("len(deck1): ", len(deck1))
 
     # Give both players mana crystals (1 for first player, 2 for second player).
     manaCrystals = [0, 0]
@@ -106,8 +100,8 @@ def game_playing_AI(printStats=True, maxDepth1=1, maxDepth2=None):
         print("\nWinner was player", playerIndx, "on turn", turn, "with state:\n{}".format(currentState))
 
     # Return information for analysis purposes (in testing).
-    # (Winning player index, ending turn, ending state)
-    return playerIndx, turn#, currentState
+    # (Winning player index, ending turn)
+    return playerIndx, turn
 
 if __name__ == "__main__":
     # Run game playing AI by default, but these are supposed to be imported and tested in `testing.py`.

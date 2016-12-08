@@ -7,7 +7,8 @@ def test_game_playing_AI_vs_random_AI():
     """
     Fist set of tests for the game playing AI.
 
-    Test the AI against another AI, varying the lookahead depth for one but not the other.
+    Test the AI against an opponent that chooses among next states pseudo-randomly
+    (see `successorFunction.getNextStates()` for criteria for selecting next states to examine).
     """
 
     # Create the test results directory if it does not exist.
@@ -19,7 +20,6 @@ def test_game_playing_AI_vs_random_AI():
     maxDepthsToTest = [1, 2, 3]
     numRuns = 10
 
-    # 1) Test the AI against an AI that chooses among next states "randomly".
     print(r'Game Playing AI Test - AI vs "Random" AI')
     print("====================")
     # Create the file and write results to it.

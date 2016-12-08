@@ -2,15 +2,8 @@
 MAX_INT = 2**31 - 1
 MIN_INT = -2**31
 
-# List of Heroes `heroesList` from the JSON data - one instance of each Hero
+# List of Heroes `heroesList` from the JSON data - one instance of each Hero.
 heroesList = []
-# Construct list of Cards `cardsList` from the JSON data - one instance of each card,
-# only including minions and excluding Hero cards
+# List of Cards `cardsList` from the JSON data - one instance of each card,
+# only including minions and necessarily excluding Hero cards (in any iteration).
 cardsList = []
-
-# The maximum lookahead depth in the minimax algorithm.
-# maxDepth = 3
-
-# def setMaxDepth(max):
-#     global maxDepth
-#     maxDepth = max

@@ -1,7 +1,6 @@
 from Card import *
 from globals import MAX_INT, MIN_INT
 
-# TODO: Finish this. (Jerrod, Cisco)
 def utilityFunction(state):
     '''
     Calculates a utility value for a state.
@@ -25,14 +24,6 @@ def utilityFunction(state):
         # State favors player0
         return MIN_INT
 
-    # Calculates current/future player attacks
-    # player0Attacks = calculateCardsGrade(state.getCardsInPlay(0))
-    # player1Attacks = calculateCardsGrade(state.getCardsInPlay(1))
-
-    # Updates hero health after current attacks are applied
-    # player0HeroHealth = player0HeroHealth - player1Attacks[0]
-    # player1HeroHealth = player1HeroHealth - player0Attacks[0]
-
     # Checks if it's a win state (again)
     if (player0HeroHealth <= 0):
         # State favors player1
@@ -46,24 +37,3 @@ def utilityFunction(state):
     player1TotalManaCrystalCost = sum([card.getCost() for card in state.getCardsInPlay(1)[1:]])
 
     return (player1HeroHealth + player1TotalManaCrystalCost / 3) - (player0HeroHealth + player0TotalManaCrystalCost / 3)
-    '''
-    # Total mana crystal cost of this player's cards - excluding the Hero card.
-    player0TotalManaCrystalCost = sum([card.getCost() for card in state.getCardsInPlay(0)[1:]])
-    player1TotalManaCrystalCost = sum([card.getCost() for card in state.getCardsInPlay(1)[1:]])
-    return (player1HeroHealth + player1TotalManaCrystalCost) - (player0HeroHealth + player0TotalManaCrystalCost)
-    '''
-
-# def calculateCardsGrade(cardsInPlay):
-#     playerAttackNow = 0
-#     playerAttackFuture = 0
-#
-#     # Sums the attacks of minion cards in play
-#     for card in cardsInPlay:
-#         if type(card) is Minion:
-#             if (card.canAttack()):
-#                 playerAttackNow += card.getAttack()
-#             else:
-#                 # Future attacks have half less weight
-#                 playerAttackFuture += card.getAttack() * 0.25
-
-    return [playerAttackNow, playerAttackFuture]
