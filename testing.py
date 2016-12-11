@@ -17,8 +17,8 @@ def test_game_playing_AI_vs_random_AI():
         os.makedirs(testdir)
 
     # The lookahead depths for the AI player(s).
-    maxDepthsToTest = [1, 2, 3]
-    numRuns = 20
+    maxDepthsToTest = [1, 2]
+    numRuns = 10
 
     print(r'Game Playing AI Test - AI vs "Random" AI')
     print("====================")
@@ -69,7 +69,7 @@ def test_game_playing_AI_vs_other_AI():
         os.makedirs(testdir)
 
     # The lookahead depths for the AI players.
-    maxDepthsToTest = [1, 2, 3]
+    maxDepthsToTest = [1, 2]
     numRuns = 10
 
     print(r'Game Playing AI Test - AI vs AI')

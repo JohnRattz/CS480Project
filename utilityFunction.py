@@ -16,14 +16,6 @@ def utilityFunction(state):
     player0HeroHealth = state.getCardsInPlay(0)[0].getHealth()
     player1HeroHealth = state.getCardsInPlay(1)[0].getHealth()
 
-    # Checks if it's a win state
-    if (player0HeroHealth <= 0):
-        # State favors player1
-        return MAX_INT
-    elif (player1HeroHealth <= 0):
-        # State favors player0
-        return MIN_INT
-
     # Checks if it's a win state (again)
     if (player0HeroHealth <= 0):
         # State favors player1
