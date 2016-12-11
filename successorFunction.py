@@ -333,7 +333,7 @@ def successorFunction(currentState, playerIndx, turn, maxDepth):
     :param maxDepth:        int     See `alphabeta()` in this file for description.
     :return successorState: State   A variable of type State representing the best next state for player `playerIndx`.
     """
-    childStates = [nextState for nextState in getNextStates(currentState, playerIndx, turn)]
+    childStates = (nextState for nextState in getNextStates(currentState, playerIndx, turn))
 
     # Python integers have arbitrary precision, so choose the min and max values for 32-bit integers.
     alpha = MIN_INT
