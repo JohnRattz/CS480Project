@@ -73,7 +73,7 @@ def game_playing_AI(printStats=True, maxDepth1=1, maxDepth2=None):
     terminate = False
 
     # Run the game.
-    while true:
+    while True:
         # Create variable `nextState` to hold the next proposed state.
         nextState = None
         for playerIndx in playerList:
